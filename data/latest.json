@@ -1,0 +1,92 @@
+{
+  "generated_at_kst": "2026-08-27 16:42",
+  "status": "자동수집 테스트 완료",
+  "news": {
+    "fx": {
+      "name": "환율",
+      "query": "원달러 환율 서울외환시장 연합뉴스",
+      "freshness": "오늘·어제",
+      "articles": [
+        {
+          "title": "코스피, 2.76% 상승 출발…코스닥도 0.19%↑ - 연합뉴스TV",
+          "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE96RnpUZ1lncWE4WWh6WjRGQVpHc0Y3N3VfXzIxeDlVWnpGTWtPQmRvQ2phNlM5WTRULXFwY3puaXdpWVJIc3F2Um9ORjExS000LXdadnJ4b3BVWUpUVlBjU2Vpc0N4dFE?oc=5",
+          "published": "Thu, 27 Aug 2026 00:05:00 GMT",
+          "source": "연합뉴스TV"
+        },
+        {
+          "title": "한은, 기준금리 3%로 연속 인상…\"물가 오름세 확산 방지\"(종합2보) - v.daum.net",
+          "link": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9nNDF1OXhmcTlnYjd0YnVGWTVSdlhsVVJ4MmxVQmN5RnBRNk1aVnNMUmExa1R1WGVBYlIxTUtoSEsyQmQxakIyS3VtWDRvWnM?oc=5",
+          "published": "Thu, 27 Aug 2026 02:01:59 GMT",
+          "source": "v.daum.net"
+        },
+        {
+          "title": "환율, 1380원대서 소폭 상승…美 물가·내수 견조에 달러 강세 - 아주경제",
+          "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE0tSjM5ZzB3ZHZ3TGhLX0FVR1JneG51WFIwQi1GTmNpb0RQTkt0ZlVRX1ZuVDBOMUpSalpHX3h6N0haV3FCQU9XdUdyZEF1WFpHckUzLUVwOEXSAVhBVV95cUxNLUozOWcwd2R2d0xoS19BVUdSZ3hudVhSMEItRk5jaW9EUE5LdGZVUV9WblQwTjFKUmpaR194ejdIWldxQkFPV3VHcmRBdVhaR3JFMy1FcDhF?oc=5",
+          "published": "Thu, 27 Aug 2026 00:28:26 GMT",
+          "source": "아주경제"
+        },
+        {
+          "title": "코스피, 하락 출발 뒤 0.97% 상승 마감…코스닥은 보합 - KBS 뉴스",
+          "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9KX2dLaXd5Wk5YWk9QeDYtTjBJRFZJV2dIZjdyRi04RFVWZnpRZ2tNLXQ3WnpBOGx0QXhJZFBjQW14MkE3azNLQnhfVXYzeEdMOEFQbjNiWXhJUnZ2bVNnRUZVVGNUdw?oc=5",
+          "published": "Wed, 26 Aug 2026 07:08:00 GMT",
+          "source": "KBS 뉴스"
+        },
+        {
+          "title": "원/달러 환율, 금통위 앞두고 1,380원대 초반서 보합세 - 네이트",
+          "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE4tVC1qMVNxSjU5Rl9sUmtPd1M2ZlFZWUw1dHd6ZU51bXVlYXpIOGc3eWVhVEJidE9teGhOaHotbjVMSklXODA5LTJPZmpkYzlKQ0VV?oc=5",
+          "published": "Thu, 27 Aug 2026 00:46:00 GMT",
+          "source": "네이트"
+        }
+      ]
+    },
+    "cement_slag": {
+      "name": "시멘트·슬래그",
+      "query": "시멘트 슬래그 가격 인상 생산중단 정비",
+      "freshness": "특이사항 없음",
+      "articles": []
+    },
+    "energy": {
+      "name": "유연탄·에너지",
+      "query": "유연탄 석탄 브렌트유 LNG 에너지 가격",
+      "freshness": "특이사항 없음",
+      "articles": []
+    },
+    "aggregate": {
+      "name": "골재·모래",
+      "query": "골재 모래 가격 채취허가 공급차질",
+      "freshness": "특이사항 없음",
+      "articles": []
+    },
+    "steel_phc": {
+      "name": "철강·PHC",
+      "query": "PC강봉 선재 철강 철광석 PHC",
+      "freshness": "특이사항 없음",
+      "articles": []
+    },
+    "logistics": {
+      "name": "물류",
+      "query": "BDI 벌크 해상운임 물류 운임",
+      "freshness": "최근 7일",
+      "articles": [
+        {
+          "title": "'선복 수요·운임↑'…해운업계, 전쟁에도 '깜짝 실적' - 데일리한국",
+          "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5SY0w1aDZHcXc1bzJTNGprdDk2a0ZtTXNpYnkxaThTRHFzRl9Ea0JEdXpZa0QzUldQZ2dwVjdrNjA3WEZlTU01V3V6LTFPTGsxc3pjZ3hTWm1feVpvU19GVm5oal9pQ05uOWhrb1BLSdIBc0FVX3lxTE5kQ1I5cF9sckdnYlZUM0NSSE5uZ2RVLVFrNWF5aXNqZjhIeENXX0JkdG9RYUZ3c0NIS2RVTDRRYzZOZ2VpMmRyN2tVYmEwS3BLVlJCMUZqNnJ6dG44X2dPRGtFMHM1OWdSaTJlQ0g3OU9iZWs?oc=5",
+          "published": "Sun, 23 Aug 2026 04:00:00 GMT",
+          "source": "데일리한국"
+        }
+      ]
+    },
+    "construction": {
+      "name": "건설시장",
+      "query": "건설수주 착공 SOC 건설시장",
+      "freshness": "특이사항 없음",
+      "articles": []
+    },
+    "suppliers": {
+      "name": "공급사",
+      "query": "시멘트 공급사 골재 삼표 유진기업 건자재",
+      "freshness": "특이사항 없음",
+      "articles": []
+    }
+  }
+}
