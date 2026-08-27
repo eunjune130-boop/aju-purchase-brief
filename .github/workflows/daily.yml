@@ -1,0 +1,52 @@
+name: Daily AJU Purchase Brief
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    # 한국시간 평일 오전 9:00
+    # GitHub Actions cron은 UTC 기준이므로 00:00 UTC = 09:00 KST
+    - cron: '0 0 * * 1-5'
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 저장소 불러오기
+        uses: actions/checkout@v4
+
+      - name: Python 설정
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 필요한 프로그램 설치
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: AJU 구매 브리핑 데이터 수집
+        run: python update_briefing.py
+
+      - name: 수집 결과 확인
+        run: |
+          echo "===== 생성된 파일 ====="
+          find data -maxdepth 2 -type f -print
+          echo "===== latest.json 앞부분 ====="
+          head -n 80 data/latest.json
+
+      - name: 결과 GitHub에 저장
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/latest.json
+
+          if git diff --cached --quiet; then
+            echo "변경된 데이터가 없습니다."
+          else
+            git commit -m "Update AJU briefing data"
+            git push
+          fi
