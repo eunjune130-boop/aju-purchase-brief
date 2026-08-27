@@ -5,51 +5,64 @@ import json
 import re
 
 import feedparser
+import requests
+from bs4 import BeautifulSoup
 
 
-# =========================================================
-# AJU 구매팀 브리핑 - 자동수집 2차
-# ---------------------------------------------------------
-# 1. Google News RSS에서 기사 수집
-# 2. 카테고리별 관련성 점수 계산
-# 3. 무관 기사 제외
-# 4. 오늘·어제 → 최근 3일 → 최근 7일 순으로 확대
-# 5. 상위 기사만 data/latest.json에 저장
+# ============================================================
+# AJU 구매팀 브리핑 자동수집
 #
-# 현재 단계에서는 index.html을 자동 수정하지 않습니다.
-# =========================================================
+# [환율]
+# 연합뉴스 서울외환시장 관련 기사 별도 검색
+# → 당일 USD/KRW
+# → 전 거래일
+# → 등락
+# → 기사/출처 저장
+#
+# [구매 뉴스]
+# 시멘트·슬래그 / 유연탄·에너지 / 골재·모래
+# 철강·PHC / 물류 / 건설시장 / 공급사
+#
+# [뉴스 최신성]
+# 오늘·어제 → 최근 3일 → 최근 7일 → 특이사항 없음
+# ============================================================
 
 
 ROOT = Path(__file__).resolve().parent
 DATA_DIR = ROOT / "data"
 OUTPUT_FILE = DATA_DIR / "latest.json"
 
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/124.0 Safari/537.36"
+    )
+}
 
-# ---------------------------------------------------------
-# 한국시간
-# ---------------------------------------------------------
+
+# ============================================================
+# 기본 함수
+# ============================================================
 
 def now_kst():
     return datetime.utcnow() + timedelta(hours=9)
 
 
-# ---------------------------------------------------------
-# 텍스트 정리
-# ---------------------------------------------------------
-
 def normalize(text):
     if not text:
         return ""
 
-    text = text.lower()
-    text = re.sub(r"\s+", " ", text)
+    return re.sub(
+        r"\s+",
+        " ",
+        str(text).lower()
+    ).strip()
 
-    return text.strip()
 
-
-# ---------------------------------------------------------
-# Google News RSS 검색
-# ---------------------------------------------------------
+# ============================================================
+# Google News RSS
+# ============================================================
 
 def google_news_search(query, days=2, limit=30):
 
@@ -77,35 +90,21 @@ def google_news_search(query, days=2, limit=30):
             if "source" in entry:
                 source = entry.source.title
         except Exception:
-            source = ""
+            pass
 
-        results.append(
-            {
-                "title": entry.get(
-                    "title",
-                    ""
-                ),
-
-                "link": entry.get(
-                    "link",
-                    ""
-                ),
-
-                "published": entry.get(
-                    "published",
-                    ""
-                ),
-
-                "source": source,
-            }
-        )
+        results.append({
+            "title": entry.get("title", ""),
+            "link": entry.get("link", ""),
+            "published": entry.get("published", ""),
+            "source": source,
+        })
 
     return results
 
 
-# ---------------------------------------------------------
-# 기사 관련성 점수 계산
-# ---------------------------------------------------------
+# ============================================================
+# 일반 구매뉴스 관련성 평가
+# ============================================================
 
 def score_article(article, rule):
 
@@ -121,73 +120,44 @@ def score_article(article, rule):
 
     score = 0
 
-    # 강한 핵심 키워드
     for keyword in rule.get(
-        "strong_keywords",
-        []
+        "strong_keywords", []
     ):
-
         if normalize(keyword) in text:
             score += 4
 
-    # 일반 관련 키워드
     for keyword in rule.get(
-        "keywords",
-        []
+        "keywords", []
     ):
-
         if normalize(keyword) in text:
             score += 2
 
-    # 보조 키워드
     for keyword in rule.get(
-        "support_keywords",
-        []
+        "support_keywords", []
     ):
-
         if normalize(keyword) in text:
             score += 1
 
-    # 제외 키워드
-    for keyword in rule.get(
-        "exclude_keywords",
-        []
-    ):
-
-        if normalize(keyword) in text:
-            score -= 6
-
-    # 우선 언론사
     for media in rule.get(
-        "preferred_sources",
-        []
+        "preferred_sources", []
     ):
-
         if normalize(media) in source:
             score += 1
 
     return score
 
 
-# ---------------------------------------------------------
-# 중복 기사 제거
-# ---------------------------------------------------------
-
 def remove_duplicates(articles):
 
     seen = set()
-    results = []
+    result = []
 
     for article in articles:
 
         title = normalize(
-            article.get(
-                "title",
-                ""
-            )
+            article.get("title", "")
         )
 
-        # 언론사명이 제목 뒤에 붙는 경우가 많아 단순화
         key = re.sub(
             r"\s*-\s*[^-]+$",
             "",
@@ -198,14 +168,10 @@ def remove_duplicates(articles):
             continue
 
         seen.add(key)
-        results.append(article)
+        result.append(article)
 
-    return results
+    return result
 
-
-# ---------------------------------------------------------
-# 관련 기사 필터링
-# ---------------------------------------------------------
 
 def filter_articles(
     articles,
@@ -214,7 +180,7 @@ def filter_articles(
     limit=5
 ):
 
-    scored = []
+    result = []
 
     for article in articles:
 
@@ -223,147 +189,76 @@ def filter_articles(
             rule
         )
 
-        if score >= minimum_score:
+        if score < minimum_score:
+            continue
 
-            new_article = dict(article)
+        item = dict(article)
+        item["relevance_score"] = score
 
-            new_article[
-                "relevance_score"
-            ] = score
+        result.append(item)
 
-            scored.append(
-                new_article
-            )
-
-    # 높은 관련성 우선
-    scored.sort(
+    result.sort(
         key=lambda x: x[
             "relevance_score"
         ],
         reverse=True
     )
 
-    scored = remove_duplicates(
-        scored
-    )
+    result = remove_duplicates(result)
 
-    return scored[:limit]
+    return result[:limit]
 
-
-# ---------------------------------------------------------
-# 최신성 순차 검색
-# ---------------------------------------------------------
 
 def collect_with_freshness(
     query,
     rule
 ):
 
-    search_ranges = [
-
+    ranges = [
         (2, "오늘·어제"),
-
         (3, "최근 3일"),
-
         (7, "최근 7일"),
-
     ]
 
-    for days, label in search_ranges:
+    for days, label in ranges:
 
-        raw_results = (
-            google_news_search(
-                query=query,
-                days=days,
-                limit=30
-            )
+        articles = google_news_search(
+            query,
+            days=days,
+            limit=30
         )
 
-        filtered = filter_articles(
-            raw_results,
-            rule=rule,
+        articles = filter_articles(
+            articles,
+            rule,
             minimum_score=3,
             limit=5
         )
 
-        if filtered:
-
+        if articles:
             return {
                 "freshness": label,
-                "articles": filtered,
+                "articles": articles,
             }
 
     return {
-        "freshness":
-            "특이사항 없음",
-
+        "freshness": "특이사항 없음",
         "articles": [],
     }
 
 
-# ---------------------------------------------------------
-# 검색 규칙
-# ---------------------------------------------------------
+# ============================================================
+# 구매뉴스 7개 영역
+# ============================================================
 
 CATEGORY_RULES = {
 
-    "fx": {
-
-        "name":
-            "환율",
-
-        "query":
-            "원달러 환율 서울외환시장 달러 원화",
-
-        "strong_keywords": [
-            "원/달러",
-            "원달러",
-            "서울외환시장",
-            "환율",
-        ],
-
-        "keywords": [
-            "달러",
-            "원화",
-            "외환시장",
-            "환율 상승",
-            "환율 하락",
-        ],
-
-        "support_keywords": [
-            "수입",
-            "수출",
-            "외국환",
-        ],
-
-        "exclude_keywords": [
-            "코스피",
-            "코스닥",
-            "주가",
-            "증시",
-            "비트코인",
-            "가상자산",
-            "금리 인상",
-            "부동산",
-        ],
-
-        "preferred_sources": [
-            "연합뉴스",
-            "연합인포맥스",
-            "한국경제",
-            "매일경제",
-            "서울경제",
-        ],
-    },
-
-
     "cement_slag": {
-
-        "name":
-            "시멘트·슬래그",
+        "name": "시멘트·슬래그",
 
         "query":
-            "시멘트 슬래그 고로슬래그 가격 공급 생산 정비",
+            "시멘트 슬래그 고로슬래그 "
+            "가격 공급 생산 정비",
 
         "strong_keywords": [
             "시멘트",
@@ -389,18 +284,9 @@ CATEGORY_RULES = {
             "건설경기",
         ],
 
-        "exclude_keywords": [
-            "주가",
-            "급등주",
-            "테마주",
-            "배당",
-            "증권",
-        ],
-
         "preferred_sources": [
             "연합뉴스",
             "대한경제",
-            "건설경제",
             "뉴스핌",
             "뉴시스",
         ],
@@ -408,12 +294,11 @@ CATEGORY_RULES = {
 
 
     "energy": {
-
-        "name":
-            "유연탄·에너지",
+        "name": "유연탄·에너지",
 
         "query":
-            "유연탄 석탄 브렌트유 국제유가 LNG 전력요금",
+            "유연탄 석탄 브렌트유 "
+            "국제유가 LNG 에너지 가격",
 
         "strong_keywords": [
             "유연탄",
@@ -438,35 +323,27 @@ CATEGORY_RULES = {
             "원가",
         ],
 
-        "exclude_keywords": [
-            "주유소 맛집",
-            "자동차 신차",
-            "전기차 판매",
-            "주가 급등",
-        ],
-
         "preferred_sources": [
             "연합뉴스",
             "로이터",
             "뉴스1",
             "한국경제",
-            "매일경제",
         ],
     },
 
 
     "aggregate": {
-
-        "name":
-            "골재·모래",
+        "name": "골재·모래",
 
         "query":
-            "골재 모래 레미콘 채취허가 공급차질 가격",
+            "골재 모래 레미콘 "
+            "채취허가 공급 가격",
 
         "strong_keywords": [
             "골재",
             "모래",
             "채취허가",
+            "석산",
         ],
 
         "keywords": [
@@ -475,7 +352,6 @@ CATEGORY_RULES = {
             "공급 부족",
             "공급 차질",
             "채석",
-            "석산",
         ],
 
         "support_keywords": [
@@ -485,31 +361,20 @@ CATEGORY_RULES = {
             "건설자재",
         ],
 
-        "exclude_keywords": [
-            "해수욕장",
-            "모래축제",
-            "관광",
-            "해변",
-            "스포츠",
-            "주가",
-        ],
-
         "preferred_sources": [
             "연합뉴스",
             "대한경제",
-            "건설경제",
             "뉴시스",
         ],
     },
 
 
     "steel_phc": {
-
-        "name":
-            "철강·PHC",
+        "name": "철강·PHC",
 
         "query":
-            "PC강봉 선재 철근 철스크랩 철광석 PHC 철강 가격",
+            "PC강봉 선재 철근 철스크랩 "
+            "철광석 PHC 철강 가격",
 
         "strong_keywords": [
             "pc강봉",
@@ -535,14 +400,6 @@ CATEGORY_RULES = {
             "공급",
         ],
 
-        "exclude_keywords": [
-            "자동차 판매",
-            "조선주",
-            "철강주",
-            "증권",
-            "주가",
-        ],
-
         "preferred_sources": [
             "스틸데일리",
             "철강금속신문",
@@ -553,12 +410,11 @@ CATEGORY_RULES = {
 
 
     "logistics": {
-
-        "name":
-            "물류",
+        "name": "물류",
 
         "query":
-            "BDI 벌크 해상운임 물류 운송비 항만",
+            "BDI 벌크 해상운임 "
+            "물류 운송비 항만",
 
         "strong_keywords": [
             "bdi",
@@ -582,14 +438,6 @@ CATEGORY_RULES = {
             "운송",
         ],
 
-        "exclude_keywords": [
-            "택배 이벤트",
-            "배달앱",
-            "쇼핑",
-            "주가",
-            "해운주",
-        ],
-
         "preferred_sources": [
             "쉬핑뉴스넷",
             "해사신문",
@@ -600,12 +448,11 @@ CATEGORY_RULES = {
 
 
     "construction": {
-
-        "name":
-            "건설시장",
+        "name": "건설시장",
 
         "query":
-            "건설수주 착공 SOC 주택 건설경기 건설투자",
+            "건설수주 착공 SOC "
+            "건설경기 건설투자",
 
         "strong_keywords": [
             "건설수주",
@@ -629,13 +476,6 @@ CATEGORY_RULES = {
             "phc",
         ],
 
-        "exclude_keywords": [
-            "건설주",
-            "주가",
-            "분양 광고",
-            "청약 경쟁률",
-        ],
-
         "preferred_sources": [
             "국토교통부",
             "통계청",
@@ -647,12 +487,11 @@ CATEGORY_RULES = {
 
 
     "suppliers": {
-
-        "name":
-            "공급사",
+        "name": "공급사",
 
         "query":
-            "시멘트 공급사 골재 레미콘 삼표 유진기업 생산 가격",
+            "시멘트 골재 레미콘 "
+            "삼표 유진기업 공급 생산 가격",
 
         "strong_keywords": [
             "삼표",
@@ -681,14 +520,6 @@ CATEGORY_RULES = {
             "파업",
         ],
 
-        "exclude_keywords": [
-            "주가",
-            "목표주가",
-            "매수 추천",
-            "증권사",
-            "배당",
-        ],
-
         "preferred_sources": [
             "연합뉴스",
             "뉴스핌",
@@ -699,67 +530,426 @@ CATEGORY_RULES = {
 }
 
 
-# ---------------------------------------------------------
-# 전체 수집
-# ---------------------------------------------------------
-
-def collect_all_news():
+def collect_purchase_news():
 
     collected = {}
 
-    for key, rule in (
-        CATEGORY_RULES.items()
-    ):
+    for key, rule in CATEGORY_RULES.items():
 
         print(
-            f"[검색 중] "
-            f"{rule['name']}"
+            f"[구매뉴스] {rule['name']}"
         )
 
-        result = (
-            collect_with_freshness(
-                query=rule[
-                    "query"
-                ],
-                rule=rule
-            )
+        result = collect_with_freshness(
+            rule["query"],
+            rule
         )
 
         collected[key] = {
-
-            "name":
-                rule["name"],
-
-            "query":
-                rule["query"],
-
+            "name": rule["name"],
             "freshness":
-                result[
-                    "freshness"
-                ],
-
+                result["freshness"],
             "articles":
-                result[
-                    "articles"
-                ],
+                result["articles"],
         }
 
         print(
-            "  →",
+            " →",
             result["freshness"],
-            "/",
-            len(
-                result["articles"]
-            ),
+            len(result["articles"]),
             "건"
         )
 
     return collected
 
 
-# ---------------------------------------------------------
-# 저장
-# ---------------------------------------------------------
+# ============================================================
+# 환율 전용 수집
+# ============================================================
+
+def find_yonhap_fx_articles():
+
+    queries = [
+        (
+            "연합뉴스 원 달러 환율 "
+            "서울외환시장"
+        ),
+        (
+            "연합뉴스 원달러 환율 "
+            "서울 외환시장"
+        ),
+    ]
+
+    candidates = []
+
+    for query in queries:
+
+        articles = google_news_search(
+            query,
+            days=2,
+            limit=30
+        )
+
+        for article in articles:
+
+            source = normalize(
+                article.get(
+                    "source",
+                    ""
+                )
+            )
+
+            title = normalize(
+                article.get(
+                    "title",
+                    ""
+                )
+            )
+
+            # 연합뉴스 기사만 사용
+            if "연합뉴스" not in source:
+                continue
+
+            # 환율 관련 기사만 사용
+            if not (
+                "환율" in title
+                or "원/달러" in title
+                or "원달러" in title
+                or "달러" in title
+            ):
+                continue
+
+            candidates.append(
+                article
+            )
+
+    candidates = remove_duplicates(
+        candidates
+    )
+
+    return candidates
+
+
+def resolve_google_news_url(url):
+
+    try:
+        response = requests.get(
+            url,
+            headers=HEADERS,
+            timeout=20,
+            allow_redirects=True
+        )
+
+        return response.url
+
+    except Exception:
+        return url
+
+
+def fetch_article_text(url):
+
+    try:
+        response = requests.get(
+            url,
+            headers=HEADERS,
+            timeout=20,
+            allow_redirects=True
+        )
+
+        response.raise_for_status()
+
+        soup = BeautifulSoup(
+            response.text,
+            "html.parser"
+        )
+
+        # script/style 제거
+        for tag in soup(
+            ["script", "style"]
+        ):
+            tag.decompose()
+
+        return soup.get_text(
+            " ",
+            strip=True
+        )
+
+    except Exception as exc:
+
+        print(
+            "[환율 기사 본문 읽기 실패]",
+            exc
+        )
+
+        return ""
+
+
+def parse_number(value):
+
+    try:
+        return float(
+            value.replace(",", "")
+        )
+    except Exception:
+        return None
+
+
+def format_rate(value):
+
+    if value is None:
+        return None
+
+    return (
+        f"{value:,.2f}"
+        .rstrip("0")
+        .rstrip(".")
+        + "원"
+    )
+
+
+def extract_fx_market_data(text):
+
+    result = {
+        "current_rate": None,
+        "previous_rate": None,
+        "change": None,
+        "direction": None,
+    }
+
+    if not text:
+        return result
+
+    # --------------------------------------------------------
+    # 1. "전 거래일보다 1.5원 내린 1,383.3원"
+    #    형태 우선
+    # --------------------------------------------------------
+
+    pattern1 = re.search(
+        r"전\s*거래일(?:보다|에\s*비해)?"
+        r".{0,35}?"
+        r"(\d+(?:\.\d+)?)원"
+        r".{0,12}?"
+        r"(내린|하락한|떨어진|오른|상승한)"
+        r".{0,35}?"
+        r"(1,\d{3}(?:\.\d+)?)원",
+        text
+    )
+
+    if pattern1:
+
+        change_value = float(
+            pattern1.group(1)
+        )
+
+        direction_word = (
+            pattern1.group(2)
+        )
+
+        current = parse_number(
+            pattern1.group(3)
+        )
+
+        direction = (
+            "down"
+            if direction_word in [
+                "내린",
+                "하락한",
+                "떨어진",
+            ]
+            else "up"
+        )
+
+        previous = None
+
+        if current is not None:
+
+            if direction == "down":
+                previous = (
+                    current
+                    + change_value
+                )
+            else:
+                previous = (
+                    current
+                    - change_value
+                )
+
+        result.update({
+            "current_rate":
+                format_rate(current),
+
+            "previous_rate":
+                format_rate(previous),
+
+            "change":
+                f"{change_value:g}원",
+
+            "direction":
+                direction,
+        })
+
+        return result
+
+    # --------------------------------------------------------
+    # 2. "1,383.3원으로 전 거래일보다 1.5원 내렸다"
+    # --------------------------------------------------------
+
+    pattern2 = re.search(
+        r"(1,\d{3}(?:\.\d+)?)원"
+        r".{0,50}?"
+        r"전\s*거래일(?:보다|에\s*비해)?"
+        r".{0,30}?"
+        r"(\d+(?:\.\d+)?)원"
+        r".{0,10}?"
+        r"(내렸|하락|떨어졌|올랐|상승)",
+        text
+    )
+
+    if pattern2:
+
+        current = parse_number(
+            pattern2.group(1)
+        )
+
+        change_value = float(
+            pattern2.group(2)
+        )
+
+        direction_word = (
+            pattern2.group(3)
+        )
+
+        direction = (
+            "down"
+            if direction_word in [
+                "내렸",
+                "하락",
+                "떨어졌",
+            ]
+            else "up"
+        )
+
+        previous = None
+
+        if current is not None:
+
+            if direction == "down":
+                previous = (
+                    current
+                    + change_value
+                )
+            else:
+                previous = (
+                    current
+                    - change_value
+                )
+
+        result.update({
+            "current_rate":
+                format_rate(current),
+
+            "previous_rate":
+                format_rate(previous),
+
+            "change":
+                f"{change_value:g}원",
+
+            "direction":
+                direction,
+        })
+
+        return result
+
+    return result
+
+
+def collect_fx():
+
+    print(
+        "[환율] 연합뉴스 "
+        "서울외환시장 검색"
+    )
+
+    articles = (
+        find_yonhap_fx_articles()
+    )
+
+    for article in articles:
+
+        original_url = (
+            article.get(
+                "link",
+                ""
+            )
+        )
+
+        resolved_url = (
+            resolve_google_news_url(
+                original_url
+            )
+        )
+
+        text = fetch_article_text(
+            resolved_url
+        )
+
+        fx = extract_fx_market_data(
+            text
+        )
+
+        if fx["current_rate"]:
+
+            fx.update({
+                "status":
+                    "확인 완료",
+
+                "source":
+                    "연합뉴스",
+
+                "source_url":
+                    resolved_url,
+
+                "article_title":
+                    article.get(
+                        "title",
+                        ""
+                    ),
+
+                "published":
+                    article.get(
+                        "published",
+                        ""
+                    ),
+            })
+
+            print(
+                " → 환율 추출 성공:",
+                fx["current_rate"]
+            )
+
+            return fx
+
+    # 실패 시 이전 값 사용 금지
+    print(
+        " → 환율 자동추출 실패"
+    )
+
+    return {
+        "current_rate": None,
+        "previous_rate": None,
+        "change": None,
+        "direction": None,
+        "status": "확인 필요",
+        "source": "연합뉴스",
+        "source_url": None,
+        "article_title": None,
+        "published": None,
+    }
+
+
+# ============================================================
+# JSON 저장
+# ============================================================
 
 def save_result(data):
 
@@ -778,32 +968,34 @@ def save_result(data):
     )
 
 
-# ---------------------------------------------------------
+# ============================================================
 # 실행
-# ---------------------------------------------------------
+# ============================================================
 
 def main():
 
     current_time = now_kst()
 
-    print("=" * 55)
-
+    print("=" * 60)
     print(
         "AJU 구매팀 브리핑 "
-        "자동수집 2차"
+        "자동수집"
     )
-
     print(
-        "실행시간:",
+        "실행:",
         current_time.strftime(
-            "%Y-%m-%d "
-            "%H:%M KST"
+            "%Y-%m-%d %H:%M KST"
         )
     )
+    print("=" * 60)
 
-    print("=" * 55)
+    # 환율은 뉴스와 별도 수집
+    fx = collect_fx()
 
-    news = collect_all_news()
+    # 구매 관련 뉴스 7개 영역
+    purchase_news = (
+        collect_purchase_news()
+    )
 
     result = {
 
@@ -813,13 +1005,27 @@ def main():
             ),
 
         "status":
-            "관련성 필터 적용 완료",
+            "AJU 구매 브리핑 데이터 수집 완료",
+
+        "market_data": {
+            "fx": fx
+        },
 
         "news":
-            news,
+            purchase_news,
     }
 
     save_result(result)
+
+    print("")
+    print("[환율 결과]")
+    print(
+        json.dumps(
+            fx,
+            ensure_ascii=False,
+            indent=2
+        )
+    )
 
     print("")
     print(
