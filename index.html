@@ -1,1 +1,683 @@
-<h1>AJU 구매팀 브리핑 테스트</h1>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AJU 구매팀 브리핑</title>
+<style>
+:root{
+  --bg:#f4f6f7;--surface:#fff;--text:#1f2933;--muted:#667085;
+  --line:#d9e0e7;--raw:#8a651f;--fx:#315f72;--log:#4c5f8f;
+  --sup:#3d6b4f;--danger:#9b3d3d;--ok:#2d6a4f;--warn:#b7791f;
+  --link:#1f6fae;--shadow:0 6px 18px rgba(31,41,51,.07)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:"Segoe UI","Apple SD Gothic Neo","Noto Sans KR",Arial,sans-serif;
+  line-height:1.55
+}
+a{color:var(--link);text-decoration:none;font-weight:650}
+a:hover{text-decoration:underline}
+
+.app{display:grid;grid-template-columns:248px minmax(0,1fr);min-height:100vh}
+.sidebar{
+  position:sticky;top:0;height:100vh;padding:20px 16px;
+  background:#111827;color:#f8fafc;overflow:auto
+}
+.brand{
+  padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.14);
+  margin-bottom:16px
+}
+.brand strong{display:block;font-size:18px;margin-bottom:8px}
+.brand span{display:block;color:#cbd5e1;font-size:12px}
+.nav a{
+  display:block;padding:8px 9px;margin:2px 0;color:#dbe4ee;
+  border-radius:6px;font-size:13px
+}
+.nav a:hover,.nav a.active{
+  background:rgba(255,255,255,.1);text-decoration:none;color:#fff
+}
+
+main{padding:22px 24px 34px;max-width:1440px;width:100%}
+.topbar{
+  display:flex;justify-content:space-between;gap:16px;
+  align-items:stretch;margin-bottom:12px
+}
+.title{display:flex;flex-direction:column;justify-content:center}
+.title h1{margin:0 0 7px;font-size:28px}
+.title p{margin:0;color:var(--muted);font-size:14px}
+.asof{
+  min-width:300px;background:#fbfcfd;border:1px solid var(--line);
+  border-radius:8px;padding:12px 14px
+}
+.asof b{display:block;font-size:13px;margin-bottom:4px}
+.asof span{display:block;color:var(--muted);font-size:12px}
+
+.toolbar{
+  position:sticky;top:8px;z-index:10;
+  display:grid;grid-template-columns:minmax(220px,1fr) auto;
+  gap:12px;align-items:center;padding:8px 10px;
+  background:rgba(244,246,247,.96);backdrop-filter:blur(8px);
+  border:1px solid var(--line);border-radius:7px;
+  margin-bottom:16px;box-shadow:0 4px 18px rgba(31,41,51,.05)
+}
+.toolbar-label{
+  display:block;margin:0 0 4px 2px;color:#667085;
+  font-size:11px;font-weight:800
+}
+.toolbar-right{display:flex;flex-direction:column;align-items:flex-end}
+.toolbar-right .toolbar-label{align-self:flex-start}
+.search input{
+  width:100%;height:36px;border:1px solid var(--line);
+  border-radius:6px;padding:0 12px;font-size:14px;background:#fff
+}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.filter{
+  border:1px solid var(--line);background:#fff;color:#344054;
+  border-radius:6px;height:31px;padding:0 9px;
+  font-size:12px;font-weight:700;cursor:pointer
+}
+.filter.active{background:#1f2933;border-color:#1f2933;color:#fff}
+
+section{scroll-margin-top:84px;margin-bottom:20px}
+.section-head{
+  display:flex;align-items:end;justify-content:space-between;
+  gap:16px;margin-bottom:10px
+}
+.section-head h2{margin:0;font-size:20px}
+.section-head p{margin:0;color:var(--muted);font-size:12px}
+
+.summary-strip{
+  display:flex;gap:14px;align-items:flex-start;
+  padding:12px 14px;margin-bottom:10px;background:#fff;
+  border:1px solid var(--line);border-left:4px solid var(--warn);
+  border-radius:8px;box-shadow:var(--shadow)
+}
+.summary-level{font-size:16px;font-weight:850;white-space:nowrap}
+.summary-text{font-size:14px;font-weight:650;color:#344054;line-height:1.65}
+
+.metrics{
+  display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px
+}
+.metric{
+  background:#fff;border:1px solid var(--line);border-radius:8px;
+  padding:12px;min-height:116px;box-shadow:var(--shadow);
+  cursor:pointer;transition:.16s
+}
+.metric:hover,.card:hover,.check:hover{
+  transform:translateY(-2px);box-shadow:0 10px 24px rgba(31,41,51,.10)
+}
+.metric .label{
+  color:var(--muted);font-size:12px;font-weight:750;margin-bottom:9px
+}
+.label-desc{color:#7b8794;font-size:10px;font-weight:650}
+.metric .value{
+  display:block;font-size:22px;font-weight:800;line-height:1.1;margin-bottom:7px
+}
+.move{font-size:13px;font-weight:800}
+.up{color:#b42318}.down{color:#175cd3}.flat{color:#475467}
+.metric-meta,.note{
+  display:block;margin-top:6px;color:#667085;font-size:10px;line-height:1.5
+}
+.metric-toggle,.card-toggle{
+  display:block;margin-top:8px;color:var(--link);font-size:11px;font-weight:750
+}
+.metric-toggle::after{content:"판단 보기 ▾"}
+.metric.open .metric-toggle::after{content:"접기 ▴"}
+.card-toggle::after{content:"자세히 보기 ▾"}
+.card.open .card-toggle::after{content:"접기 ▴"}
+.metric-detail,.card-detail{
+  display:none;margin-top:9px;padding-top:9px;
+  border-top:1px dashed var(--line);
+  color:#475467;font-size:14px;line-height:1.75
+}
+.metric.open .metric-detail,.card.open .card-detail{display:block}
+
+.checklist{
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px
+}
+.check{
+  background:#fff;border:1px solid var(--line);
+  border-left:4px solid var(--fx);border-radius:8px;
+  padding:12px;box-shadow:var(--shadow)
+}
+.check:nth-child(2){border-left-color:var(--log)}
+.check:nth-child(3){border-left-color:var(--raw)}
+.check:nth-child(4){border-left-color:var(--sup)}
+.check:nth-child(5){border-left-color:var(--warn)}
+.num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:24px;height:24px;border-radius:50%;
+  background:#1f2933;color:#fff;font-size:12px;font-weight:800
+}
+.check h3{font-size:15px;margin:8px 0}
+.check-body,.check-action{
+  margin:8px 0 0;color:#4b5563;font-size:13px;line-height:1.6
+}
+
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:8px;
+  padding:13px;box-shadow:var(--shadow);transition:.16s
+}
+.card.priority{border-color:#9bb4c3}
+.card h3{margin:0 0 8px;font-size:16px}
+.card p{margin:0 0 9px;color:#475467;font-size:14px}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px}
+.badge{
+  display:inline-flex;align-items:center;padding:3px 7px;
+  border-radius:999px;font-size:11px;font-weight:800;
+  background:#edf2f7;color:#344054
+}
+.badge.raw{background:#fff4d6;color:var(--raw)}
+.badge.log{background:#ecf0fb;color:var(--log)}
+.badge.sup{background:#e9f4ed;color:var(--sup)}
+.badge.danger{background:#fde8e8;color:var(--danger)}
+.badge.ok{background:#e6f4ef;color:var(--ok)}
+.badge.warn{background:#fff4d6;color:var(--warn)}
+.meta-line{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.meta-chip{
+  display:inline-flex;padding:2px 7px;border-radius:999px;
+  background:#f2f4f7;color:#475467;font-size:10px;font-weight:750
+}
+.meta-chip.today{background:#e6f4ef;color:var(--ok)}
+.meta-chip.recent{background:#fff4d6;color:var(--warn)}
+.meta-chip.none{background:#eef2f6;color:#667085}
+.insight{
+  background:#fff8ec;border-left:3px solid var(--raw);
+  border-radius:0 6px 6px 0;padding:9px 12px!important;
+  color:#5b4419!important;font-weight:600
+}
+.source{
+  padding-top:8px;border-top:1px solid #eef2f5;
+  color:var(--muted)!important;font-size:12px!important
+}
+.hidden{display:none!important}
+
+@media(max-width:1280px){
+  .metrics{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .checklist{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:980px){
+  .app{grid-template-columns:1fr}
+  .sidebar{position:sticky;top:0;height:auto;z-index:20;padding:10px 14px}
+  .brand{display:none}
+  .nav{display:flex;gap:5px;overflow-x:auto}
+  .nav a{white-space:nowrap}
+  main{padding:16px}
+  .topbar{display:block}
+  .asof{margin-top:10px;min-width:0}
+  .toolbar{top:56px}
+  .grid,.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:680px){
+  main{padding:12px}
+  .title h1{font-size:22px}
+  .toolbar{top:52px;grid-template-columns:1fr}
+  .toolbar-right{align-items:stretch}
+  .filters{justify-content:flex-start}
+  .metrics,.checklist,.grid,.grid.two{grid-template-columns:1fr}
+  .section-head{display:block}
+  .section-head p{margin-top:3px}
+  .summary-strip{display:block}
+  .summary-level{display:block;margin-bottom:5px}
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<aside class="sidebar">
+  <div class="brand">
+    <strong>AJU 구매팀 브리핑</strong>
+    <span>레미콘 · PHC파일 · 골재 제조업 구매팀용</span>
+  </div>
+  <nav class="nav">
+    <a href="#signal">1. 오늘의 구매 요약·핵심 지표</a>
+    <a href="#checkpoints">2. 체크포인트</a>
+    <a href="#raw">3. 원자재 동향</a>
+    <a href="#logistics">4. 물류 동향</a>
+    <a href="#suppliers">5. 공급사·시장 동향</a>
+  </nav>
+</aside>
+
+<main>
+
+<header class="topbar">
+  <div class="title">
+    <h1>AJU 구매팀 브리핑</h1>
+    <p>구매가격 / 원가 / 공급망 / 환율 / 수요 중심</p>
+  </div>
+  <div class="asof">
+    <b>2026년 8월 27일 목요일</b>
+    <span>브리핑 기준: 10:02 KST</span>
+    <span>환율은 연합뉴스 서울외환시장 자료 · 기타 지표는 최신 확인값</span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div>
+    <span class="toolbar-label">내용 검색</span>
+    <div class="search">
+      <input id="searchInput" type="search"
+      placeholder="예: 시멘트, 골재, 환율, 유연탄, 철강, 운임, 공급사">
+    </div>
+  </div>
+  <div class="toolbar-right">
+    <span class="toolbar-label">내용 필터</span>
+    <div class="filters">
+      <button class="filter active" data-filter="all">전체</button>
+      <button class="filter" data-filter="raw">원자재</button>
+      <button class="filter" data-filter="fx">환율</button>
+      <button class="filter" data-filter="logistics">물류</button>
+      <button class="filter" data-filter="supplier">공급사</button>
+      <button class="filter" data-filter="market">건설시장</button>
+    </div>
+  </div>
+</div>
+
+<section id="signal">
+  <div class="section-head">
+    <h2>1. 오늘의 구매 요약·핵심 지표</h2>
+    <p>오늘의 판단과 주요 시장지표를 한 번에 확인</p>
+  </div>
+
+  <div class="summary-strip">
+    <span class="summary-level">🟠 주의</span>
+    <span class="summary-text">
+      원/달러 환율은 1,383.30원으로 전 거래일보다 1.50원 하락했습니다.
+      국제유가는 하락해 에너지·운송비 부담을 완화하는 방향이나,
+      BDI는 2,926으로 상승해 벌크 수입운임 부담이 이어지고 있습니다.
+    </span>
+  </div>
+
+  <div class="metrics">
+
+    <article class="metric" data-category="fx">
+      <div class="label">
+        USD/KRW <span class="label-desc">(원/달러 환율)</span>
+      </div>
+      <span class="value">1,383.30원</span>
+      <span class="move down">▼ 1.50원</span>
+      <span class="metric-meta">
+        전 거래일 1,384.80원 대비<br>
+        출처:
+        <a href="https://www.yna.co.kr/amp/view/AKR20260827042800002"
+        target="_blank">연합뉴스</a>
+      </span>
+      <span class="metric-toggle"></span>
+      <div class="metric-detail">
+        서울외환시장 당일 기사 기준입니다.
+        실제 결제 시점의 환율과 계약조건을 함께 확인하세요.
+      </div>
+    </article>
+
+    <article class="metric" data-category="raw">
+      <div class="label">
+        Brent <span class="label-desc">(국제유가 · 브렌트유)</span>
+      </div>
+      <span class="value">$87.84</span>
+      <span class="move down">▼ 0.8%</span>
+      <span class="note">8/26 마감</span>
+      <span class="metric-toggle"></span>
+      <div class="metric-detail">
+        국제유가 하락은 연료비 및 운송비 부담을 완화하는 요인입니다.
+      </div>
+    </article>
+
+    <article class="metric" data-category="raw">
+      <div class="label">
+        석탄 <span class="label-desc">(에너지 원료 · 유연탄)</span>
+      </div>
+      <span class="value">$131.65/t</span>
+      <span class="move up">▲ 0.11%</span>
+      <span class="note">Newcastle Coal · 8/25</span>
+      <span class="metric-toggle"></span>
+      <div class="metric-detail">
+        시멘트 제조원가의 주요 에너지 변수로 지속 확인합니다.
+      </div>
+    </article>
+
+    <article class="metric" data-category="logistics">
+      <div class="label">
+        BDI <span class="label-desc">(해상운임 · 벌크선 운임지수)</span>
+      </div>
+      <span class="value">2,926</span>
+      <span class="move up">▲ 1.53%</span>
+      <span class="note">8/25 최신 공표</span>
+      <span class="metric-toggle"></span>
+      <div class="metric-detail">
+        석탄·철광석 등 벌크 원료 수입 운임의 부담 요인입니다.
+      </div>
+    </article>
+
+    <article class="metric" data-category="raw">
+      <div class="label">
+        철강/철광석 <span class="label-desc">(PHC·철강 원재료)</span>
+      </div>
+      <span class="value">Steel 3,064</span>
+      <span class="move down">▼ 0.29%</span>
+      <span class="note">Steel 8/25 · Iron Ore 8/26</span>
+      <span class="metric-toggle"></span>
+      <div class="metric-detail">
+        국제 철강지표와 국내 PC강봉·선재 실제 구매단가를 함께 비교합니다.
+      </div>
+    </article>
+
+    <article class="metric" data-category="market">
+      <div class="label">
+        건설수주 <span class="label-desc">(건설시장 수요지표)</span>
+      </div>
+      <span class="value">-21.7%</span>
+      <span class="move down">민간 -41.5%</span>
+      <span class="note">최근 발표자료</span>
+      <span class="metric-toggle"></span>
+      <div class="metric-detail">
+        전방 수요 약세로 과도한 원자재 재고 확대는 신중하게 판단합니다.
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section id="checkpoints">
+  <div class="section-head">
+    <h2>2. 체크포인트</h2>
+    <p>오늘 확인할 구매 관련 핵심 항목</p>
+  </div>
+
+  <div class="checklist">
+
+    <article class="check" data-category="fx">
+      <span class="num">1</span>
+      <h3>원/달러 1,383.30원 — 외화 결제 점검</h3>
+      <p class="check-body">
+        <strong>전 거래일 대비 1.50원 하락</strong><br>
+        외화 결제 예정 건의 원화 환산금액을 확인합니다.
+      </p>
+      <p class="check-action">
+        <strong>확인:</strong> 외화 결제 예정 PO
+      </p>
+    </article>
+
+    <article class="check" data-category="logistics">
+      <span class="num">2</span>
+      <h3>BDI 2,926 — 벌크 운임 부담</h3>
+      <p class="check-body">
+        <strong>최신 공표 +1.53%</strong><br>
+        석탄·철광석 수입운임 부담입니다.
+      </p>
+      <p class="check-action">
+        <strong>확인:</strong> 계약운임과 Spot 운임
+      </p>
+    </article>
+
+    <article class="check" data-category="raw">
+      <span class="num">3</span>
+      <h3>Brent $87.84 — 유가 약세</h3>
+      <p class="check-body">
+        <strong>전일 대비 하락</strong><br>
+        연료·운송비에는 완화 요인입니다.
+      </p>
+      <p class="check-action">
+        <strong>확인:</strong> 유류연동 계약 반영 시차
+      </p>
+    </article>
+
+    <article class="check" data-category="raw supplier">
+      <span class="num">4</span>
+      <h3>철강·철광석 — PHC 원가 점검</h3>
+      <p class="check-body">
+        <strong>국제지표 혼조</strong><br>
+        국내 실구매단가 확인이 필요합니다.
+      </p>
+      <p class="check-action">
+        <strong>확인:</strong> PC강봉·선재 최신 견적
+      </p>
+    </article>
+
+    <article class="check" data-category="logistics">
+      <span class="num">5</span>
+      <h3>지역별 운송 일정 점검</h3>
+      <p class="check-body">
+        <strong>날씨·도로 상황 확인</strong><br>
+        골재·레미콘 납품 일정에 영향을 줄 수 있습니다.
+      </p>
+      <p class="check-action">
+        <strong>확인:</strong> 주요 현장 배차 일정
+      </p>
+    </article>
+
+  </div>
+</section>
+
+<section id="raw">
+  <div class="section-head">
+    <h2>3. 원자재 동향</h2>
+    <p>핵심 구매품목 4개 영역을 매일 고정 확인</p>
+  </div>
+
+  <div class="grid two">
+
+    <article class="card priority" data-category="raw supplier">
+      <div class="badges">
+        <span class="badge raw">시멘트·슬래그</span>
+        <span class="badge ok">특이사항 없음</span>
+      </div>
+      <h3>최근 7일 내 주요 신규 가격·공급 이슈 없음</h3>
+      <p>
+        가격인상·고로슬래그·생산중단·정비 등 구매판단을 바꿀
+        신규 이슈는 현재 확인되지 않았습니다.
+      </p>
+      <div class="meta-line">
+        <span class="meta-chip none">최근 7일 확인</span>
+      </div>
+    </article>
+
+    <article class="card priority" data-category="raw">
+      <div class="badges">
+        <span class="badge raw">유연탄·에너지</span>
+        <span class="badge ok">유가 완화</span>
+      </div>
+      <h3>Brent 하락 · Newcastle Coal 소폭 상승</h3>
+      <p>
+        유가 하락은 운송·연료비에 긍정적이나
+        석탄은 환율과 함께 원화 환산가격을 확인해야 합니다.
+      </p>
+    </article>
+
+    <article class="card priority" data-category="raw supplier">
+      <div class="badges">
+        <span class="badge raw">골재·모래</span>
+        <span class="badge ok">특이사항 없음</span>
+      </div>
+      <h3>가격·채취허가·광역 공급차질 신규 이슈 없음</h3>
+      <p>
+        전국 단일지표보다 사업장별 실구매가와 운송거리,
+        공급 안정성 확인이 중요합니다.
+      </p>
+    </article>
+
+    <article class="card priority" data-category="raw supplier">
+      <div class="badges">
+        <span class="badge raw">철강·PHC</span>
+        <span class="badge warn">혼조</span>
+      </div>
+      <h3>철강 약세 · 철광석 일부 반등</h3>
+      <p>
+        PHC파일 원가는 국제지표보다 국내 PC강봉·선재
+        실제 구매단가가 더 직접적입니다.
+      </p>
+    </article>
+
+  </div>
+</section>
+
+<section id="logistics">
+  <div class="section-head">
+    <h2>4. 물류 동향</h2>
+    <p>실제 운송비와 운임 변화를 중심으로 확인</p>
+  </div>
+
+  <div class="grid two">
+
+    <article class="card priority" data-category="logistics">
+      <div class="badges">
+        <span class="badge log">벌크 운임</span>
+        <span class="badge danger">상승 부담</span>
+      </div>
+      <h3>BDI 2,926 — 벌크 운임 상승</h3>
+      <p>
+        석탄·철광석 등 벌크 원료의 CIF 원가에
+        부담을 줄 수 있습니다.
+      </p>
+    </article>
+
+    <article class="card" data-category="logistics">
+      <div class="badges">
+        <span class="badge log">국내 운송</span>
+      </div>
+      <h3>운송사별 유류연동 단가 확인</h3>
+      <p>
+        국제유가 하락이 실제 운송단가에 언제 반영되는지
+        계약별 조정주기를 확인합니다.
+      </p>
+    </article>
+
+  </div>
+</section>
+
+<section id="suppliers">
+  <div class="section-head">
+    <h2>5. 공급사·시장 동향</h2>
+    <p>구매량·협상력·재고 판단에 영향을 주는 내용</p>
+  </div>
+
+  <div class="grid">
+
+    <article class="card" data-category="market">
+      <div class="badges">
+        <span class="badge sup">건설시장</span>
+      </div>
+      <h3>대형 프로젝트 수주 흐름 확인</h3>
+      <p>
+        실제 착공과 발주 확정 여부를 확인한 뒤
+        구매량 확대 여부를 판단합니다.
+      </p>
+    </article>
+
+    <article class="card" data-category="market">
+      <div class="badges">
+        <span class="badge sup">철강시장</span>
+      </div>
+      <h3>중국 철강 — 성수기 기대와 부동산 부진 공존</h3>
+      <p>
+        중국 철강가격이 급격히 상승하는 흐름은 아직 제한적입니다.
+      </p>
+    </article>
+
+    <article class="card" data-category="supplier">
+      <div class="badges">
+        <span class="badge sup">시멘트·골재</span>
+        <span class="badge ok">신규 이슈 없음</span>
+      </div>
+      <h3>최근 7일 내 구매판단 변경 수준 신규 이슈 미확인</h3>
+      <p>
+        공급사 공지와 사업장 실구매가는 별도로 지속 확인합니다.
+      </p>
+    </article>
+
+  </div>
+</section>
+
+</main>
+</div>
+
+<script>
+const buttons=[...document.querySelectorAll(".filter")];
+const searchable=[...document.querySelectorAll("[data-category]")];
+const searchInput=document.getElementById("searchInput");
+let activeFilter="all";
+
+function normalize(v){
+  return (v||"").toLowerCase().replace(/\s+/g," ").trim();
+}
+
+function applyFilters(){
+  const q=normalize(searchInput.value);
+  searchable.forEach(n=>{
+    const cats=(n.dataset.category||"").split(/\s+/);
+    const text=normalize(n.innerText);
+    const filterMatch=activeFilter==="all"||cats.includes(activeFilter);
+    const searchMatch=!q||text.includes(q);
+    n.classList.toggle("hidden",!(filterMatch&&searchMatch));
+  });
+}
+
+buttons.forEach(b=>{
+  b.addEventListener("click",()=>{
+    buttons.forEach(x=>x.classList.remove("active"));
+    b.classList.add("active");
+    activeFilter=b.dataset.filter;
+    applyFilters();
+  });
+});
+
+searchInput.addEventListener("input",applyFilters);
+
+document.querySelectorAll(".metric").forEach(m=>{
+  m.querySelectorAll("a").forEach(a=>
+    a.addEventListener("click",e=>e.stopPropagation())
+  );
+  m.addEventListener("click",()=>m.classList.toggle("open"));
+});
+
+document.querySelectorAll(".card").forEach(c=>{
+  c.querySelectorAll("a").forEach(a=>
+    a.addEventListener("click",e=>e.stopPropagation())
+  );
+  if(c.querySelector(".card-toggle")){
+    c.addEventListener("click",()=>c.classList.toggle("open"));
+  }
+});
+
+const sections=[...document.querySelectorAll("section[id]")];
+const navLinks=[...document.querySelectorAll(".nav a")];
+
+navLinks.forEach(link=>{
+  link.addEventListener("click",event=>{
+    const id=link.getAttribute("href");
+    const target=document.querySelector(id);
+    if(!target)return;
+    event.preventDefault();
+
+    const toolbar=document.querySelector(".toolbar");
+    const offset=toolbar?toolbar.offsetHeight+16:16;
+    const top=target.getBoundingClientRect().top+window.pageYOffset-offset;
+
+    window.scrollTo({top,behavior:"smooth"});
+    history.replaceState(null,"",id);
+  });
+});
+
+if("IntersectionObserver" in window){
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      navLinks.forEach(l=>
+        l.classList.toggle("active",
+        l.getAttribute("href")==="#"+e.target.id)
+      );
+    });
+  },{rootMargin:"-35% 0px -58% 0px"});
+
+  sections.forEach(s=>observer.observe(s));
+}
+</script>
+
+</body>
+</html>
