@@ -1,17 +1,18 @@
 {
-  "generated_at_kst": "2026-08-28 07:59",
+  "generated_at_kst": "2026-08-28 10:24",
   "status": "AJU 구매 브리핑 데이터 수집 완료",
   "market_data": {
     "fx": {
-      "current_rate": null,
-      "previous_rate": null,
-      "change": null,
-      "direction": null,
-      "status": "확인 필요",
-      "source": "연합뉴스",
-      "source_url": null,
-      "article_title": null,
-      "published": null
+      "current_rate": "1,380.38원",
+      "previous_rate": "1,383.49원",
+      "change": "3.11원",
+      "direction": "down",
+      "current_date": "2026-08-27",
+      "previous_date": "2026-08-26",
+      "status": "확인 완료",
+      "source": "Frankfurter API",
+      "source_url": "https://frankfurter.dev/",
+      "note": "중앙은행 데이터 기반 USD/KRW 일일 기준 환율"
     }
   },
   "news": {
