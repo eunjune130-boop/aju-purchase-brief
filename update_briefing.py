@@ -6,18 +6,17 @@ import re
 
 import feedparser
 import requests
-from bs4 import BeautifulSoup
 
 
 # ============================================================
 # AJU 구매팀 브리핑 자동수집
 #
 # [환율]
-# 연합뉴스 서울외환시장 관련 기사 별도 검색
-# → 당일 USD/KRW
-# → 전 거래일
+# Frankfurter API 사용
+# → 최신 USD/KRW
+# → 직전 영업일 USD/KRW
 # → 등락
-# → 기사/출처 저장
+# → 출처 저장
 #
 # [구매 뉴스]
 # 시멘트·슬래그 / 유연탄·에너지 / 골재·모래
@@ -198,9 +197,7 @@ def filter_articles(
         result.append(item)
 
     result.sort(
-        key=lambda x: x[
-            "relevance_score"
-        ],
+        key=lambda x: x["relevance_score"],
         reverse=True
     )
 
@@ -564,387 +561,181 @@ def collect_purchase_news():
 
 
 # ============================================================
-# 환율 전용 수집
+# 환율 전용 수집 - Frankfurter API
 # ============================================================
-
-def find_yonhap_fx_articles():
-
-    queries = [
-        (
-            "연합뉴스 원 달러 환율 "
-            "서울외환시장"
-        ),
-        (
-            "연합뉴스 원달러 환율 "
-            "서울 외환시장"
-        ),
-    ]
-
-    candidates = []
-
-    for query in queries:
-
-        articles = google_news_search(
-            query,
-            days=2,
-            limit=30
-        )
-
-        for article in articles:
-
-            source = normalize(
-                article.get(
-                    "source",
-                    ""
-                )
-            )
-
-            title = normalize(
-                article.get(
-                    "title",
-                    ""
-                )
-            )
-
-            # 연합뉴스 기사만 사용
-            if "연합뉴스" not in source:
-                continue
-
-            # 환율 관련 기사만 사용
-            if not (
-                "환율" in title
-                or "원/달러" in title
-                or "원달러" in title
-                or "달러" in title
-            ):
-                continue
-
-            candidates.append(
-                article
-            )
-
-    candidates = remove_duplicates(
-        candidates
-    )
-
-    return candidates
-
-
-def resolve_google_news_url(url):
-
-    try:
-        response = requests.get(
-            url,
-            headers=HEADERS,
-            timeout=20,
-            allow_redirects=True
-        )
-
-        return response.url
-
-    except Exception:
-        return url
-
-
-def fetch_article_text(url):
-
-    try:
-        response = requests.get(
-            url,
-            headers=HEADERS,
-            timeout=20,
-            allow_redirects=True
-        )
-
-        response.raise_for_status()
-
-        soup = BeautifulSoup(
-            response.text,
-            "html.parser"
-        )
-
-        # script/style 제거
-        for tag in soup(
-            ["script", "style"]
-        ):
-            tag.decompose()
-
-        return soup.get_text(
-            " ",
-            strip=True
-        )
-
-    except Exception as exc:
-
-        print(
-            "[환율 기사 본문 읽기 실패]",
-            exc
-        )
-
-        return ""
-
-
-def parse_number(value):
-
-    try:
-        return float(
-            value.replace(",", "")
-        )
-    except Exception:
-        return None
-
-
-def format_rate(value):
-
-    if value is None:
-        return None
-
-    return (
-        f"{value:,.2f}"
-        .rstrip("0")
-        .rstrip(".")
-        + "원"
-    )
-
-
-def extract_fx_market_data(text):
-
-    result = {
-        "current_rate": None,
-        "previous_rate": None,
-        "change": None,
-        "direction": None,
-    }
-
-    if not text:
-        return result
-
-    # --------------------------------------------------------
-    # 1. "전 거래일보다 1.5원 내린 1,383.3원"
-    #    형태 우선
-    # --------------------------------------------------------
-
-    pattern1 = re.search(
-        r"전\s*거래일(?:보다|에\s*비해)?"
-        r".{0,35}?"
-        r"(\d+(?:\.\d+)?)원"
-        r".{0,12}?"
-        r"(내린|하락한|떨어진|오른|상승한)"
-        r".{0,35}?"
-        r"(1,\d{3}(?:\.\d+)?)원",
-        text
-    )
-
-    if pattern1:
-
-        change_value = float(
-            pattern1.group(1)
-        )
-
-        direction_word = (
-            pattern1.group(2)
-        )
-
-        current = parse_number(
-            pattern1.group(3)
-        )
-
-        direction = (
-            "down"
-            if direction_word in [
-                "내린",
-                "하락한",
-                "떨어진",
-            ]
-            else "up"
-        )
-
-        previous = None
-
-        if current is not None:
-
-            if direction == "down":
-                previous = (
-                    current
-                    + change_value
-                )
-            else:
-                previous = (
-                    current
-                    - change_value
-                )
-
-        result.update({
-            "current_rate":
-                format_rate(current),
-
-            "previous_rate":
-                format_rate(previous),
-
-            "change":
-                f"{change_value:g}원",
-
-            "direction":
-                direction,
-        })
-
-        return result
-
-    # --------------------------------------------------------
-    # 2. "1,383.3원으로 전 거래일보다 1.5원 내렸다"
-    # --------------------------------------------------------
-
-    pattern2 = re.search(
-        r"(1,\d{3}(?:\.\d+)?)원"
-        r".{0,50}?"
-        r"전\s*거래일(?:보다|에\s*비해)?"
-        r".{0,30}?"
-        r"(\d+(?:\.\d+)?)원"
-        r".{0,10}?"
-        r"(내렸|하락|떨어졌|올랐|상승)",
-        text
-    )
-
-    if pattern2:
-
-        current = parse_number(
-            pattern2.group(1)
-        )
-
-        change_value = float(
-            pattern2.group(2)
-        )
-
-        direction_word = (
-            pattern2.group(3)
-        )
-
-        direction = (
-            "down"
-            if direction_word in [
-                "내렸",
-                "하락",
-                "떨어졌",
-            ]
-            else "up"
-        )
-
-        previous = None
-
-        if current is not None:
-
-            if direction == "down":
-                previous = (
-                    current
-                    + change_value
-                )
-            else:
-                previous = (
-                    current
-                    - change_value
-                )
-
-        result.update({
-            "current_rate":
-                format_rate(current),
-
-            "previous_rate":
-                format_rate(previous),
-
-            "change":
-                f"{change_value:g}원",
-
-            "direction":
-                direction,
-        })
-
-        return result
-
-    return result
-
 
 def collect_fx():
 
     print(
-        "[환율] 연합뉴스 "
-        "서울외환시장 검색"
+        "[환율] Frankfurter API "
+        "USD/KRW 수집"
     )
 
-    articles = (
-        find_yonhap_fx_articles()
-    )
+    try:
 
-    for article in articles:
+        today = now_kst().date()
 
-        original_url = (
-            article.get(
-                "link",
-                ""
-            )
+        start_date = (
+            today
+            - timedelta(days=10)
         )
 
-        resolved_url = (
-            resolve_google_news_url(
-                original_url
-            )
+        url = (
+            "https://api.frankfurter.dev/v1/"
+            f"{start_date.isoformat()}.."
+            f"{today.isoformat()}"
+            "?base=USD&symbols=KRW"
         )
 
-        text = fetch_article_text(
-            resolved_url
+        response = requests.get(
+            url,
+            headers=HEADERS,
+            timeout=20
         )
 
-        fx = extract_fx_market_data(
-            text
+        response.raise_for_status()
+
+        data = response.json()
+
+        rates = data.get(
+            "rates",
+            {}
         )
 
-        if fx["current_rate"]:
+        rows = []
 
-            fx.update({
-                "status":
-                    "확인 완료",
+        for date, values in sorted(
+            rates.items()
+        ):
 
-                "source":
-                    "연합뉴스",
-
-                "source_url":
-                    resolved_url,
-
-                "article_title":
-                    article.get(
-                        "title",
-                        ""
-                    ),
-
-                "published":
-                    article.get(
-                        "published",
-                        ""
-                    ),
-            })
-
-            print(
-                " → 환율 추출 성공:",
-                fx["current_rate"]
+            krw = values.get(
+                "KRW"
             )
 
-            return fx
+            if krw is None:
+                continue
 
-    # 실패 시 이전 값 사용 금지
-    print(
-        " → 환율 자동추출 실패"
-    )
+            rows.append(
+                (
+                    date,
+                    float(krw)
+                )
+            )
 
-    return {
-        "current_rate": None,
-        "previous_rate": None,
-        "change": None,
-        "direction": None,
-        "status": "확인 필요",
-        "source": "연합뉴스",
-        "source_url": None,
-        "article_title": None,
-        "published": None,
-    }
+        if len(rows) < 2:
+
+            raise ValueError(
+                "비교 가능한 환율 데이터가 "
+                "2건 미만입니다."
+            )
+
+        previous_date, previous_rate = (
+            rows[-2]
+        )
+
+        current_date, current_rate = (
+            rows[-1]
+        )
+
+        change_value = (
+            current_rate
+            - previous_rate
+        )
+
+        if change_value > 0:
+            direction = "up"
+
+        elif change_value < 0:
+            direction = "down"
+
+        else:
+            direction = "flat"
+
+        result = {
+
+            "current_rate":
+                f"{current_rate:,.2f}원",
+
+            "previous_rate":
+                f"{previous_rate:,.2f}원",
+
+            "change":
+                f"{abs(change_value):,.2f}원",
+
+            "direction":
+                direction,
+
+            "current_date":
+                current_date,
+
+            "previous_date":
+                previous_date,
+
+            "status":
+                "확인 완료",
+
+            "source":
+                "Frankfurter API",
+
+            "source_url":
+                "https://frankfurter.dev/",
+
+            "note":
+                "중앙은행 데이터 기반 "
+                "USD/KRW 일일 기준 환율",
+        }
+
+        print(
+            " → 현재:",
+            result["current_rate"]
+        )
+
+        print(
+            " → 전 거래일:",
+            result["previous_rate"]
+        )
+
+        print(
+            " → 변동:",
+            result["change"],
+            result["direction"]
+        )
+
+        return result
+
+    except Exception as exc:
+
+        print(
+            " → 환율 수집 실패:",
+            exc
+        )
+
+        return {
+
+            "current_rate": None,
+
+            "previous_rate": None,
+
+            "change": None,
+
+            "direction": None,
+
+            "current_date": None,
+
+            "previous_date": None,
+
+            "status":
+                "확인 필요",
+
+            "source":
+                "Frankfurter API",
+
+            "source_url":
+                "https://frankfurter.dev/",
+
+            "note":
+                "환율 자동수집 실패",
+        }
 
 
 # ============================================================
@@ -977,22 +768,25 @@ def main():
     current_time = now_kst()
 
     print("=" * 60)
+
     print(
         "AJU 구매팀 브리핑 "
         "자동수집"
     )
+
     print(
         "실행:",
         current_time.strftime(
             "%Y-%m-%d %H:%M KST"
         )
     )
+
     print("=" * 60)
 
-    # 환율은 뉴스와 별도 수집
+    # 환율
     fx = collect_fx()
 
-    # 구매 관련 뉴스 7개 영역
+    # 구매 뉴스
     purchase_news = (
         collect_purchase_news()
     )
@@ -1005,7 +799,8 @@ def main():
             ),
 
         "status":
-            "AJU 구매 브리핑 데이터 수집 완료",
+            "AJU 구매 브리핑 "
+            "데이터 수집 완료",
 
         "market_data": {
             "fx": fx
@@ -1018,7 +813,9 @@ def main():
     save_result(result)
 
     print("")
+
     print("[환율 결과]")
+
     print(
         json.dumps(
             fx,
@@ -1028,6 +825,7 @@ def main():
     )
 
     print("")
+
     print(
         "저장 완료:",
         OUTPUT_FILE
