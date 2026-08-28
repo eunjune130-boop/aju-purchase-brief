@@ -1,14 +1,14 @@
 {
-  "generated_at_kst": "2026-08-28 10:41",
+  "generated_at_kst": "2026-08-28 10:59",
   "status": "AJU 구매 브리핑 데이터 수집 완료",
   "market_data": {
     "fx": {
-      "current_rate": "1,375.48원",
+      "current_rate": "1,377.08원",
       "previous_rate": "1,383.49원",
-      "change": "8.01원",
+      "change": "6.41원",
       "direction": "down",
       "current_date": "2026-08-28",
-      "current_time": "10:41",
+      "current_time": "10:59",
       "previous_date": "2026-08-27",
       "status": "확인 완료",
       "data_type": "장중 환율",
@@ -20,46 +20,297 @@
   "news": {
     "cement_slag": {
       "name": "시멘트·슬래그",
-      "freshness": "특이사항 없음",
-      "articles": []
+      "freshness": "오늘·어제",
+      "articles": [
+        {
+          "title": "시멘트 생산 공정 설명하는 삼표시멘트 대표이사 - 연합뉴스",
+          "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9qUS1JUkZIaEpKYjdwOENoZ1Bqa2xyNGFGUmpJbEppeFVlWXl4UFFVejRWOGNNeWZKN2NkRmphVDNUVzFrRG1zYWtJVkhMN1ZqNXpRN2FnTzVCWTTSAWBBVV95cUxQcEJjT256MnZ6clBLM0VOZ1o3RUJaMFc5cEl3LTZ3Qkplc1lfdE5Cd05TZWFjZDBxNHV3M3BhajR4UUYtNDNiRkJxT1p4X3BDV0h0bFpEVWlKb3ZlU1MwSWo?oc=5",
+          "published": "Wed, 26 Aug 2026 04:36:32 GMT",
+          "source": "연합뉴스",
+          "relevance_score": 7
+        },
+        {
+          "title": "AI 도입한 시멘트공장…\"8시간 내내 화면 보던 노동, 달라질 것\" - 연합뉴스",
+          "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE03QmhScUtURVRpeVVrSmhoT3ZLVjFteGlRNVNVajNlbEY1SXZpbGNDV2Mzcm9UMklZVkI1S1ltWmpVMmNkZUpZdnZDUjBqbUZtWjJzV24xVENVTUXSAWBBVV95cUxQeG9PS3EwTWpsWUJuYkRjUHQwajRDclBtQXBLQzY4am5kZVJKSTk0N2Z5cFE1VmhkNVU1TWlta1dtRVRmUzhFUGkteDF2QUpqOFNKWTU1V29KVTd0alc4Umk?oc=5",
+          "published": "Wed, 26 Aug 2026 04:00:01 GMT",
+          "source": "연합뉴스",
+          "relevance_score": 7
+        },
+        {
+          "title": "[현장] 최혁진 의원 \"시멘트 가격 상승 문제 발생…입법화 그만 미뤄야\" - 파이낸셜포스트",
+          "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1NTG1PWjB0ckdzSmRYN1l5RUVCYUxKeWdoRXRhRlV1eFYwcXBtakZEdEJucWpOSjVVaTB4MzR3X0hzV3hTLVE4aVJjZjdPTjJ0TUQyUW5KWk5QaHBIWnpHY3gtVGJ5d2RuWlA3U1ktLWxXUE9S?oc=5",
+          "published": "Thu, 27 Aug 2026 06:35:58 GMT",
+          "source": "파이낸셜포스트",
+          "relevance_score": 6
+        },
+        {
+          "title": "주택공급 확대 기대…활짝 웃는 시멘트株 - 네이트",
+          "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE56OGdOejMzOWYzZmVXeWVrS1Y1cjdtVEY1YWxVS2xfaGRaNmx2VWhHd0VJbUp6SEpfZE5DWS1Ib3ZFSE9oc0Fia3M1QlRxOUFST09N?oc=5",
+          "published": "Thu, 27 Aug 2026 09:06:00 GMT",
+          "source": "네이트",
+          "relevance_score": 6
+        },
+        {
+          "title": "폐기물 시멘트 생산부터 사용처까지 공개…수도권 쓰레기 지방 반출도 막는다 - 핀포인트뉴스",
+          "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTFAwbGNqS1BKMGxmSlA2Wk5mazV2UTZ5bGxlX19UTjJIU0U3ZG91TzBlY0p5a0dxOF9jR2dWUVgycERsdGZTT2otWGdMaWM1R0VlZEc2cEJZdGlfVVRHVFNJM2w0UUkxalFFak1pV1pXVmdidHVYYW9R0gF3QVVfeXFMUDBsY2pLUEowbGZKUDZaTmZrNXZRNnlsbGVfX1ROMkhTRTdkb3VPMGVjSnlrR3E4X2NHZ1ZRWDJwRGx0ZlNPai1YZ0xpYzVHRWVkRzZwQll0aV9VVEdUU0kzbDRRSTFqUUVqTWlXWldWZ2J0dVhhb1E?oc=5",
+          "published": "Thu, 27 Aug 2026 10:49:32 GMT",
+          "source": "핀포인트뉴스",
+          "relevance_score": 6
+        }
+      ],
+      "raw_count": 33
     },
     "energy": {
       "name": "유연탄·에너지",
-      "freshness": "특이사항 없음",
-      "articles": []
+      "freshness": "오늘·어제",
+      "articles": [
+        {
+          "title": "국제유가, 미·이란 협상 기대 약화에 상승…브렌트유 2.1%↑ - 연합뉴스",
+          "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE12Ny0wU0JTS2pydHJoVlRLZFNGeUhRVkxNU2RTSjJXc0x0ZUhjdUJjVnpsVHJyTnN6WWRmeHpxbnplOVBsOWdDRmx1RU5tZktmaHZhWENQRTV2WFHSAWBBVV95cUxQamVudkdBVUhTZGRUMXczak85UjBZSFZyanpVYVNudzlLUmw0VWJJMnFXOGRmank2VlZWWFR4RlNuWllKalhnR0FoOTltN2ZVUE11aTJmaGhGbnl6cmNvWHg?oc=5",
+          "published": "Thu, 27 Aug 2026 19:35:54 GMT",
+          "source": "연합뉴스",
+          "relevance_score": 11
+        },
+        {
+          "title": "[국제유가] 미·이란 협상 ‘냉기류’에 국제유가 반등…브렌트유 2.12%↑ - 굿모닝경제",
+          "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1qd3piUXVucGo1WWh5LUY2TXdyem9kZE1sYzlZeFNZUHBMRTJ4MlNlRmlmQV8xNi1mVXRNUnZsUS11X3lKb2VxU3lxRDlLaHNzUWZUa0h1S05VbFlnV0RWOXJMbkFKcDlEbmwySw?oc=5",
+          "published": "Thu, 27 Aug 2026 23:52:10 GMT",
+          "source": "굿모닝경제",
+          "relevance_score": 10
+        },
+        {
+          "title": "[EBN 데이터센터] 국제유가 동반 약세...WTI 81달러대·브렌트 87달러대 - ebn.co.kr",
+          "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1VWVFEYXVma1FteTNzLWJwZnh6Y08zZjBVbk9SemxSbEFmUGFYRDdGYXp5ekZDSlM4RkRkSFhYdWNmTmlySWhza21Obm9hVy15Tmt3VFlrc3JwSGtXWDJsX2VBS3NQbWRv?oc=5",
+          "published": "Thu, 27 Aug 2026 00:00:00 GMT",
+          "source": "ebn.co.kr",
+          "relevance_score": 10
+        },
+        {
+          "title": "[EBN 데이터센터] 국제유가 동반 약세...WTI 81달러대·브렌트유 88달러대 - ebn.co.kr",
+          "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE52T3RneGI5ZlhmcmJPRjktb0wzNDdRa1lLS0plbVJ5bjJBaHNtNVFKZmpQRGpLSEkxcVhEeDNGa3RUSU9jT3dmY0M2ZG1QWkVlWGUzM0dJWUNsbWM1ckp2bkFjSkR1NUhK?oc=5",
+          "published": "Wed, 26 Aug 2026 06:02:59 GMT",
+          "source": "ebn.co.kr",
+          "relevance_score": 10
+        },
+        {
+          "title": "국제유가, 미·이란 협상 기대 약화에 상승‥브렌트유 2.1%↑ - MBC 뉴스",
+          "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBXSFVTUjVwY2UzR3ZvUG5TdXlTM1NMNlpjNk92WmVVNldGVmdGUllsc28zbkR0X29jQXZSTEt5dDJjS2N5MmhZMDZhdUJBUXdZTHpwMmkzRk1KdWFKdng4ZGI0QzlrbVdDZ3Y0VmhLMDhLa29C0gF0QVVfeXFMUDdENVRMZ1hTR19MWmxfVDZLVFJzS1pod0xucGRoSHp5WFFuQzVwYVR0VWkyS3NhMjFDQ2NweUFLbUlHaHU1UVBYVHVPd0o5bkpEUktrbWJURFRLT1E2Yl9VLVJTS2hib2hEUENXTHhyQkxrUXY?oc=5",
+          "published": "Thu, 27 Aug 2026 20:06:43 GMT",
+          "source": "MBC 뉴스",
+          "relevance_score": 10
+        }
+      ],
+      "raw_count": 83
     },
     "aggregate": {
       "name": "골재·모래",
-      "freshness": "특이사항 없음",
-      "articles": []
+      "freshness": "오늘·어제",
+      "articles": [
+        {
+          "title": "충주 대소원 석산서 25t 덤프트럭 전신주 충돌…360여 세대 정전 - cctoday.co.kr",
+          "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE02MGpIczlxdmVJMlVsa3FGWC1ZTTdYbllOQUZPQ0REaWt6U3dOblpaSDJFWFlUN1Q1dGFmSUNPZmNvS0RoOGxTaEpDbmtfNUdyNFRNQ2tOSWJzM09ncGcyU2dFd2NhWENpZ3FadV9R?oc=5",
+          "published": "Fri, 28 Aug 2026 00:39:10 GMT",
+          "source": "cctoday.co.kr",
+          "relevance_score": 4
+        },
+        {
+          "title": "충주 대소원면 석산 복구 놓고 ‘쓰레기 불법매립’ 의혹 확산 - v.daum.net",
+          "link": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE90d0hPeHlfcTUyb2prUFNuNFE4ajNWTW5qMGhNdUNVZnpTS1F4andLTkZST0taTndPZXBCLVB1aVc1LVExUDdrY25DZ1pNMzQ?oc=5",
+          "published": "Thu, 27 Aug 2026 04:19:00 GMT",
+          "source": "v.daum.net",
+          "relevance_score": 4
+        },
+        {
+          "title": "“수십 년 먼지·소음 고통 끝”… 경주시, 외동읍 노후 레미콘 공장 전격 철거 - 스트레이트뉴스",
+          "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE8ydmhBdElUWlZnS3hONUExOXlnUVdEZk9McHFVdmtYUHVwcWxGQ2RJWjdWemdXbklWb2VUY3JtbUZuamM0b09mSTRENl9SMGZ1LV9WRzJuZFZIRzdRdHdKZXJ1aURseEtOd2VOTmtGX241N2UxVmFR0gF3QVVfeXFMTzJ2aEF0SVRaVmdLeE41QTE5eWdRV0RmT0xwcVV2a1hQdXBxbEZDZElaN1Z6Z1duSVZvZVRjcm1tRm5qYzRvT2ZJNEQ2X1IwZnUtX1ZHMm5kVkhHN1F0d0plcnVpRGx4S053ZU5Oa0ZfbjU3ZTFWYVE?oc=5",
+          "published": "Wed, 26 Aug 2026 02:52:26 GMT",
+          "source": "스트레이트뉴스",
+          "relevance_score": 4
+        },
+        {
+          "title": "\"먼지·소음 걷히고 새 숨 튼다\"… 경주시 외동읍 레미콘 공장 전격 철거 | - 이뉴스투데이",
+          "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE50Ymh3VndYUWltVGctUzZ4SUI5ampkRkZtVFU5NHpkR2hsQmwtX3pmcnVTUFRuaFFoZ3lqNHpSdzlPcUZ2ZTczWVkyS0ZCNzFvV2dZMnYwS0hVZmFQSEE5WkRadl96ek02VVlqTG1HMzdYZ0hh?oc=5",
+          "published": "Wed, 26 Aug 2026 03:08:35 GMT",
+          "source": "이뉴스투데이",
+          "relevance_score": 4
+        },
+        {
+          "title": "경기 광주 레미콘 제조공장서 휠로더에 깔린 40대 숨져 - 뉴스1",
+          "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBiVGl0M0tFcUp2Y3ZCck5oUWFtcERZY1k5Z1B4Z0ItUE1sekE4d1FOVUVIN0pKekFCSFo4ZWVrQmp1RzdyeHhIbXNvdDFMTjNiZUc5Qkd5Y2k1LUHSAVtBVV95cUxQYlRpdDNLRXFKdmN2QnJOaFFhbXBEWWNZOWdQeGdCLVBNbHpBOHdRTlVFSDdKSnpBQkhaOGVla0JqdUc3cnh4SG1zb3QxTE4zYmVHOUJHeWNpNS1B?oc=5",
+          "published": "Wed, 26 Aug 2026 06:38:12 GMT",
+          "source": "뉴스1",
+          "relevance_score": 4
+        }
+      ],
+      "raw_count": 17
     },
     "steel_phc": {
       "name": "철강·PHC",
-      "freshness": "특이사항 없음",
-      "articles": []
+      "freshness": "오늘·어제",
+      "articles": [
+        {
+          "title": "08.27, 중국 철강재 일일 내수 가격 - 스틸데일리",
+          "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9mYlF1SHlYT0xtYlFMM1hkWGxvQ2JBVWtjeVNEcTJweVVZTUwtUGlza1lTdVdpT3U0WWtlT25acG5lOGc4VTJ2aFpMOGk0eDZzWHhEM2d5SzExc0wtUVBuUUhUbmQxbERMOU9XUEJYX0cxZ3Va0gF0QVVfeXFMT2ZiUXVIeVhPTG1iUUwzWGRYbG9DYkFVa2N5U0RxMnB5VVlNTC1QaXNrWVN1V2lPdTRZa2VPblpwbmU4ZzhVMnZoWkw4aTR4NnNYeEQzZ3lLMTFzTC1RUG5RSFRuZDFsREw5T1dQQlhfRzFndVo?oc=5",
+          "published": "Thu, 27 Aug 2026 07:58:29 GMT",
+          "source": "스틸데일리",
+          "relevance_score": 10
+        },
+        {
+          "title": "(주간시장동향 – 선재) 수요 반등·원가 상승에도 제품價 ‘동결’ - 철강금속신문",
+          "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE8wZmROYmNkWFNpVFFLOTlxem56Mkpqd2JoSkRldlhXdlc5WWZFVVdwdDd6MXZIaldLcDZac0h5OXE4YkpOQXI5MGh4c0JqaDBIRXBpRjBFTmQ1V1dua2tMRTQ5dWxJVWM3WGc?oc=5",
+          "published": "Thu, 27 Aug 2026 23:00:00 GMT",
+          "source": "철강금속신문",
+          "relevance_score": 9
+        },
+        {
+          "title": "한국철강, 철근 담합 손해 495억 원‥회장 등 전직 대표 4명 책임 - 페로타임즈",
+          "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9LOGhJYzJxamFSTHdONGZEOWtBZHZFdVk2cENFY1BCcEVSWmFrdnBjdlM0a3BDZkdvNHlxcVBFQm1TY3JwWFhFb1ZFWE1VZjhBamdVYWtCMnRuNWNlZF9qWmI0dG5fbUVUZVhmUg?oc=5",
+          "published": "Wed, 26 Aug 2026 20:00:00 GMT",
+          "source": "페로타임즈",
+          "relevance_score": 8
+        },
+        {
+          "title": "[오늘 중국은] ‘가격 약세·원가 부담’ 中 철강업, 4개월 만에 적자 전환 - 철강금속신문",
+          "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBNTFdXTnlQd0stREJiYzZyYnhESURsTEJuaV90a2g5d3Y2dksycnZoXzdtNVA3NUIxRmduZUVUZmxfUW91Z0hQY2p0ckp2dVR1d3VyaW5PUUYzSnI5Zk85bVRCT1dHcnladUE?oc=5",
+          "published": "Thu, 27 Aug 2026 22:51:28 GMT",
+          "source": "철강금속신문",
+          "relevance_score": 8
+        },
+        {
+          "title": "[표] 일일 철강 원료 가격 동향(8월 26일) - 철강금속신문",
+          "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1rQkVHQm5jQ1VvWFNOd0FzODNSQkdLZjlMNm5mQm50NFpVc0JiNEotVFVFcklsOElzNGJVUk1EZUhwbk1wR091OFhZV3J5TXhOcW50aERxcWFLMTBCS3dWRExNdW1hb0JKUHc?oc=5",
+          "published": "Wed, 26 Aug 2026 23:42:00 GMT",
+          "source": "철강금속신문",
+          "relevance_score": 7
+        }
+      ],
+      "raw_count": 56
     },
     "logistics": {
       "name": "물류",
-      "freshness": "특이사항 없음",
-      "articles": []
+      "freshness": "오늘·어제",
+      "articles": [
+        {
+          "title": "파나마·수에즈 운항 변화에 해상운임 ‘온도차’…중동은 호르무즈 변수 - v.daum.net",
+          "link": "https://news.google.com/rss/articles/CBMiRkFVX3lxTFBXNUpaVzBzeEg3eU5JRk5pWHJYQ0NuQlR5dE05R2l1VkhpQjhjTEpMQmpmcWJZSTRNLWp3d1dWeGlCYWtvTUE?oc=5",
+          "published": "Thu, 27 Aug 2026 07:46:40 GMT",
+          "source": "v.daum.net",
+          "relevance_score": 6
+        },
+        {
+          "title": "컨테이너 운임 뛰는데 벌크선 늘리는 HMM…‘불황 체력’ 키운다 - 데일리안",
+          "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9kLTY1Y1gyZUVHUVBqMUlDeGtvMzg2T1BwTDRQb0FkYmhPQ0V6MnEtR2dHU3ZxcmhSRkcxZnp1Q2dKX3J3OUx3YkdVM2ZUdFUwemVsWUVB?oc=5",
+          "published": "Thu, 27 Aug 2026 21:00:00 GMT",
+          "source": "데일리안",
+          "relevance_score": 6
+        },
+        {
+          "title": "HMM, 해상운임 강세 장기화 수혜...목표주가↑ - ksdaily.co.kr",
+          "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5rbVF5WjZySHJlTFJxa3VvWGpfaVg3U1hEYW5JYi1aRHBLbG5kZkozRnNCTVdTdW1sQklrTk1nNk9RcS01UHN4VHNkQXZpTDZ1bEIxOGVORkNKcXJrQjhwNXpiU284VEZFMXR3?oc=5",
+          "published": "Wed, 26 Aug 2026 23:19:19 GMT",
+          "source": "ksdaily.co.kr",
+          "relevance_score": 6
+        },
+        {
+          "title": "결혼/ 강희중 한국항만물류협회 전무이사 장남 현규군 - 해사신문",
+          "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9wa2ZaMFhjTnNqbGlCMEdfNW1IRUJxcXJNMmtCaTBiN3JISTFKU185MUVTc2hLaTZWVzBXbFR1OEx2SnZHV1ZxLWM2djVMTUdQSkcwVTR2dk1hTXBCcmJCdGtETldsNEtYeEcw?oc=5",
+          "published": "Thu, 27 Aug 2026 04:37:52 GMT",
+          "source": "해사신문",
+          "relevance_score": 5
+        },
+        {
+          "title": "화촉/ 한국항만물류협회 강희중 전무이사 아들 29일 결혼 - 쉬핑뉴스넷",
+          "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE8tZHRKbThmblZQcW0wcDV5cy1KUjlKaUtyTE1Xb3hNMFhMd2dQOUZXdWd5clNrbXhVUE4tQ3JIQTZ4bGNONnFBNG5ldEJ4ZnB2dHNIWk1vOEwzcVVIMThqaTVsY2s3TFh3RVJ5enVpTHo1VWc?oc=5",
+          "published": "Wed, 26 Aug 2026 10:07:18 GMT",
+          "source": "쉬핑뉴스넷",
+          "relevance_score": 5
+        }
+      ],
+      "raw_count": 45
     },
     "construction": {
       "name": "건설시장",
-      "freshness": "최근 7일",
+      "freshness": "오늘·어제",
       "articles": [
         {
-          "title": "건설수주 전년比 0.5%∙투자 0.2% ↓ - 매일건설신문",
-          "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQZmE0YzdMVVJmak55VjU2ZmFLWXdSQlZyYXFiM3N4WnBJQzNNdE84WEp6SmZMeUkzU0lFbDZRWjZMaXZRd3RNWW9KWU1fUk1hdzh3RVZrV3VyRl93al9yYlBKWVlyRUNldC05WnVIZkpMdE84Y1o1Z1luajA2cVZQTGJ0c0lYeGNXc2ZPUEVsNWNVcmF0bjVFVXQ1SmV2a1Y3R25CdHVLMEFPVEZlallPaVpWLW5acy13OXFvNjdmUmhDLTU0NkJQOUhB?oc=5",
-          "published": "Mon, 24 Aug 2026 18:41:00 GMT",
-          "source": "매일건설신문",
-          "relevance_score": 4
+          "title": "LH, 2030년까지 매년 10만호 이상 주택 착공…공급 속도 높인다 - 전기신문",
+          "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE0xaXU1YUU3aXk3MFpEX1VTWkV6bXFUZEo1aTdQOGlzSG9wZ2VPZzJnNGo1T2lQR00xRFZqdUNXWGt0Q0l6bjFTXzFxeG5YTFFoZUs1MEl5RnNpM3JRUVdaVm5VM3I0NWhWNWJBc09yS1DSAXBBVV95cUxNMWl1NWFFN2l5NzBaRF9VU1pFem1xVGRKNWk3UDhpc0hvcGdlT2cyZzRqNU9pUEdNMURWanVDV1hrdENJem4xU18xcXhuWExRaGVLNTBJeUZzaTNyUVFXWlZuVTNyNDVoVjViQXNPcktQ?oc=5",
+          "published": "Thu, 27 Aug 2026 07:18:08 GMT",
+          "source": "전기신문",
+          "relevance_score": 6
+        },
+        {
+          "title": "LH “2028년부터 연간 10만가구 착공… 주택공급 속도” - 조선비즈 - Chosunbiz",
+          "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxORlo1dWhjTUJsS1pRX29uRVV6d2phd0lVZ282NXRXeGxibV9mNUI3dXlKWDZybGZrMGRGMldiSlo5YzQySlhpOHFZZ2tNcXJQRWdxNGZtY2t3NzUyMUZvWHRUT1FfcnBFQndvSjlvc1lBOG1lVU4yX3lpOWdzaFdQcFI0enhURWhjWU1pYzVrdGNqZ1F5RkxJNtIBrAFBVV95cUxPLVpvUkUtOGlCRGp2LWtqTTNOR3RoZGhJV0hjZEI0R05hRE1rTG4tNmRJaTRFWERNOWNRU2VJNk82MVV0cXJIdVh4NXJXT2x0QkxSWFBRdFRobFNvaldCaGdPVk5KUkQ2YWtKLS1WTDFjR000Yk9oc0tjMGQ3VUF6Z3hManlUcWZQMlNpZFhhX2I2S1hWdndKb0N1V0xJYV9GTThYZG15WXRTRWxJ?oc=5",
+          "published": "Thu, 27 Aug 2026 08:16:00 GMT",
+          "source": "Chosunbiz",
+          "relevance_score": 6
+        },
+        {
+          "title": "LH, 매해 공공주택 10만가구 착공…\"건설업계 협조·참여 필요\" - MTN 머니투데이방송",
+          "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9rNXU0LWxfSThPT2Rxc2s0YkU0aWNBOS1BOW1uM2gweC1uQThETnpYNmRrOE1XaWRNcXJ3eHJqcFpsTzB3ZlBuY29UbGtjUG02T2RGLTd2S09VVkdmT0ZrOXhkVEE?oc=5",
+          "published": "Thu, 27 Aug 2026 08:36:15 GMT",
+          "source": "MTN 머니투데이방송",
+          "relevance_score": 6
+        },
+        {
+          "title": "LH, 8·13 대책 후속 주택 착공 확대…2028년부터 연 10만호 이상 - 시사캐스트",
+          "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9tQ3pfR01mMkR3SjR3dWt5N0Via01hZ3c4UWN5d0phY2ZnNFRVUnpScmxBeG1SN0ZTQ2NCUHlUWUMxRWNDT3hFTVU0TGtkWjQtZUQ5OTd6NGJUd2QtTjFMVGlvWW5vZDg?oc=5",
+          "published": "Thu, 27 Aug 2026 12:35:01 GMT",
+          "source": "시사캐스트",
+          "relevance_score": 6
+        },
+        {
+          "title": "LH, 2028년부터 연간 10만호, 30조원 수준 발주로 주택착공 속도 높여 - 건설이코노미뉴스",
+          "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1lX3oyd21JOUhNVmVJeVZ2T0pNLXBaejQ2b2dlVk5Cc3B5eDRvRVlCMEE5Rk5WbFNNQzFlcDkzOVB3WXFHYngxWl82cVhNc3liT1dMVkxSLVpuYjdDZklLb3h1REdOdw?oc=5",
+          "published": "Thu, 27 Aug 2026 09:16:55 GMT",
+          "source": "건설이코노미뉴스",
+          "relevance_score": 6
         }
-      ]
+      ],
+      "raw_count": 111
     },
     "suppliers": {
       "name": "공급사",
-      "freshness": "특이사항 없음",
-      "articles": []
+      "freshness": "오늘·어제",
+      "articles": [
+        {
+          "title": "1400도 공장에 스며든 '차가운 AI'…삼표시멘트의 실험 [양종곤의 노동 톺아보기] - 네이트",
+          "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBuTE5acGp1UnlKVm8wLVo2T3JzWGJkb3pJTy1wSVhEUW11MzNGQ2JHbkJ4MHBqaWYxdFlzNzktSTlsa2dXbDd3LTQybVkzMHZyUXlN?oc=5",
+          "published": "Wed, 26 Aug 2026 06:57:00 GMT",
+          "source": "네이트",
+          "relevance_score": 7
+        },
+        {
+          "title": "건설업 불황인데 이익 늘어…한일시멘트 반전 이끈 원가절감 - 아시아투데이",
+          "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1xQlg4N1hWTXdORk15c1hESmxSZHlpaFo3LXQ2RG4zT3B5UHU2S2hLelVYYTdRQnVaZ0VmXy01RVl1Y1ZiVlNoX2laSXFtZ0czOGJaYTJ6R0xjTHE1VnZfekViN2pTdFl1cENCVjhR?oc=5",
+          "published": "Wed, 26 Aug 2026 21:00:00 GMT",
+          "source": "아시아투데이",
+          "relevance_score": 6
+        },
+        {
+          "title": "한일시멘트∙한일산업, ‘내한콘크리트’ 기술인증 획득 - 매일경제",
+          "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE13Ry16VDB4YUg4eFpqd1FMeEs5R0hheFNFclpKT2o0dTZsclZUeDFaNkUxMlN2U2ZmdlBEMnZodU1SWUhSallMd1UzZnljRTZD?oc=5",
+          "published": "Wed, 26 Aug 2026 06:22:20 GMT",
+          "source": "매일경제",
+          "relevance_score": 6
+        },
+        {
+          "title": "한일시멘트·한일산업, 영하 10도에도 단열재만으로 굳는 '내한콘크리트' 개발 - 네이트",
+          "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE5ITG1jN2lpY3FzSlQzejhDd0NCbmR3MzBRZHlBZm52UTZNWG5VeEtNRmJsczcySldmZkRmX3RORklvRzROXzVsRk1CSW5oWjlrNmdGWFhybjVpNzY5SzNUMWM1UU55RTlmS2NEbWR6eWN3Z0hPNHoxNg?oc=5",
+          "published": "Wed, 26 Aug 2026 04:21:00 GMT",
+          "source": "네이트",
+          "relevance_score": 6
+        },
+        {
+          "title": "'혹한기에도 거뜬'…아세아시멘트, '내한·한중 콘크리트' 기술인증 - 뉴스1",
+          "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1CcFNmYnZZYkNqRkItMm5xVWw2TVg2a2Z2M1ZNcG1Lck5OYWJNb3hoRFRFdk40cW9HWjRvaHo3RENLWmU1TGMyMzVabHRRRmN0aUJoVUNvMkJnZjRyV2hTSFc1dXrSAWpBVV95cUxNT3dTYUJpM1R5cnVCM19nYlg0ak5IMHM3YS1VN2o0YjR1UkhZYkkwdnNudi1HZy1SVWhvNG42ZXRpVHNjeUFqRi1pUzFSSG1lUzZQeXlYWWdEcEdEa2RjWTdQSnhVcFA0OHZB?oc=5",
+          "published": "Thu, 27 Aug 2026 07:09:32 GMT",
+          "source": "뉴스1",
+          "relevance_score": 6
+        }
+      ],
+      "raw_count": 43
     }
   }
 }
