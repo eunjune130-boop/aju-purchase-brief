@@ -733,20 +733,20 @@ if (fxCard && fx) {
 // 3. 상단 구매 요약 환율 자동 업데이트
 // =====================================================
 
-const alertBox = document.querySelector(".alert");
+const summaryText =
+  document.querySelector(".summary-text");
 
-if (alertBox && fx) {
+if (summaryText && fx) {
 
-  const directionText =
-    fx.direction === "down"
-      ? "하락했습니다."
-      : fx.direction === "up"
-      ? "상승했습니다."
-      : "보합입니다.";
+  let directionText = "보합입니다.";
 
-  alertBox.innerHTML =
-    '<span class="dot"></span>' +
-    '<strong>주의</strong>&nbsp;&nbsp;' +
+  if (fx.direction === "down") {
+    directionText = "하락했습니다.";
+  } else if (fx.direction === "up") {
+    directionText = "상승했습니다.";
+  }
+
+  summaryText.innerHTML =
     '원/달러 환율은 <strong>' +
     fx.current_rate +
     '</strong>으로 전 거래일보다 <strong>' +
