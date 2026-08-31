@@ -678,6 +678,26 @@ if("IntersectionObserver" in window){
   sections.forEach(s=>observer.observe(s));
 }
 </script>
+<script>
+async function loadLatestBriefing() {
+  try {
+    const response = await fetch("./data/latest.json?v=" + Date.now());
+    if (!response.ok) {
+      throw new Error("latest.json 불러오기 실패");
+    }
+
+    const data = await response.json();
+
+    console.log("AJU 최신 브리핑 데이터:", data);
+    console.log("환율 데이터:", data.fx);
+
+  } catch (error) {
+    console.error("AJU 브리핑 데이터 연결 오류:", error);
+  }
+}
+
+loadLatestBriefing();
+</script>
 
 </body>
 </html>
