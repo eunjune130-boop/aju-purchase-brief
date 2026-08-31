@@ -1,5 +1,5 @@
 {
-  "generated_at_kst": "2026-08-31 09:06",
+  "generated_at_kst": "2026-08-31 09:17",
   "status": "AJU 구매 브리핑 데이터 수집 완료",
   "market_data": {
     "fx": {
@@ -8,7 +8,7 @@
       "change": "3.17원",
       "direction": "down",
       "current_date": "2026-08-31",
-      "current_time": "09:06",
+      "current_time": "09:17",
       "previous_date": "2026-08-28",
       "status": "확인 완료",
       "data_type": "장중 환율",
@@ -30,7 +30,7 @@
           "relevance_score": 8
         }
       ],
-      "raw_count": 16,
+      "raw_count": 17,
       "selected_count": 1
     },
     "energy": {
@@ -78,10 +78,18 @@
     },
     "aggregate": {
       "name": "골재·모래",
-      "freshness": "특이사항 없음",
-      "articles": [],
-      "raw_count": 0,
-      "selected_count": 0
+      "freshness": "오늘·어제",
+      "articles": [
+        {
+          "title": "김해 생림 봉림석산 토석 채취 29년째, 이대로 괜찮나 [돋보기] - v.daum.net",
+          "link": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE1VdVM2LTBLN0Z5T1QyZU1hMFo1UmN1ODVFU3JzSVZMYmxzRzBOZlJuYi12T0tfQUthQk5ORkphNE5qUmt5M2c?oc=5",
+          "published": "Sun, 30 Aug 2026 03:35:06 GMT",
+          "source": "v.daum.net",
+          "relevance_score": 10
+        }
+      ],
+      "raw_count": 8,
+      "selected_count": 1
     },
     "steel_phc": {
       "name": "철강·PHC",
@@ -89,7 +97,7 @@
       "articles": [
         {
           "title": "국내 철스크랩 9월 하락 출발…日 '바닥 다지기' 반등 촉각 - 철강금속신문",
-          "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTFB1WVFxYlVXSHI2QWZwVlNoOHZWYUotMkJJWWJPUHFibV9fb256SmFqd182cUlyanU0emMwUTZUUnFvOWxHaGFXRHpScC1yMzBQN0plZmRTamVqTGlLb0JzSHg3M0JjVXVLWkE?oc=5",
+          "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5QcmszdHdkdXRoREg3OUdWLXZmZ0FSaXc5VGRHRTNSN0lHWThmSVNtelB5VGxKNENOcWxjVGNFMTJwTzhseGpuY3NXdkpSQ2pOWkRZblRVbjE3aFo3akxxdldXR0JxZVZy?oc=5",
           "published": "Sun, 30 Aug 2026 21:30:00 GMT",
           "source": "철강금속신문",
           "relevance_score": 14
@@ -123,7 +131,7 @@
           "relevance_score": 9
         }
       ],
-      "raw_count": 27,
+      "raw_count": 30,
       "selected_count": 5
     },
     "logistics": {
@@ -152,7 +160,7 @@
           "relevance_score": 6
         }
       ],
-      "raw_count": 38,
+      "raw_count": 37,
       "selected_count": 3
     },
     "construction": {
@@ -181,21 +189,21 @@
           "relevance_score": 10
         },
         {
-          "title": "서울 주택 인허가·착공 늘었지만…아파트 거래 15.2% ‘뚝’ - 데일리안",
-          "link": "https://news.google.com/rss/articles/CBMiogJBVV95cUxNS0txNmJFejR4NmpjbVJ6SXRLSDhSUDEzTjZMNGZjV1RScmlTSlduQXhzbDBjSzA0QmIwNDZSZjdpM0N2Um9qREJIS3c2alZ4MmJxRkZIaFowRnY1MGtqNE92RXFQaHdLX2syS2txcGh4Qk1OeGh3R2RzMmFuaVowOWlLNFBHQnp0VG5INEU4a2pNcUdjX09nemVsR2F3N0I4dFpJUmtqTE5NM1JuTkxSdHhxbTFFaE1HbVFjSTdWd0plOHNxWGV6M1h5Wk1XSzZpYlZvTTg3ZWdZR2VoallrMzU2VE1vQ3RmNHl3Nm9iakl6Tm5WUDVBeXVJMUsxWDhnMEZ2b0hQeGpGcWpRNVNzcDhVWVZOVlRRZGRvTU80VGFPUQ?oc=5",
-          "published": "Sun, 30 Aug 2026 21:01:00 GMT",
-          "source": "데일리안",
+          "title": "서울 주택 착공 44.4% 증가…아파트도 36.1%↑ - 기계설비신문",
+          "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9IanZEVUxWU0xjSUktSTZrTEI1anBoVkkyTENIcjhUNVgzbXF6NTJNZnF6alJIbEV0bTQ0RHFCVkFCdjNaXzZSN0F0UkIxWUJyZWpCTWdKZlI3SWxNQ0lKNHlCUUhnSDNpY2hzaw?oc=5",
+          "published": "Mon, 31 Aug 2026 00:11:05 GMT",
+          "source": "기계설비신문",
           "relevance_score": 10
         },
         {
-          "title": "광명·오산 도시재생 거점시설 착공…행복주택 170호 등 조성 - 중앙신문",
-          "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1mSURIZ0hrS2gycm1QcWxvZ3dBM0FQSWZhNFJ3VFF4ZlB6TGRoSnFnaXl4aGZkbVYta2FYSFVPOVdTdUxwdDNvWDhMQVZmYUVmZm94LW1lLVRqNEVGcmZLalo0SWhzenF3?oc=5",
-          "published": "Sun, 30 Aug 2026 23:19:29 GMT",
-          "source": "중앙신문",
+          "title": "서울 주택 착공 무려 894.7% 증가…그런데 매매거래는 줄었다 - 월드장애인사랑뉴스",
+          "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE42YnRMZUVYbEZubTR2cFU5ZDJraFItMUxUekI5VC0yXzdNQ0RaM3ZBQ0ctRG5vU0x6X0hKQkZ3bDFiMERGakFxVXpiYVVlNzVseW9RQ3FBdEI2cUxHcTR2TlFIZC1Yb0ZobEl5OU03aw?oc=5",
+          "published": "Mon, 31 Aug 2026 00:06:34 GMT",
+          "source": "월드장애인사랑뉴스",
           "relevance_score": 10
         }
       ],
-      "raw_count": 125,
+      "raw_count": 124,
       "selected_count": 5
     },
     "suppliers": {
@@ -210,6 +218,13 @@
           "relevance_score": 8
         },
         {
+          "title": "[핀포인트] [포스코퓨처엠] 수주 13조→2.8조…70조 계약도 시험대 - 네이트",
+          "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBuVmgwR29LcWdKd1RBaWhRbGQ4bDI5eGFVSFNuVHgxNER0eFhBZlJVUkhCZ3F2Mm1PQXdXYk9mS2lyR01PZXRXNVlFcTJ3a1hnS3lN?oc=5",
+          "published": "Sun, 30 Aug 2026 23:40:00 GMT",
+          "source": "네이트",
+          "relevance_score": 8
+        },
+        {
           "title": "[조남현의 종횡무진]8년 만에 빛 본 포스코 리튬 개발 투자의 교훈 - 매일산업뉴스",
           "link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9zbDFXZ2N0R3JRbGVHUHB0RmRoRGhZMG50ZndfNmlCcWxKb1dSZWotMEVjOTkzNUVtQ3dtZl96RzRINklsdTEzQ1ByUTNfV0lTTGVaZGlGLWwweWthcVRJalo2Zw?oc=5",
           "published": "Sun, 30 Aug 2026 21:00:00 GMT",
@@ -218,7 +233,7 @@
         }
       ],
       "raw_count": 12,
-      "selected_count": 2
+      "selected_count": 3
     }
   }
 }
