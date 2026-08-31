@@ -729,6 +729,33 @@ if (fxCard && fx) {
   }
 }
 // 브리핑 날짜·기준시각 자동 업데이트
+// =====================================================
+// 3. 상단 구매 요약 환율 자동 업데이트
+// =====================================================
+
+const alertBox = document.querySelector(".alert");
+
+if (alertBox && fx) {
+
+  const directionText =
+    fx.direction === "down"
+      ? "하락했습니다."
+      : fx.direction === "up"
+      ? "상승했습니다."
+      : "보합입니다.";
+
+  alertBox.innerHTML =
+    '<span class="dot"></span>' +
+    '<strong>주의</strong>&nbsp;&nbsp;' +
+    '원/달러 환율은 <strong>' +
+    fx.current_rate +
+    '</strong>으로 전 거래일보다 <strong>' +
+    fx.change +
+    '</strong> ' +
+    directionText +
+    ' 국제유가는 하락해 에너지·운송비 부담을 완화하는 방향이나, ' +
+    'BDI는 2,926으로 상승해 벌크 수입운임 부담이 이어지고 있습니다.';
+}
 const asofBox = document.querySelector(".asof");
 
 if (asofBox && data.generated_at_kst) {
