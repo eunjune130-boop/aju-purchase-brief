@@ -689,6 +689,30 @@ async function loadLatestBriefing() {
     const data = await response.json();
 console.log("AJU 최신 브리핑 데이터:", data);
 console.log("환율 데이터:", data.market_data.fx);
+    const fx = data.market_data.fx;
+
+const fxCard = document.querySelector('[data-key="fx"]');
+
+if (fxCard && fx) {
+  const valueEl = fxCard.querySelector(".value");
+  const deltaEl = fxCard.querySelector(".delta");
+  const smallEl = fxCard.querySelector(".small");
+
+  if (valueEl) {
+    valueEl.textContent = fx.current_rate;
+  }
+
+  if (deltaEl) {
+    const arrow = fx.direction === "down" ? "▼" : "▲";
+    deltaEl.textContent = arrow + " " + fx.change;
+  }
+
+  if (smallEl) {
+    smallEl.innerHTML =
+      "전 거래일 " + fx.previous_rate + " 대비<br>" +
+      "출처: " + fx.source;
+  }
+}
 
   } catch (error) {
     console.error("AJU 브리핑 데이터 연결 오류:", error);
