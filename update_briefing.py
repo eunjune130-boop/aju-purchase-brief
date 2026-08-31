@@ -1494,26 +1494,29 @@ def main():
     current_time = now_kst()
 
     print("=" * 60)
+
     print(
         "AJU 구매팀 브리핑 자동수집 #8"
     )
+
     print(
         "실행:",
         current_time.strftime(
             "%Y-%m-%d %H:%M KST"
         )
     )
+
     print("=" * 60)
 
-  fx = collect_fx()
+    fx = collect_fx()
 
-market_indicators = (
-    collect_market_indicators()
-)
+    market_indicators = (
+        collect_market_indicators()
+    )
 
-purchase_news = (
-    collect_purchase_news()
-)
+    purchase_news = (
+        collect_purchase_news()
+    )
 
     result = {
         "generated_at_kst":
