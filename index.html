@@ -691,6 +691,9 @@ console.log("AJU 최신 브리핑 데이터:", data);
 console.log("환율 데이터:", data.market_data.fx);
 const fx = data.market_data.fx;
 
+const brent =
+  data.market_data?.indicators?.brent;
+
 const fxCard = document.querySelector(
   '.metric[data-category="fx"]'
 );
@@ -915,9 +918,6 @@ sourceLink.style.marginLeft =
 // =====================================================
 // 6. Brent 카드 자동 업데이트
 // =====================================================
-
-const brent =
-  data.market_data?.indicators?.brent;
 
 const brentCard =
   document.querySelector(
