@@ -316,7 +316,7 @@ section{scroll-margin-top:84px;margin-bottom:20px}
       </div>
     </article>
 
-    <article class="metric" data-category="raw">
+   <article class="metric" data-category="raw" data-key="brent">
       <div class="label">
         Brent <span class="label-desc">(국제유가 · 브렌트유)</span>
       </div>
@@ -728,6 +728,7 @@ if (fxCard && fx) {
       "<br>출처: " + fx.source;
   }
 }
+
 // 브리핑 날짜·기준시각 자동 업데이트
 // =====================================================
 // 3. 상단 구매 요약 환율 자동 업데이트
@@ -890,6 +891,114 @@ sourceLink.style.marginLeft =
 
   sourceLink.href =
     fx.source_url;
+}
+// =====================================================
+// 6. Brent 카드 자동 업데이트
+// =====================================================
+
+const brent =
+  data.market_data?.indicators?.brent;
+
+const brentCard =
+  document.querySelector(
+    '.metric[data-key="brent"]'
+  );
+
+if (brentCard && brent) {
+
+  const valueEl =
+    brentCard.querySelector(".value");
+
+  const moveEl =
+    brentCard.querySelector(".move");
+
+  const noteEl =
+    brentCard.querySelector(".note");
+
+  if (valueEl && brent.current_value) {
+    valueEl.textContent =
+      brent.current_value;
+  }
+
+  if (moveEl && brent.change) {
+
+    let arrow = "－";
+
+    if (brent.direction === "down") {
+      arrow = "▼";
+      moveEl.className = "move down";
+
+    } else if (brent.direction === "up") {
+      arrow = "▲";
+      moveEl.className = "move up";
+
+    } else {
+      moveEl.className = "move flat";
+    }
+
+    moveEl.textContent =
+      arrow + " " + brent.change;
+  }
+
+  if (noteEl) {
+    noteEl.textContent =
+      "기준: " +
+      (brent.current_date || "-") +
+      " · 출처: " +
+      (brent.source || "-");
+  }
+
+  if (brent.source_url) {
+
+    let sourceLink =
+      brentCard.querySelector(
+        ".source-link"
+      );
+
+    if (!sourceLink) {
+
+      sourceLink =
+        document.createElement("a");
+
+      sourceLink.className =
+        "source-link";
+
+      sourceLink.target =
+        "_blank";
+
+      sourceLink.rel =
+        "noopener noreferrer";
+
+      sourceLink.style.display =
+        "inline";
+
+      sourceLink.style.marginLeft =
+        "10px";
+
+      sourceLink.style.fontSize =
+        "11px";
+
+      sourceLink.textContent =
+        "출처 보기 ↗";
+
+      const toggle =
+        brentCard.querySelector(
+          ".metric-toggle"
+        );
+
+      if (toggle) {
+        toggle.insertAdjacentElement(
+          "afterend",
+          sourceLink
+        );
+      } else {
+        brentCard.appendChild(sourceLink);
+      }
+    }
+
+    sourceLink.href =
+      brent.source_url;
+  }
 }
   } catch (error) {
     console.error("AJU 브리핑 데이터 연결 오류:", error);
