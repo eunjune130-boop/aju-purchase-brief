@@ -416,7 +416,7 @@ section{scroll-margin-top:84px;margin-bottom:20px}
       </p>
     </article>
 
-    <article class="check" data-category="raw">
+   <article class="check" data-category="raw" data-key="brent-check">
       <span class="num">3</span>
       <h3>Brent $87.84 — 유가 약세</h3>
       <p class="check-body">
@@ -998,6 +998,60 @@ if (brentCard && brent) {
 
     sourceLink.href =
       brent.source_url;
+  }
+}
+ // =====================================================
+// 7. 체크포인트 3번 Brent 자동 업데이트
+// =====================================================
+
+const brentCheck =
+  document.querySelector(
+    '.check[data-key="brent-check"]'
+  );
+
+if (brentCheck && brent) {
+
+  const titleEl =
+    brentCheck.querySelector("h3");
+
+  const bodyEl =
+    brentCheck.querySelector(".check-body");
+
+  if (titleEl) {
+
+    let directionTitle = "유가 보합";
+
+    if (brent.direction === "up") {
+      directionTitle = "유가 상승";
+    } else if (brent.direction === "down") {
+      directionTitle = "유가 하락";
+    }
+
+    titleEl.textContent =
+      "Brent " +
+      brent.current_value +
+      " — " +
+      directionTitle;
+  }
+
+
+  if (bodyEl) {
+
+    let directionText = "보합";
+
+    if (brent.direction === "up") {
+      directionText = "상승";
+    } else if (brent.direction === "down") {
+      directionText = "하락";
+    }
+
+    bodyEl.innerHTML =
+      "<strong>전 거래일 대비 " +
+      brent.change +
+      " " +
+      directionText +
+      "</strong><br>" +
+      "연료·운송비 영향을 함께 확인합니다.";
   }
 }
   } catch (error) {
