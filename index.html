@@ -756,7 +756,46 @@ if (summaryText && fx) {
     ' 국제유가는 하락해 에너지·운송비 부담을 완화하는 방향이나, ' +
     'BDI는 2,926으로 상승해 벌크 수입운임 부담이 이어지고 있습니다.';
 }
-const asofBox = document.querySelector(".asof");
+// =====================================================
+// 4. 체크포인트 1번 환율 자동 업데이트
+// =====================================================
+
+const fxCheck = document.querySelector(
+  '.check[data-category="fx"]'
+);
+
+if (fxCheck && fx) {
+
+  const titleEl = fxCheck.querySelector("h3");
+  const bodyEl = fxCheck.querySelector(".check-body");
+
+  if (titleEl) {
+    titleEl.textContent =
+      "원/달러 " +
+      fx.current_rate +
+      " — 외화 결제 점검";
+  }
+
+  if (bodyEl) {
+
+    let directionText = "보합";
+
+    if (fx.direction === "down") {
+      directionText = "하락";
+    } else if (fx.direction === "up") {
+      directionText = "상승";
+    }
+
+    bodyEl.innerHTML =
+      "<strong>전 거래일 대비 " +
+      fx.change +
+      " " +
+      directionText +
+      "</strong><br>" +
+      "외화 결제 예정 건의 원화 환산금액을 확인합니다.";
+  }
+}
+    const asofBox = document.querySelector(".asof");
 
 if (asofBox && data.generated_at_kst) {
   const [datePart, timePart] = data.generated_at_kst.split(" ");
