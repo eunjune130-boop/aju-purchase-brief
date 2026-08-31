@@ -1301,7 +1301,194 @@ def save_result(data):
 # ============================================================
 # 실행
 # ============================================================
+# ============================================================
+# 시장지표 자동수집
+# Brent - Yahoo Finance
+# ============================================================
 
+def collect_brent_yahoo():
+
+    print("[시장지표] Brent Crude Oil")
+
+    try:
+
+        symbol = "BZ=F"
+
+        url = (
+            "https://query1.finance.yahoo.com/"
+            f"v8/finance/chart/{symbol}"
+            "?range=5d&interval=1d"
+        )
+
+        response = requests.get(
+            url,
+            headers=HEADERS,
+            timeout=20
+        )
+
+        response.raise_for_status()
+
+        data = response.json()
+
+        result = data["chart"]["result"][0]
+
+        timestamps = result.get(
+            "timestamp",
+            []
+        )
+
+        closes = (
+            result["indicators"]
+            ["quote"][0]
+            .get("close", [])
+        )
+
+        rows = []
+
+        for ts, close in zip(
+            timestamps,
+            closes
+        ):
+
+            if close is None:
+                continue
+
+            market_date = (
+                datetime
+                .fromtimestamp(
+                    ts,
+                    timezone.utc
+                )
+                .astimezone(KST)
+                .date()
+            )
+
+            rows.append(
+                (
+                    market_date,
+                    float(close)
+                )
+            )
+
+        if len(rows) < 2:
+            raise ValueError(
+                "Brent 가격 데이터 부족"
+            )
+
+        previous_date, previous_value = (
+            rows[-2]
+        )
+
+        current_date, current_value = (
+            rows[-1]
+        )
+
+        change_value = (
+            current_value
+            - previous_value
+        )
+
+        change_pct = (
+            change_value
+            / previous_value
+            * 100
+        )
+
+        if change_value > 0:
+            direction = "up"
+
+        elif change_value < 0:
+            direction = "down"
+
+        else:
+            direction = "flat"
+
+        brent = {
+
+            "name":
+                "Brent",
+
+            "current_value":
+                f"${current_value:,.2f}",
+
+            "previous_value":
+                f"${previous_value:,.2f}",
+
+            "change":
+                f"{abs(change_pct):.2f}%",
+
+            "change_value":
+                f"{abs(change_value):.2f}",
+
+            "direction":
+                direction,
+
+            "current_date":
+                current_date.isoformat(),
+
+            "previous_date":
+                previous_date.isoformat(),
+
+            "unit":
+                "USD/bbl",
+
+            "status":
+                "확인 완료",
+
+            "source":
+                "Yahoo Finance",
+
+            "source_url":
+                "https://finance.yahoo.com/quote/BZ=F/",
+
+            "note":
+                "Brent Crude Oil 선물 최근 거래일 종가 기준",
+        }
+
+        print(
+            " →",
+            brent["current_value"],
+            brent["direction"],
+            brent["change"],
+            brent["current_date"]
+        )
+
+        return brent
+
+
+    except Exception as exc:
+
+        print(
+            " → Brent 자동수집 실패:",
+            exc
+        )
+
+        return {
+
+            "name": "Brent",
+            "current_value": None,
+            "previous_value": None,
+            "change": None,
+            "change_value": None,
+            "direction": None,
+            "current_date": None,
+            "previous_date": None,
+            "unit": "USD/bbl",
+            "status": "확인 필요",
+            "source": "Yahoo Finance",
+            "source_url":
+                "https://finance.yahoo.com/quote/BZ=F/",
+            "note":
+                "Brent 자동수집 실패",
+        }
+
+
+def collect_market_indicators():
+
+    return {
+        "brent":
+            collect_brent_yahoo()
+    }
 def main():
 
     current_time = now_kst()
@@ -1318,10 +1505,15 @@ def main():
     )
     print("=" * 60)
 
-    fx = collect_fx()
-    purchase_news = (
-        collect_purchase_news()
-    )
+  fx = collect_fx()
+
+market_indicators = (
+    collect_market_indicators()
+)
+
+purchase_news = (
+    collect_purchase_news()
+)
 
     result = {
         "generated_at_kst":
@@ -1332,9 +1524,10 @@ def main():
         "status":
             "AJU 구매 브리핑 데이터 수집 완료",
 
-        "market_data": {
-            "fx": fx
-        },
+      "market_data": {
+    "fx": fx,
+    "indicators": market_indicators
+},
 
         "news":
             purchase_news,
