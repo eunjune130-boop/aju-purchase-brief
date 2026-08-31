@@ -687,9 +687,8 @@ async function loadLatestBriefing() {
     }
 
     const data = await response.json();
-
-    console.log("AJU 최신 브리핑 데이터:", data);
-    console.log("환율 데이터:", data.fx);
+console.log("AJU 최신 브리핑 데이터:", data);
+console.log("환율 데이터:", data.market_data.fx);
 
   } catch (error) {
     console.error("AJU 브리핑 데이터 연결 오류:", error);
