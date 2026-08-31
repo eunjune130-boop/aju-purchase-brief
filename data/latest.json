@@ -1,14 +1,14 @@
 {
-  "generated_at_kst": "2026-08-31 09:17",
+  "generated_at_kst": "2026-08-31 09:35",
   "status": "AJU 구매 브리핑 데이터 수집 완료",
   "market_data": {
     "fx": {
-      "current_rate": "1,377.28원",
+      "current_rate": "1,378.48원",
       "previous_rate": "1,380.45원",
-      "change": "3.17원",
+      "change": "1.97원",
       "direction": "down",
       "current_date": "2026-08-31",
-      "current_time": "09:17",
+      "current_time": "09:35",
       "previous_date": "2026-08-28",
       "status": "확인 완료",
       "data_type": "장중 환율",
@@ -30,7 +30,7 @@
           "relevance_score": 8
         }
       ],
-      "raw_count": 17,
+      "raw_count": 16,
       "selected_count": 1
     },
     "energy": {
@@ -73,7 +73,7 @@
           "relevance_score": 12
         }
       ],
-      "raw_count": 86,
+      "raw_count": 85,
       "selected_count": 5
     },
     "aggregate": {
@@ -85,10 +85,10 @@
           "link": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE1VdVM2LTBLN0Z5T1QyZU1hMFo1UmN1ODVFU3JzSVZMYmxzRzBOZlJuYi12T0tfQUthQk5ORkphNE5qUmt5M2c?oc=5",
           "published": "Sun, 30 Aug 2026 03:35:06 GMT",
           "source": "v.daum.net",
-          "relevance_score": 10
+          "relevance_score": 15
         }
       ],
-      "raw_count": 8,
+      "raw_count": 12,
       "selected_count": 1
     },
     "steel_phc": {
@@ -131,7 +131,7 @@
           "relevance_score": 9
         }
       ],
-      "raw_count": 30,
+      "raw_count": 29,
       "selected_count": 5
     },
     "logistics": {
@@ -160,7 +160,7 @@
           "relevance_score": 6
         }
       ],
-      "raw_count": 37,
+      "raw_count": 38,
       "selected_count": 3
     },
     "construction": {
@@ -203,7 +203,7 @@
           "relevance_score": 10
         }
       ],
-      "raw_count": 124,
+      "raw_count": 126,
       "selected_count": 5
     },
     "suppliers": {
@@ -232,7 +232,7 @@
           "relevance_score": 8
         }
       ],
-      "raw_count": 12,
+      "raw_count": 13,
       "selected_count": 3
     }
   }
