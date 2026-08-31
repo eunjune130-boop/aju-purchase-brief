@@ -837,6 +837,60 @@ if (asofBox && data.generated_at_kst) {
       " 장중 USD/KRW · 기타 지표는 최신 확인값";
   }
 }
+// =====================================================
+// 5. 환율 카드 출처 링크 자동 추가
+// =====================================================
+
+if (fxCard && fx && fx.source_url) {
+
+  let sourceLink =
+    fxCard.querySelector(".source-link");
+
+  if (!sourceLink) {
+
+    sourceLink =
+      document.createElement("a");
+
+    sourceLink.className =
+      "source-link";
+
+    sourceLink.target =
+      "_blank";
+
+    sourceLink.rel =
+      "noopener noreferrer";
+
+    sourceLink.style.display =
+      "inline-block";
+
+    sourceLink.style.marginTop =
+      "8px";
+
+    sourceLink.style.marginLeft =
+      "10px";
+
+    sourceLink.style.fontSize =
+      "11px";
+
+    sourceLink.textContent =
+      "출처 보기 ↗";
+
+    const toggle =
+      fxCard.querySelector(".metric-toggle");
+
+    if (toggle) {
+      toggle.insertAdjacentElement(
+        "afterend",
+        sourceLink
+      );
+    } else {
+      fxCard.appendChild(sourceLink);
+    }
+  }
+
+  sourceLink.href =
+    fx.source_url;
+}
   } catch (error) {
     console.error("AJU 브리핑 데이터 연결 오류:", error);
   }
