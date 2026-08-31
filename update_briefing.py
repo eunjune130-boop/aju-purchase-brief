@@ -39,21 +39,18 @@ def normalize(text):
     text = str(text).lower()
     text = re.sub(r"\s+", " ", text)
     text = re.sub(r"[\"'“”‘’]", "", text)
-
     return text.strip()
 
 
 def format_rate(value):
     if value is None:
         return None
-
     return f"{float(value):,.2f}원"
 
 
 def format_change(value):
     if value is None:
         return None
-
     return f"{abs(float(value)):,.2f}원"
 
 
@@ -63,9 +60,7 @@ def format_change(value):
 
 def google_news_search(query, days=2, limit=20):
 
-    encoded_query = quote(
-        f"{query} when:{days}d"
-    )
+    encoded_query = quote(f"{query} when:{days}d")
 
     url = (
         "https://news.google.com/rss/search"
@@ -76,7 +71,6 @@ def google_news_search(query, days=2, limit=20):
     )
 
     feed = feedparser.parse(url)
-
     results = []
 
     for entry in feed.entries[:limit]:
@@ -166,11 +160,12 @@ PURCHASE_CORE_KEYWORDS = [
     "발주",
     "원료",
     "원자재",
+    "채취",
+    "허가",
 ]
 
 
 def contains_any(text, keywords):
-
     text = normalize(text)
 
     for keyword in keywords:
@@ -182,29 +177,19 @@ def contains_any(text, keywords):
 
 def article_is_excluded(article, rule):
 
-    title = normalize(
-        article.get("title", "")
-    )
+    title = normalize(article.get("title", ""))
 
     exclude_words = (
         GLOBAL_EXCLUDE_KEYWORDS
-        + rule.get(
-            "exclude_keywords",
-            []
-        )
+        + rule.get("exclude_keywords", [])
     )
 
-    return contains_any(
-        title,
-        exclude_words
-    )
+    return contains_any(title, exclude_words)
 
 
 def article_has_purchase_core(article):
 
-    title = normalize(
-        article.get("title", "")
-    )
+    title = normalize(article.get("title", ""))
 
     return contains_any(
         title,
@@ -214,52 +199,36 @@ def article_has_purchase_core(article):
 
 def score_article(article, rule):
 
-    title = normalize(
-        article.get("title", "")
-    )
-
-    source = normalize(
-        article.get("source", "")
-    )
+    title = normalize(article.get("title", ""))
+    source = normalize(article.get("source", ""))
 
     text = f"{title} {source}"
-
     score = 0
 
-    for keyword in rule.get(
-        "strong_keywords", []
-    ):
+    for keyword in rule.get("strong_keywords", []):
         if normalize(keyword) in text:
             score += 5
 
-    for keyword in rule.get(
-        "keywords", []
-    ):
+    for keyword in rule.get("keywords", []):
         if normalize(keyword) in text:
             score += 2
 
-    for keyword in rule.get(
-        "support_keywords", []
-    ):
+    for keyword in rule.get("support_keywords", []):
         if normalize(keyword) in text:
             score += 1
 
-    for media in rule.get(
-        "preferred_sources", []
-    ):
+    for media in rule.get("preferred_sources", []):
         if normalize(media) in source:
             score += 1
 
-    if article_has_purchase_core(
-        article
-    ):
+    if article_has_purchase_core(article):
         score += 3
 
     return score
 
 
 # ============================================================
-# 중복 제거
+# 중복기사 제거
 # ============================================================
 
 def clean_title_for_similarity(title):
@@ -278,28 +247,15 @@ def clean_title_for_similarity(title):
         text
     )
 
-    text = re.sub(
-        r"\s+",
-        " ",
-        text
-    )
+    text = re.sub(r"\s+", " ", text)
 
     return text.strip()
 
 
-def is_similar_title(
-    title_a,
-    title_b,
-    threshold=0.68
-):
+def is_similar_title(title_a, title_b, threshold=0.68):
 
-    a = clean_title_for_similarity(
-        title_a
-    )
-
-    b = clean_title_for_similarity(
-        title_b
-    )
+    a = clean_title_for_similarity(title_a)
+    b = clean_title_for_similarity(title_b)
 
     if not a or not b:
         return False
@@ -313,9 +269,7 @@ def is_similar_title(
     return ratio >= threshold
 
 
-def remove_similar_articles(
-    articles
-):
+def remove_similar_articles(articles):
 
     selected = []
 
@@ -326,39 +280,33 @@ def remove_similar_articles(
         for existing in selected:
 
             if is_similar_title(
-                article.get(
-                    "title",
-                    ""
-                ),
-                existing.get(
-                    "title",
-                    ""
-                )
+                article.get("title", ""),
+                existing.get("title", "")
             ):
                 duplicate = True
                 break
 
-        if duplicate:
-            continue
-
-        selected.append(article)
+        if not duplicate:
+            selected.append(article)
 
     return selected
 
 
 # ============================================================
-# 카테고리별 수집
+# 카테고리별 뉴스 수집
 # ============================================================
 
 def collect_category(rule):
 
-    ranges = [
+    search_ranges = [
         (2, "오늘·어제"),
         (3, "최근 3일"),
         (7, "최근 7일"),
     ]
 
-    for days, label in ranges:
+    last_raw_count = 0
+
+    for days, label in search_ranges:
 
         all_articles = []
 
@@ -370,149 +318,136 @@ def collect_category(rule):
                 limit=20
             )
 
-            all_articles.extend(
-                found
-            )
+            all_articles.extend(found)
 
-        raw_count = len(
-            all_articles
-        )
+        raw_count = len(all_articles)
+        last_raw_count = raw_count
 
         filtered = []
 
         for article in all_articles:
 
-            # 불필요 뉴스 제거
-            if article_is_excluded(
-                article,
-                rule
-            ):
+            if article_is_excluded(article, rule):
                 continue
 
-            # 분야 핵심어 확인
             title = normalize(
-                article.get(
-                    "title",
-                    ""
-                )
+                article.get("title", "")
             )
 
             category_match = (
                 contains_any(
                     title,
-                    rule.get(
-                        "strong_keywords",
-                        []
-                    )
+                    rule.get("strong_keywords", [])
                 )
                 or contains_any(
                     title,
-                    rule.get(
-                        "keywords",
-                        []
-                    )
+                    rule.get("keywords", [])
                 )
             )
 
             if not category_match:
                 continue
 
-            # 구매 핵심어가 없는 경우
-            # 카테고리 강한 키워드가 2개 이상 있어야 통과
-            if not article_has_purchase_core(
-                article
-            ):
+            # 일반 카테고리는 구매 핵심어를 요구하지만,
+            # 골재는 시장 기사 자체가 적어 별도 완화 조건 적용
+            if rule.get("relaxed_purchase_filter", False):
 
-                strong_count = 0
+                strong_match = contains_any(
+                    title,
+                    rule.get("strong_keywords", [])
+                )
 
-                for keyword in rule.get(
-                    "strong_keywords",
-                    []
-                ):
+                purchase_match = article_has_purchase_core(
+                    article
+                )
 
-                    if normalize(
-                        keyword
-                    ) in title:
-
-                        strong_count += 1
-
-                if strong_count < 2:
+                if not strong_match:
                     continue
+
+                if not (
+                    purchase_match
+                    or contains_any(
+                        title,
+                        rule.get(
+                            "aggregate_context_keywords",
+                            []
+                        )
+                    )
+                ):
+                    continue
+
+            else:
+
+                if not article_has_purchase_core(article):
+
+                    strong_count = 0
+
+                    for keyword in rule.get(
+                        "strong_keywords",
+                        []
+                    ):
+                        if normalize(keyword) in title:
+                            strong_count += 1
+
+                    if strong_count < 2:
+                        continue
 
             score = score_article(
                 article,
                 rule
             )
 
-            if score < 6:
+            minimum_score = rule.get(
+                "minimum_score",
+                6
+            )
+
+            if score < minimum_score:
                 continue
 
-            item = dict(
-                article
-            )
+            item = dict(article)
+            item["relevance_score"] = score
 
-            item[
-                "relevance_score"
-            ] = score
-
-            filtered.append(
-                item
-            )
+            filtered.append(item)
 
         filtered.sort(
-            key=lambda x: x[
-                "relevance_score"
-            ],
+            key=lambda x: x["relevance_score"],
             reverse=True
         )
 
-        filtered = (
-            remove_similar_articles(
-                filtered
-            )
+        filtered = remove_similar_articles(
+            filtered
         )
 
         if filtered:
 
             return {
-                "freshness":
-                    label,
-
-                "articles":
-                    filtered[:5],
-
-                "raw_count":
-                    raw_count,
-
-                "selected_count":
-                    min(
-                        len(filtered),
-                        5
-                    ),
+                "freshness": label,
+                "articles": filtered[:5],
+                "raw_count": raw_count,
+                "selected_count": min(
+                    len(filtered),
+                    5
+                ),
             }
 
     return {
-        "freshness":
-            "특이사항 없음",
-
+        "freshness": "특이사항 없음",
         "articles": [],
-
-        "raw_count": 0,
-
+        "raw_count": last_raw_count,
         "selected_count": 0,
     }
 
 
 # ============================================================
-# 구매 뉴스 7개 영역
+# 뉴스 카테고리
 # ============================================================
 
 CATEGORY_RULES = {
 
     "cement_slag": {
 
-        "name":
-            "시멘트·슬래그",
+        "name": "시멘트·슬래그",
 
         "queries": [
             "시멘트 가격",
@@ -568,8 +503,7 @@ CATEGORY_RULES = {
 
     "energy": {
 
-        "name":
-            "유연탄·에너지",
+        "name": "유연탄·에너지",
 
         "queries": [
             "유연탄 가격",
@@ -618,26 +552,37 @@ CATEGORY_RULES = {
     },
 
 
+    # ========================================================
+    # #8 핵심 변경 부분 : 골재·모래
+    # ========================================================
+
     "aggregate": {
 
-        "name":
-            "골재·모래",
+        "name": "골재·모래",
 
         "queries": [
-            "골재 가격",
-            "골재 공급",
-            "골재 부족",
-            "골재 채취허가",
+            "골재 가격 건설",
+            "골재 공급 건설",
             "골재 수급",
-            "모래 가격 건설",
-            "레미콘 골재 공급",
+            "골재 부족",
+            "레미콘 골재",
+            "골재 채취",
+            "골재 채취 허가",
+            "석산 골재",
+            "석산 채취 허가",
+            "모래 골재 건설",
+            "바닷모래 골재",
+            "바닷모래 채취",
+            "순환골재 건설",
         ],
 
         "strong_keywords": [
             "골재",
-            "채취허가",
+            "바닷모래",
+            "순환골재",
             "석산",
-            "레미콘",
+            "채취허가",
+            "채취 허가",
         ],
 
         "keywords": [
@@ -645,38 +590,69 @@ CATEGORY_RULES = {
             "공급",
             "수급",
             "부족",
-            "채석",
+            "채취",
+            "허가",
             "모래",
+            "레미콘",
+            "건설자재",
         ],
 
         "support_keywords": [
             "운송",
-            "환경규제",
             "수도권",
+            "건설",
+            "공사",
+            "환경규제",
+            "원가",
+        ],
+
+        "aggregate_context_keywords": [
+            "레미콘",
+            "건설",
             "건설자재",
+            "채취",
+            "허가",
+            "수급",
+            "공급",
+            "가격",
+            "부족",
+            "운송",
         ],
 
         "exclude_keywords": [
-            "사고",
-            "덤프트럭 충돌",
+            "교통사고",
+            "사망",
+            "부상",
+            "충돌",
+            "추돌",
+            "덤프트럭 사고",
+            "전신주",
             "불법매립",
+            "폐기물",
+            "쓰레기",
+            "범죄",
             "공장 철거",
             "전격 철거",
             "악취",
+            "주민 갈등",
         ],
 
         "preferred_sources": [
             "연합뉴스",
             "대한경제",
             "뉴시스",
+            "건설경제",
+            "건설신문",
         ],
+
+        "relaxed_purchase_filter": True,
+        "minimum_score": 6,
     },
 
 
     "steel_phc": {
 
-        "name":
-            "철강·PHC",
+        "name": "철강·PHC",
 
         "queries": [
             "PC강봉 가격",
@@ -731,8 +707,7 @@ CATEGORY_RULES = {
 
     "logistics": {
 
-        "name":
-            "물류",
+        "name": "물류",
 
         "queries": [
             "BDI 지수",
@@ -783,8 +758,7 @@ CATEGORY_RULES = {
 
     "construction": {
 
-        "name":
-            "건설시장",
+        "name": "건설시장",
 
         "queries": [
             "건설수주",
@@ -837,8 +811,7 @@ CATEGORY_RULES = {
 
     "suppliers": {
 
-        "name":
-            "공급사",
+        "name": "공급사",
 
         "queries": [
             "삼표시멘트 가격",
@@ -899,55 +872,38 @@ CATEGORY_RULES = {
 }
 
 
+# ============================================================
+# 구매 뉴스 실행
+# ============================================================
+
 def collect_purchase_news():
 
     collected = {}
 
-    for key, rule in (
-        CATEGORY_RULES.items()
-    ):
+    for key, rule in CATEGORY_RULES.items():
 
         print(
-            f"[구매뉴스] "
-            f"{rule['name']}"
+            f"[구매뉴스] {rule['name']}"
         )
 
-        result = (
-            collect_category(
-                rule
-            )
+        result = collect_category(
+            rule
         )
 
         collected[key] = {
-
-            "name":
-                rule["name"],
-
-            "freshness":
-                result["freshness"],
-
-            "articles":
-                result["articles"],
-
-            "raw_count":
-                result["raw_count"],
-
-            "selected_count":
-                result[
-                    "selected_count"
-                ],
+            "name": rule["name"],
+            "freshness": result["freshness"],
+            "articles": result["articles"],
+            "raw_count": result["raw_count"],
+            "selected_count": result["selected_count"],
         }
 
         print(
             " →",
             result["freshness"],
-            result[
-                "selected_count"
-            ],
+            result["selected_count"],
             "건 선택 / 검색결과",
-            result[
-                "raw_count"
-            ],
+            result["raw_count"],
             "건"
         )
 
@@ -955,14 +911,13 @@ def collect_purchase_news():
 
 
 # ============================================================
-# 환율 1순위 - Yahoo Finance
+# USD/KRW - Yahoo Finance
 # ============================================================
 
 def collect_fx_yahoo():
 
     print(
-        "[환율 1순위] "
-        "Yahoo Finance USD/KRW"
+        "[환율 1순위] Yahoo Finance USD/KRW"
     )
 
     try:
@@ -981,28 +936,22 @@ def collect_fx_yahoo():
 
         response.raise_for_status()
 
-        data = response.json()
-
         result = (
-            data["chart"]["result"][0]
+            response.json()
+            ["chart"]["result"][0]
         )
 
         meta = result["meta"]
 
-        current_rate = (
-            meta.get(
-                "regularMarketPrice"
-            )
+        current_rate = meta.get(
+            "regularMarketPrice"
         )
 
-        market_time = (
-            meta.get(
-                "regularMarketTime"
-            )
+        market_time = meta.get(
+            "regularMarketTime"
         )
 
         if current_rate is None:
-
             raise ValueError(
                 "Yahoo 현재 환율 없음"
             )
@@ -1022,38 +971,20 @@ def collect_fx_yahoo():
 
         response2.raise_for_status()
 
-        daily_data = (
-            response2.json()
-        )
-
         daily_result = (
-            daily_data[
-                "chart"
-            ][
-                "result"
-            ][0]
+            response2.json()
+            ["chart"]["result"][0]
         )
 
-        timestamps = (
-            daily_result.get(
-                "timestamp",
-                []
-            )
-        )
-
-        quote_data = (
-            daily_result[
-                "indicators"
-            ][
-                "quote"
-            ][0]
+        timestamps = daily_result.get(
+            "timestamp",
+            []
         )
 
         closes = (
-            quote_data.get(
-                "close",
-                []
-            )
+            daily_result["indicators"]
+            ["quote"][0]
+            .get("close", [])
         )
 
         daily_rows = []
@@ -1072,9 +1003,7 @@ def collect_fx_yahoo():
                     ts,
                     timezone.utc
                 )
-                .astimezone(
-                    KST
-                )
+                .astimezone(KST)
                 .date()
             )
 
@@ -1085,13 +1014,10 @@ def collect_fx_yahoo():
                 )
             )
 
-
         if not daily_rows:
-
             raise ValueError(
                 "Yahoo 전 거래일 환율 없음"
             )
-
 
         if market_time:
 
@@ -1101,83 +1027,49 @@ def collect_fx_yahoo():
                     market_time,
                     timezone.utc
                 )
-                .astimezone(
-                    KST
-                )
+                .astimezone(KST)
             )
 
         else:
-
-            current_datetime = (
-                now_kst()
-            )
-
+            current_datetime = now_kst()
 
         current_date = (
             current_datetime.date()
         )
-
 
         if (
             daily_rows[-1][0]
             == current_date
             and len(daily_rows) >= 2
         ):
-
-            previous_date = (
-                daily_rows[-2][0]
-            )
-
-            previous_rate = (
-                daily_rows[-2][1]
-            )
+            previous_date = daily_rows[-2][0]
+            previous_rate = daily_rows[-2][1]
 
         else:
-
-            previous_date = (
-                daily_rows[-1][0]
-            )
-
-            previous_rate = (
-                daily_rows[-1][1]
-            )
-
+            previous_date = daily_rows[-1][0]
+            previous_rate = daily_rows[-1][1]
 
         change_value = (
             float(current_rate)
             - float(previous_rate)
         )
 
-
         if change_value > 0:
-
             direction = "up"
-
         elif change_value < 0:
-
             direction = "down"
-
         else:
-
             direction = "flat"
 
-
         return {
-
             "current_rate":
-                format_rate(
-                    current_rate
-                ),
+                format_rate(current_rate),
 
             "previous_rate":
-                format_rate(
-                    previous_rate
-                ),
+                format_rate(previous_rate),
 
             "change":
-                format_change(
-                    change_value
-                ),
+                format_change(change_value),
 
             "direction":
                 direction,
@@ -1203,14 +1095,11 @@ def collect_fx_yahoo():
                 "Yahoo Finance",
 
             "source_url":
-                "https://finance.yahoo.com/"
-                "quote/KRW=X/",
+                "https://finance.yahoo.com/quote/KRW=X/",
 
             "note":
-                "USD/KRW 장중 환율 및 "
-                "전 거래일 종가 기준",
+                "USD/KRW 장중 환율 및 전 거래일 종가 기준",
         }
-
 
     except Exception as exc:
 
@@ -1223,25 +1112,21 @@ def collect_fx_yahoo():
 
 
 # ============================================================
-# 환율 2순위 - Frankfurter
+# 환율 보조 - Frankfurter
 # ============================================================
 
 def collect_fx_frankfurter():
 
     print(
-        "[환율 2순위] "
-        "Frankfurter API"
+        "[환율 2순위] Frankfurter API"
     )
 
     try:
 
-        today = (
-            now_kst().date()
-        )
+        today = now_kst().date()
 
         start_date = (
-            today
-            - timedelta(days=10)
+            today - timedelta(days=10)
         )
 
         url = (
@@ -1259,13 +1144,9 @@ def collect_fx_frankfurter():
 
         response.raise_for_status()
 
-        data = response.json()
-
-        rates = (
-            data.get(
-                "rates",
-                {}
-            )
+        rates = response.json().get(
+            "rates",
+            {}
         )
 
         rows = []
@@ -1274,29 +1155,20 @@ def collect_fx_frankfurter():
             rates.items()
         ):
 
-            krw = (
-                values.get(
-                    "KRW"
+            krw = values.get("KRW")
+
+            if krw is not None:
+                rows.append(
+                    (
+                        date,
+                        float(krw)
+                    )
                 )
-            )
-
-            if krw is None:
-                continue
-
-            rows.append(
-                (
-                    date,
-                    float(krw)
-                )
-            )
-
 
         if len(rows) < 2:
-
             raise ValueError(
                 "Frankfurter 환율 부족"
             )
-
 
         previous_date, previous_rate = (
             rows[-2]
@@ -1307,40 +1179,25 @@ def collect_fx_frankfurter():
         )
 
         change_value = (
-            current_rate
-            - previous_rate
+            current_rate - previous_rate
         )
 
-
         if change_value > 0:
-
             direction = "up"
-
         elif change_value < 0:
-
             direction = "down"
-
         else:
-
             direction = "flat"
 
-
         return {
-
             "current_rate":
-                format_rate(
-                    current_rate
-                ),
+                format_rate(current_rate),
 
             "previous_rate":
-                format_rate(
-                    previous_rate
-                ),
+                format_rate(previous_rate),
 
             "change":
-                format_change(
-                    change_value
-                ),
+                format_change(change_value),
 
             "direction":
                 direction,
@@ -1367,10 +1224,8 @@ def collect_fx_frankfurter():
                 "https://frankfurter.dev/",
 
             "note":
-                "Yahoo Finance 실패 시 "
-                "사용하는 일일 기준 환율",
+                "Yahoo Finance 실패 시 사용하는 일일 기준 환율",
         }
-
 
     except Exception as exc:
 
@@ -1384,9 +1239,7 @@ def collect_fx_frankfurter():
 
 def collect_fx():
 
-    yahoo = (
-        collect_fx_yahoo()
-    )
+    yahoo = collect_fx_yahoo()
 
     if yahoo:
         return yahoo
@@ -1398,9 +1251,7 @@ def collect_fx():
     if frankfurter:
         return frankfurter
 
-
     return {
-
         "current_rate": None,
         "previous_rate": None,
         "change": None,
@@ -1412,13 +1263,12 @@ def collect_fx():
         "data_type": None,
         "source": None,
         "source_url": None,
-        "note":
-            "환율 자동수집 실패",
+        "note": "환율 자동수집 실패",
     }
 
 
 # ============================================================
-# 저장
+# JSON 저장
 # ============================================================
 
 def save_result(data):
@@ -1444,44 +1294,33 @@ def save_result(data):
 
 def main():
 
-    current_time = (
-        now_kst()
-    )
+    current_time = now_kst()
 
     print("=" * 60)
-
     print(
-        "AJU 구매팀 브리핑 "
-        "자동수집 #7"
+        "AJU 구매팀 브리핑 자동수집 #8"
     )
-
     print(
         "실행:",
         current_time.strftime(
             "%Y-%m-%d %H:%M KST"
         )
     )
-
     print("=" * 60)
 
-
     fx = collect_fx()
-
     purchase_news = (
         collect_purchase_news()
     )
 
-
     result = {
-
         "generated_at_kst":
             current_time.strftime(
                 "%Y-%m-%d %H:%M"
             ),
 
         "status":
-            "AJU 구매 브리핑 "
-            "데이터 수집 완료",
+            "AJU 구매 브리핑 데이터 수집 완료",
 
         "market_data": {
             "fx": fx
@@ -1491,18 +1330,10 @@ def main():
             purchase_news,
     }
 
-
-    save_result(
-        result
-    )
-
+    save_result(result)
 
     print("")
-
-    print(
-        "[최종 환율 결과]"
-    )
-
+    print("[최종 환율 결과]")
     print(
         json.dumps(
             fx,
@@ -1510,9 +1341,7 @@ def main():
             indent=2
         )
     )
-
     print("")
-
     print(
         "저장 완료:",
         OUTPUT_FILE
@@ -1520,5 +1349,4 @@ def main():
 
 
 if __name__ == "__main__":
-
     main()
