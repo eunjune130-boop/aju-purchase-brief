@@ -689,28 +689,43 @@ async function loadLatestBriefing() {
     const data = await response.json();
 console.log("AJU 최신 브리핑 데이터:", data);
 console.log("환율 데이터:", data.market_data.fx);
-    const fx = data.market_data.fx;
+const fx = data.market_data.fx;
 
-const fxCard = document.querySelector('[data-key="fx"]');
+const fxCard = document.querySelector(
+  '.metric[data-category="fx"]'
+);
 
 if (fxCard && fx) {
   const valueEl = fxCard.querySelector(".value");
-  const deltaEl = fxCard.querySelector(".delta");
-  const smallEl = fxCard.querySelector(".small");
+  const moveEl = fxCard.querySelector(".move");
+  const metaEl = fxCard.querySelector(".metric-meta");
 
   if (valueEl) {
     valueEl.textContent = fx.current_rate;
   }
 
-  if (deltaEl) {
-    const arrow = fx.direction === "down" ? "▼" : "▲";
-    deltaEl.textContent = arrow + " " + fx.change;
+  if (moveEl) {
+    let arrow = "－";
+
+    if (fx.direction === "down") {
+      arrow = "▼";
+      moveEl.className = "move down";
+    } else if (fx.direction === "up") {
+      arrow = "▲";
+      moveEl.className = "move up";
+    } else {
+      moveEl.className = "move flat";
+    }
+
+    moveEl.textContent = arrow + " " + fx.change;
   }
 
-  if (smallEl) {
-    smallEl.innerHTML =
+  if (metaEl) {
+    metaEl.innerHTML =
       "전 거래일 " + fx.previous_rate + " 대비<br>" +
-      "출처: " + fx.source;
+      "기준: " + fx.current_date +
+      (fx.current_time ? " " + fx.current_time : "") +
+      "<br>출처: " + fx.source;
   }
 }
 
