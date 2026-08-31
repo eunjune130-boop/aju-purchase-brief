@@ -728,7 +728,49 @@ if (fxCard && fx) {
       "<br>출처: " + fx.source;
   }
 }
+// 브리핑 날짜·기준시각 자동 업데이트
+const asofBox = document.querySelector(".asof");
 
+if (asofBox && data.generated_at_kst) {
+  const [datePart, timePart] = data.generated_at_kst.split(" ");
+  const [year, month, day] = datePart.split("-").map(Number);
+
+  const dateObj = new Date(year, month - 1, day);
+
+  const weekdays = [
+    "일요일",
+    "월요일",
+    "화요일",
+    "수요일",
+    "목요일",
+    "금요일",
+    "토요일"
+  ];
+
+  const weekday = weekdays[dateObj.getDay()];
+
+  const dateEl = asofBox.querySelector("b");
+  const infoEls = asofBox.querySelectorAll("span");
+
+  if (dateEl) {
+    dateEl.textContent =
+      year + "년 " +
+      month + "월 " +
+      day + "일 " +
+      weekday;
+  }
+
+  if (infoEls[0]) {
+    infoEls[0].textContent =
+      "브리핑 기준: " + timePart + " KST";
+  }
+
+  if (infoEls[1]) {
+    infoEls[1].textContent =
+      "환율: " + fx.source +
+      " 장중 USD/KRW · 기타 지표는 최신 확인값";
+  }
+}
   } catch (error) {
     console.error("AJU 브리핑 데이터 연결 오류:", error);
   }
