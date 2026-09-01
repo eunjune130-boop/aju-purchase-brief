@@ -769,16 +769,50 @@ if (summaryText && fx && brent) {
       '국제유가는 보합 수준으로 에너지·운송비 영향이 제한적입니다.';
   }
 
-  summaryText.innerHTML =
-    '원/달러 환율은 <strong>' +
-    fx.current_rate +
-    '</strong>으로 전 거래일보다 <strong>' +
-    fx.change +
-    '</strong> ' +
-    fxDirectionText +
-    ' ' +
-    brentText +
-    ' BDI는 2,926으로 벌크 수입운임 부담을 확인해야 합니다.';
+const summaryBdi =
+  data.market_data?.indicators?.bdi;
+
+let bdiSummaryText = "";
+
+if (summaryBdi && summaryBdi.current_value) {
+
+  if (summaryBdi.direction === "up") {
+
+    bdiSummaryText =
+      " BDI는 <strong>" +
+      summaryBdi.current_value +
+      "</strong>으로 <strong>" +
+      summaryBdi.change +
+      " 상승</strong>해 벌크 수입운임 부담을 확인해야 합니다.";
+
+  } else if (summaryBdi.direction === "down") {
+
+    bdiSummaryText =
+      " BDI는 <strong>" +
+      summaryBdi.current_value +
+      "</strong>으로 <strong>" +
+      summaryBdi.change +
+      " 하락</strong>해 벌크 수입운임 부담이 완화되는 방향입니다.";
+
+  } else {
+
+    bdiSummaryText =
+      " BDI는 <strong>" +
+      summaryBdi.current_value +
+      "</strong>으로 큰 변동이 없습니다.";
+  }
+}
+
+summaryText.innerHTML =
+  '원/달러 환율은 <strong>' +
+  fx.current_rate +
+  '</strong>으로 전 거래일보다 <strong>' +
+  fx.change +
+  '</strong> ' +
+  fxDirectionText +
+  ' ' +
+  brentText +
+  bdiSummaryText;
 }
 // =====================================================
 // 4. 체크포인트 1번 환율 자동 업데이트
