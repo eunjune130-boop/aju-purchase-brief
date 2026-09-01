@@ -1262,6 +1262,140 @@ fetch("./data/latest.json?v=" + Date.now())
       }
     }
   });
+  // =====================================================
+// 상단 구매 요약 자동 업데이트
+// =====================================================
+
+fetch("./data/latest.json?v=" + Date.now())
+  .then(response => response.json())
+  .then(data => {
+
+    const fx =
+      data.market_data?.fx;
+
+    const brent =
+      data.market_data?.indicators?.brent;
+
+    const bdi =
+      data.market_data?.indicators?.bdi;
+
+    const summaryText =
+      document.querySelector(
+        '[data-key="main-summary"] .summary-text'
+      );
+
+    if (!summaryText) {
+      return;
+    }
+
+
+    // 환율 문장
+    let fxText = "";
+
+    if (fx && fx.current_value) {
+
+      if (fx.direction === "down") {
+
+        fxText =
+          "원/달러 환율은 " +
+          fx.current_value +
+          "으로 전 거래일보다 " +
+          fx.change +
+          " 하락했습니다.";
+
+      } else if (fx.direction === "up") {
+
+        fxText =
+          "원/달러 환율은 " +
+          fx.current_value +
+          "으로 전 거래일보다 " +
+          fx.change +
+          " 상승했습니다.";
+
+      } else {
+
+        fxText =
+          "원/달러 환율은 " +
+          fx.current_value +
+          "입니다.";
+      }
+    }
+
+
+    // Brent 문장
+    let brentText = "";
+
+    if (brent && brent.current_value) {
+
+      if (brent.direction === "down") {
+
+        brentText =
+          " 국제유가는 " +
+          brent.change +
+          " 하락해 에너지·운송비 부담을 완화하는 방향입니다.";
+
+      } else if (brent.direction === "up") {
+
+        brentText =
+          " 국제유가는 " +
+          brent.change +
+          " 상승해 에너지·운송비 부담을 높이는 방향입니다.";
+
+      } else {
+
+        brentText =
+          " 국제유가는 큰 변동이 없습니다.";
+      }
+    }
+
+
+    // BDI 문장
+    let bdiText = "";
+
+    if (bdi && bdi.current_value) {
+
+      if (bdi.direction === "up") {
+
+        bdiText =
+          " BDI는 " +
+          bdi.current_value +
+          "으로 " +
+          bdi.change +
+          " 상승해 벌크 수입운임 부담을 확인해야 합니다.";
+
+      } else if (bdi.direction === "down") {
+
+        bdiText =
+          " BDI는 " +
+          bdi.current_value +
+          "으로 " +
+          bdi.change +
+          " 하락해 벌크 수입운임 부담이 완화되는 방향입니다.";
+
+      } else {
+
+        bdiText =
+          " BDI는 " +
+          bdi.current_value +
+          "으로 큰 변동이 없습니다.";
+      }
+    }
+
+
+    summaryText.textContent =
+      fxText +
+      brentText +
+      bdiText;
+
+  })
+  .catch(error => {
+
+    console.error(
+      "상단 구매 요약 업데이트 오류:",
+      error
+    );
+
+  });
 loadLatestBriefing();
 </script>
 
