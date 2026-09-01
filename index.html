@@ -1074,6 +1074,7 @@ if (brentCheck && brent) {
       "연료·운송비 영향을 함께 확인합니다.";
   }
 }
+ 
   } catch (error) {
     console.error("AJU 브리핑 데이터 연결 오류:", error);
   }
@@ -1082,7 +1083,11 @@ if (brentCheck && brent) {
 // 8. BDI 카드 자동 업데이트
 // =====================================================
 
-const bdi =
+  fetch("./data/latest.json?v=" + Date.now())
+  .then(response => response.json())
+  .then(data => {
+
+    const bdi =
   data.market_data?.indicators?.bdi;
 
 const bdiCard =
@@ -1184,11 +1189,12 @@ if (bdiCard && bdi) {
         bdiCard.appendChild(sourceLink);
       }
     }
-
+});
     sourceLink.href =
       bdi.source_url;
   }
 }
+    
 loadLatestBriefing();
 </script>
 
