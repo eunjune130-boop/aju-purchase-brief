@@ -1430,6 +1430,87 @@ fetch("./data/latest.json?v=" + Date.now())
     );
 
   });
+  // =====================================================
+// 물류 동향 BDI 카드 자동 업데이트
+// =====================================================
+
+fetch("./data/latest.json?v=" + Date.now())
+  .then(response => response.json())
+  .then(data => {
+
+    const bdi =
+      data.market_data?.indicators?.bdi;
+
+    const logisticsBdi =
+      document.querySelector(
+        '[data-key="bdi-logistics"]'
+      );
+
+    if (!logisticsBdi || !bdi) {
+      return;
+    }
+
+    const titleEl =
+      logisticsBdi.querySelector("h3");
+
+    const bodyEl =
+      logisticsBdi.querySelector("p");
+
+
+    // 제목 자동 업데이트
+    if (titleEl && bdi.current_value) {
+
+      let directionText = "벌크 운임 변동";
+
+      if (bdi.direction === "up") {
+        directionText = "벌크 운임 상승";
+      }
+
+      if (bdi.direction === "down") {
+        directionText = "벌크 운임 하락";
+      }
+
+      titleEl.textContent =
+        "BDI " +
+        bdi.current_value +
+        " — " +
+        directionText;
+    }
+
+
+    // 본문 자동 업데이트
+    if (bodyEl && bdi.change) {
+
+      if (bdi.direction === "up") {
+
+        bodyEl.textContent =
+          "전 거래일 대비 " +
+          bdi.change +
+          " 상승했습니다. 석탄·철광석 등 벌크 원료의 CIF 원가 부담 확대 가능성을 확인해야 합니다.";
+
+      } else if (bdi.direction === "down") {
+
+        bodyEl.textContent =
+          "전 거래일 대비 " +
+          bdi.change +
+          " 하락했습니다. 석탄·철광석 등 벌크 원료의 CIF 원가 부담 완화 가능성을 확인해야 합니다.";
+
+      } else {
+
+        bodyEl.textContent =
+          "BDI 변동이 크지 않습니다. 석탄·철광석 등 벌크 원료의 CIF 원가 영향을 계속 확인해야 합니다.";
+      }
+    }
+
+  })
+  .catch(error => {
+
+    console.error(
+      "물류 동향 BDI 업데이트 오류:",
+      error
+    );
+
+  });
 loadLatestBriefing();
 </script>
 
