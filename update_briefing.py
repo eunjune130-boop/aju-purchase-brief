@@ -1482,12 +1482,153 @@ def collect_brent_yahoo():
                 "Brent 자동수집 실패",
         }
 
+def collect_bdi():
 
+    print("[시장지표] Baltic Dry Index")
+
+    try:
+
+        url = (
+            "https://www.investing.com/"
+            "indices/baltic-dry-historical-data"
+        )
+
+        response = requests.get(
+            url,
+            headers=HEADERS,
+            timeout=20
+        )
+
+        response.raise_for_status()
+
+        html = response.text
+
+        # 페이지 안의 BDI 값과 변동률 찾기
+        price_match = re.search(
+            r'3,?[0-9]{3}\.00',
+            html
+        )
+
+        change_match = re.search(
+            r'([+-][0-9]+\.[0-9]+%)',
+            html
+        )
+
+        if not price_match:
+            raise ValueError(
+                "BDI 현재값을 찾지 못함"
+            )
+
+        current_value = (
+            price_match.group(0)
+            .replace(".00", "")
+        )
+
+        change = (
+            change_match.group(1)
+            if change_match
+            else None
+        )
+
+        if change and change.startswith("+"):
+            direction = "up"
+
+        elif change and change.startswith("-"):
+            direction = "down"
+
+        else:
+            direction = "flat"
+
+        bdi = {
+            "name":
+                "Baltic Dry Index",
+
+            "current_value":
+                current_value,
+
+            "change":
+                change.replace("+", "")
+                if change
+                else None,
+
+            "direction":
+                direction,
+
+            "current_date":
+                None,
+
+            "status":
+                "확인 완료",
+
+            "source":
+                "Investing.com",
+
+            "source_url":
+                (
+                    "https://www.investing.com/"
+                    "indices/baltic-dry-historical-data"
+                ),
+
+            "note":
+                "Baltic Dry Index 최근 공개값 기준",
+        }
+
+        print(
+            " →",
+            bdi["current_value"],
+            bdi["direction"],
+            bdi["change"]
+        )
+
+        return bdi
+
+
+    except Exception as exc:
+
+        print(
+            " → BDI 자동수집 실패:",
+            exc
+        )
+
+        return {
+            "name":
+                "Baltic Dry Index",
+
+            "current_value":
+                None,
+
+            "change":
+                None,
+
+            "direction":
+                None,
+
+            "current_date":
+                None,
+
+            "status":
+                "확인 필요",
+
+            "source":
+                "Investing.com",
+
+            "source_url":
+                (
+                    "https://www.investing.com/"
+                    "indices/baltic-dry-historical-data"
+                ),
+
+            "note":
+                "BDI 자동수집 실패",
+        }
 def collect_market_indicators():
 
     return {
         "brent":
-            collect_brent_yahoo()
+            collect_brent_yahoo(),
+
+        "bdi":
+            collect_bdi()
     }
 def main():
 
