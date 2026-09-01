@@ -1481,7 +1481,240 @@ def collect_brent_yahoo():
             "note":
                 "Brent 자동수집 실패",
         }
+def collect_coal():
 
+    print("[시장지표] Newcastle Coal Futures")
+
+    try:
+
+        url = (
+            "https://www.tradingview.com/"
+            "symbols/ICEEUR-NCF1%21/contracts/"
+        )
+
+        response = requests.get(
+            url,
+            headers=HEADERS,
+            timeout=20
+        )
+
+        response.raise_for_status()
+
+        text = response.text
+
+        # HTML 태그 제거
+        text = re.sub(
+            r"<[^>]+>",
+            " ",
+            text
+        )
+
+        # 공백 정리
+        text = re.sub(
+            r"\s+",
+            " ",
+            text
+        )
+
+        # 현재 연/월에 해당하는 ICE 계약 심볼 생성
+        month_codes = {
+            1: "F",
+            2: "G",
+            3: "H",
+            4: "J",
+            5: "K",
+            6: "M",
+            7: "N",
+            8: "Q",
+            9: "U",
+            10: "V",
+            11: "X",
+            12: "Z",
+        }
+
+        now = now_kst()
+
+        contract_symbol = (
+            "NCF"
+            + month_codes[now.month]
+            + str(now.year)
+        )
+
+        # 예:
+        # NCFU2026 ... 2026-09-25 141.75 +1.43% +2.00
+        pattern = re.compile(
+            rf"{contract_symbol}"
+            r".{0,500}?"
+            r"(\d{4}-\d{2}-\d{2})"
+            r".{0,200}?"
+            r"(\d+\.\d+)"
+            r".{0,100}?"
+            r"([+\-−]\d+\.\d+%)"
+            r".{0,100}?"
+            r"([+\-−]\d+\.\d+)",
+            re.IGNORECASE
+        )
+
+        match = pattern.search(text)
+
+        if not match:
+            raise ValueError(
+                f"{contract_symbol} 계약 데이터를 찾지 못함"
+            )
+
+        expiry_date = match.group(1)
+
+        current_value = float(
+            match.group(2)
+        )
+
+        change_pct_text = (
+            match.group(3)
+            .replace("−", "-")
+        )
+
+        change_value_text = (
+            match.group(4)
+            .replace("−", "-")
+        )
+
+        change_pct = float(
+            change_pct_text
+            .replace("%", "")
+        )
+
+        change_value = float(
+            change_value_text
+        )
+
+        if change_pct > 0:
+            direction = "up"
+        elif change_pct < 0:
+            direction = "down"
+        else:
+            direction = "flat"
+
+        previous_value = (
+            current_value
+            - change_value
+        )
+
+        coal = {
+
+            "name":
+                "Newcastle Coal Futures",
+
+            "contract":
+                contract_symbol,
+
+            "current_value":
+                f"{current_value:.2f}",
+
+            "previous_value":
+                f"{previous_value:.2f}",
+
+            "change":
+                f"{abs(change_pct):.2f}%",
+
+            "change_value":
+                f"{abs(change_value):.2f}",
+
+            "direction":
+                direction,
+
+            "current_date":
+                now.strftime(
+                    "%Y-%m-%d"
+                ),
+
+            "expiry_date":
+                expiry_date,
+
+            "unit":
+                "USD/t",
+
+            "status":
+                "확인 완료",
+
+            "source":
+                "TradingView / ICE Futures Europe",
+
+            "source_url":
+                url,
+
+            "note":
+                (
+                    f"{contract_symbol} "
+                    "활성 월물 기준"
+                ),
+        }
+
+        print(
+            " →",
+            coal["contract"],
+            coal["current_value"],
+            coal["direction"],
+            coal["change"],
+            coal["expiry_date"]
+        )
+
+        return coal
+
+
+    except Exception as exc:
+
+        print(
+            " → Newcastle Coal 자동수집 실패:",
+            exc
+        )
+
+        return {
+
+            "name":
+                "Newcastle Coal Futures",
+
+            "contract":
+                None,
+
+            "current_value":
+                None,
+
+            "previous_value":
+                None,
+
+            "change":
+                None,
+
+            "change_value":
+                None,
+
+            "direction":
+                None,
+
+            "current_date":
+                None,
+
+            "expiry_date":
+                None,
+
+            "unit":
+                "USD/t",
+
+            "status":
+                "확인 필요",
+
+            "source":
+                "TradingView / ICE Futures Europe",
+
+            "source_url":
+                (
+                    "https://www.tradingview.com/"
+                    "symbols/ICEEUR-NCF1%21/contracts/"
+                ),
+
+            "note":
+                "Newcastle Coal 자동수집 실패",
+        }
 def collect_bdi():
 
     print("[시장지표] Baltic Dry Index")
@@ -1693,6 +1926,9 @@ def collect_market_indicators():
     return {
         "brent":
             collect_brent_yahoo(),
+
+        "coal":
+            collect_coal(),
 
         "bdi":
             collect_bdi()
