@@ -1,15 +1,15 @@
 {
-  "generated_at_kst": "2026-09-01 11:07",
+  "generated_at_kst": "2026-09-01 11:19",
   "status": "AJU 구매 브리핑 데이터 수집 완료",
   "market_data": {
     "fx": {
-      "current_rate": "1,370.08원",
-      "previous_rate": "1,380.45원",
-      "change": "10.37원",
+      "current_rate": "1,369.84원",
+      "previous_rate": "1,377.11원",
+      "change": "7.27원",
       "direction": "down",
       "current_date": "2026-09-01",
-      "current_time": "11:07",
-      "previous_date": "2026-08-28",
+      "current_time": "11:19",
+      "previous_date": "2026-08-31",
       "status": "확인 완료",
       "data_type": "장중 환율",
       "source": "Yahoo Finance",
@@ -19,10 +19,10 @@
     "indicators": {
       "brent": {
         "name": "Brent",
-        "current_value": "$88.69",
+        "current_value": "$88.77",
         "previous_value": "$89.31",
-        "change": "0.69%",
-        "change_value": "0.62",
+        "change": "0.60%",
+        "change_value": "0.54",
         "direction": "down",
         "current_date": "2026-09-01",
         "previous_date": "2026-08-28",
@@ -34,14 +34,16 @@
       },
       "bdi": {
         "name": "Baltic Dry Index",
-        "current_value": null,
-        "change": null,
-        "direction": null,
-        "current_date": null,
-        "status": "확인 필요",
-        "source": "Investing.com",
-        "source_url": "https://www.investing.com/indices/baltic-dry-historical-data",
-        "note": "BDI 자동수집 실패"
+        "current_value": "3,186",
+        "previous_value": "3,107",
+        "change": "2.54%",
+        "change_points": "79",
+        "direction": "up",
+        "current_date": "2026-08-28",
+        "status": "확인 완료",
+        "source": "HandyBulk / Baltic Exchange",
+        "source_url": "https://www.handybulk.com/baltic-dry-index/",
+        "note": "Baltic Dry Index 최근 공개값 기준"
       }
     }
   },
@@ -58,10 +60,10 @@
           "relevance_score": 12
         },
         {
-          "title": "원가절감 노력에 엇갈린 시멘트社 상반기 실적 - news.nate.com",
+          "title": "원가절감 노력에 엇갈린 시멘트社 상반기 실적 - 네이트",
           "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBYRzMzX0Q2QmQ2RWRhRi1mcVVPUVVIb09UZEJBal80QU1NekpGcVdNS0RjUEFGWmVJZDFvaEN6bXFsZExqcmJ5TjYzYk1CUVJDLUF3?oc=5",
           "published": "Mon, 31 Aug 2026 06:37:00 GMT",
-          "source": "news.nate.com",
+          "source": "네이트",
           "relevance_score": 10
         },
         {
@@ -72,7 +74,7 @@
           "relevance_score": 10
         }
       ],
-      "raw_count": 27,
+      "raw_count": 30,
       "selected_count": 3
     },
     "energy": {
@@ -94,13 +96,6 @@
           "relevance_score": 15
         },
         {
-          "title": "미·이란 무력공방에 국제유가 3%대 급등…브렌트유 91달러대 - 연합뉴스",
-          "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5aNC0tYWo2YVpjZWM3VEtLVm5DaXlCUEsyRHNxZUNCSXRYanJaQUFZdl9FOWdHT3FZR2pEVjZieUpHeDlSMXFROVpmYXFqbTgyNjJTWmFPV0xEdXfSAWBBVV95cUxOeV81RDROYzhxX2RLOGd3eS1rTklHWTJhZUZzaG5wVGM4TnFpSDExa2RGQUp0ZlprVjVEY0dkUUsxMGJ2Yl9HS2R0QVp4Yk9YazMyc25VYU5qMW9VcnhsT20?oc=5",
-          "published": "Mon, 31 Aug 2026 14:10:42 GMT",
-          "source": "연합뉴스",
-          "relevance_score": 13
-        },
-        {
           "title": "원유 가격 전망: 미·이란 갈등 다시 격화, 브렌트유 90달러 돌파 후 상승세 이어갈까? - TradingKey",
           "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPZmdIUVM4Z0ZGZGZjMkx4WGR4eWdMc0xVZjJMMVg4d2VZM3pqT29QdEVVOWgtcXV5c2lCZWl1V2Y5QUFUSjFRNTMtazF4aFlDMzVwc29TeFJkc194QlA4a2dZSjJiZmNkNllJQVg1aHJVVHJaNDExeFhNOTVmbnY0YkdNSEE2Y2hlNlM1RkJhSWdRUDJlb2oxMXdxVndYOWJPWjdNc1VESWhPbVQ3VzN6cGFoQlFXeWc1Vkk5OHJQZ1hhVXJiVlBWWkhkOHZIcFUt?oc=5",
           "published": "Sun, 30 Aug 2026 14:58:00 GMT",
@@ -113,9 +108,16 @@
           "published": "Sun, 30 Aug 2026 12:30:23 GMT",
           "source": "기후에너지경제",
           "relevance_score": 12
+        },
+        {
+          "title": "[美특징주]브렌트유 90달러 돌파…에너지주 동반 상승 - edaily.co.kr",
+          "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNdTFWVExzbWo5UHFtVjFCenBsSWxuTzVVNllRdEQ5LTVBOHphbFFVLUdyWVV3QnlFVUNLcDhzemtIbXlCZ2Y1VmppVFh3OTBla2N3OUFVS3VhSGI5LXE2bHNGUmttRjl2SlRncEtsbUF6MG4zVWNvNDI5bFYxd2l2ZQ?oc=5",
+          "published": "Mon, 31 Aug 2026 15:09:21 GMT",
+          "source": "edaily.co.kr",
+          "relevance_score": 10
         }
       ],
-      "raw_count": 93,
+      "raw_count": 92,
       "selected_count": 5
     },
     "aggregate": {
@@ -138,10 +140,17 @@
       "freshness": "오늘·어제",
       "articles": [
         {
-          "title": "철강 시장은 공급과 수요가 약세를 보이고 있으며 철근의 반등 가능성은 제한적입니다. - sunsirs.com",
+          "title": "(선재) 수입 소재·가공제품 공세에 제품價 ‘약세 지속’ - 철강금속신문",
+          "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5iVXA2bkFOWjdJZWs5SVc4ODlyTnNacVZ5TDFqZGwwTW5hUGp5S1luWTJDd1V5b2JhV0hQZVhuaTFHc0F6NXBLYXFzVEpVd2F1aHFwQnVYLUd6NTdLenRCYXlsWEh2NWNUQ1E?oc=5",
+          "published": "Tue, 01 Sep 2026 02:05:42 GMT",
+          "source": "철강금속신문",
+          "relevance_score": 15
+        },
+        {
+          "title": "철강 시장은 공급과 수요가 약세를 보이고 있으며 철근의 반등 가능성은 제한적입니다. - Sunsirs",
           "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE8ybERldm9LbHJCMUlMUTdrVEd2XzdFd0hHUnZseDlGOURERUFYbXVjNTljWmFGU1VPM2hKOWlJa2lmeUpzUG1rM0pfbmdwTDZic0VpdFVFTHpheG9oTkE?oc=5",
           "published": "Mon, 31 Aug 2026 01:03:32 GMT",
-          "source": "sunsirs.com",
+          "source": "Sunsirs",
           "relevance_score": 15
         },
         {
@@ -152,25 +161,18 @@
           "relevance_score": 14
         },
         {
-          "title": "[표] 일일 철강 원료 가격 동향(8월 28일) - snmnews.com",
-          "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1LUnM1UjRvTEpvcE5PRU9vMDF3ekV0SXNTQzM5aVJiTzZ5MC1XcDNFa1U4YUo5UVBaM2dZSU1EV3h2RlBEaXlBaTc3aHJjUzRZUDlkdG51elVlTzExOVVIMUNLTURYdFR5X1E?oc=5",
-          "published": "Mon, 31 Aug 2026 00:30:03 GMT",
-          "source": "snmnews.com",
-          "relevance_score": 12
+          "title": "9월 첫째 주, 국내 철스크랩價 하락 - 철강금속신문",
+          "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBxcm9RUWNwRTFMd2ZnQUZmbUlTbGRiNTNKZnd6dEJhUmdDMHNJZ3Vzank3NGhkZTU0Q2hEM0h6V0hSWmFlLXM1N0o2WlZld1pXWmx2MlRVQzJBdm1jeWZjb2ZXWW1XVlc4YUE?oc=5",
+          "published": "Mon, 31 Aug 2026 23:00:00 GMT",
+          "source": "철강금속신문",
+          "relevance_score": 14
         },
         {
-          "title": "[주간 중국시황] 원가 부담에 철강價 상승...감산도 지속 - 스틸데일리",
-          "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBsODM2ckdITElqTHBMcThDN3ZlWDZQMDEwNkhDRlMwQWxGME5PMFFTUlE1TW5xYXRmclBUb3ZYVGRzWkp4bkdiMW9BRVRQS05reWVjU29jR1gxZDAyQThWZ0l2WE53ak15b2JOM3BuVUJLQXJa0gF0QVVfeXFMUGw4MzZyR0hMSWpMcExxOEM3dmVYNlAwMTA2SENGUzBBbEYwTk8wUVNSUTVNbnFhdGZyUFRvdlhUZHNaSnhuR2Ixb0FFVFBLTmt5ZWNTb2NHWDFkMDJBOFZnSXZYTndqTXlvYk4zcG5VQktBclo?oc=5",
-          "published": "Sun, 30 Aug 2026 20:16:00 GMT",
-          "source": "스틸데일리",
-          "relevance_score": 11
-        },
-        {
-          "title": "수입 철근 재고, 8월 내내 3만 톤대...월말에도 3.5만 톤 육박 - 스틸데일리",
-          "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBnNjRBalc4M3hpY1A0OGFiQ0Y5b2xMY3ZzTE9hQUdHbTJNRXY3QnVNSjgxeWpodHR2Q2cyUVpidzdkTXc1RlhKVkNCZE5QaC13c2JJYXR4UjJ3akVRdjRkb0tCT1B1MDF0ZExXWHdqNlfSAXRBVV95cUxQX0U5eWdwWFhVaEFHVDRkOVhPMFNzd2pld01YeFJ2ZFlRWk5EdTZvQzJ4U1VHX1RWVFc2dVB1ZWhRbUJta0FfVnFsRUF1c3UtQ2pxUFFwb29vR2pRVGFsZXFaNTJJZ3dsd3R5amdXLWFudmI4LQ?oc=5",
-          "published": "Mon, 31 Aug 2026 20:00:00 GMT",
-          "source": "스틸데일리",
-          "relevance_score": 10
+          "title": "국내 철스크랩 9월 하락 출발…日 '바닥 다지기' 반등 촉각 - 철강금속신문",
+          "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE12RWFiX3NHbHZYQ1NCbFhObGhaVjRUMzVfb19BUVlCbjE5cGZGN1V5bFpmXzFaeDI0Zldac2pjczBCN3Q4a205bURLVk1PVlNQZ1lHR3pBN2pNOTRFY1IzQmR5TTM?oc=5",
+          "published": "Sun, 30 Aug 2026 21:30:00 GMT",
+          "source": "철강금속신문",
+          "relevance_score": 14
         }
       ],
       "raw_count": 66,
@@ -202,7 +204,7 @@
           "relevance_score": 6
         }
       ],
-      "raw_count": 47,
+      "raw_count": 49,
       "selected_count": 3
     },
     "construction": {
@@ -238,14 +240,14 @@
           "relevance_score": 10
         },
         {
-          "title": "강동구, 길동역 역세권 활성화사업 착공…공동주택 189세대 조성 - shinailbo.co.kr",
+          "title": "강동구, 길동역 역세권 활성화사업 착공…공동주택 189세대 조성 - 신아일보",
           "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE51a1RnMGhsVVZ4REM4ZnJ1LVhWNkZoanM1d1JyYm5kaGFudXdZWFc0U284LVBwaW1la1hsLUNLNkFmQWxoR3UzQTVTSVBpYVZiNGNPSkg1alJBS0h3T1lJbWNzd2w3eHFzeWFVOUJrWnE?oc=5",
           "published": "Tue, 01 Sep 2026 00:23:13 GMT",
-          "source": "shinailbo.co.kr",
+          "source": "신아일보",
           "relevance_score": 10
         }
       ],
-      "raw_count": 137,
+      "raw_count": 138,
       "selected_count": 5
     },
     "suppliers": {
@@ -274,21 +276,21 @@
           "relevance_score": 9
         },
         {
-          "title": "유진기업 투자분석 2026. 08. 30 - 주달",
-          "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5palFWcjFkTjJaLXNLczJxMjIxcFRmVW5GeUYxeVRLemk3REZneUJqc3N1T1l0Q1lONWRWLWF2SUZ1UVFxb0xBVDJTS2s2NHlWMThXa24ycEFzbnVMMVF3VUhCSXBpMV94OHhkbXExQzRRVFE?oc=5",
-          "published": "Sun, 30 Aug 2026 09:44:08 GMT",
-          "source": "주달",
-          "relevance_score": 8
+          "title": "4분기 열연 공급 빠듯해진다…가격 회복 ‘주목’ - 철강금속신문",
+          "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9FQVEwcmJPempEU2syaEdlX3BFNzZlRUdqLXNpaWE0cUtpUlR5eGpoMHUzSkd3YUwyUzJTRDh1NUlzTkRSd3U5cVB2a2pxc3REXzZzQ3VsOHpsZlhOczdoY2RPYzNBR0RXX1E?oc=5",
+          "published": "Mon, 31 Aug 2026 21:00:00 GMT",
+          "source": "철강금속신문",
+          "relevance_score": 9
         },
         {
-          "title": "[표] 일일 철강 원료 가격 동향(8월 31일) - snmnews.com",
-          "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE0zUm04UzRQR3ltd1FXMHREd1VhTHRucURUUlNFTlVsR2dKYUxwWEZHSXRHaE54T1J3a3h2RmJLRjVjX05sMVNHcW9MRFZaNl9IeHZIWWNWYWJOR1A3R296cTlDNmY2X1hHX0E?oc=5",
-          "published": "Mon, 31 Aug 2026 23:46:00 GMT",
-          "source": "snmnews.com",
-          "relevance_score": 7
+          "title": "유진기업 투자분석 2026. 08. 30 - judal.co.kr",
+          "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5palFWcjFkTjJaLXNLczJxMjIxcFRmVW5GeUYxeVRLemk3REZneUJqc3N1T1l0Q1lONWRWLWF2SUZ1UVFxb0xBVDJTS2s2NHlWMThXa24ycEFzbnVMMVF3VUhCSXBpMV94OHhkbXExQzRRVFE?oc=5",
+          "published": "Sun, 30 Aug 2026 09:44:08 GMT",
+          "source": "judal.co.kr",
+          "relevance_score": 8
         }
       ],
-      "raw_count": 39,
+      "raw_count": 42,
       "selected_count": 5
     }
   }
