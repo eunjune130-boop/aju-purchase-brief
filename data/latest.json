@@ -1,15 +1,15 @@
 {
-  "generated_at_kst": "2026-09-01 09:13",
+  "generated_at_kst": "2026-09-01 11:07",
   "status": "AJU 구매 브리핑 데이터 수집 완료",
   "market_data": {
     "fx": {
-      "current_rate": "1,367.64원",
-      "previous_rate": "1,377.11원",
-      "change": "9.47원",
+      "current_rate": "1,370.08원",
+      "previous_rate": "1,380.45원",
+      "change": "10.37원",
       "direction": "down",
       "current_date": "2026-09-01",
-      "current_time": "09:13",
-      "previous_date": "2026-08-31",
+      "current_time": "11:07",
+      "previous_date": "2026-08-28",
       "status": "확인 완료",
       "data_type": "장중 환율",
       "source": "Yahoo Finance",
@@ -19,18 +19,29 @@
     "indicators": {
       "brent": {
         "name": "Brent",
-        "current_value": "$88.58",
+        "current_value": "$88.69",
         "previous_value": "$89.31",
-        "change": "0.82%",
-        "change_value": "0.73",
+        "change": "0.69%",
+        "change_value": "0.62",
         "direction": "down",
-        "current_date": "2026-08-31",
+        "current_date": "2026-09-01",
         "previous_date": "2026-08-28",
         "unit": "USD/bbl",
         "status": "확인 완료",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/BZ=F/",
         "note": "Brent Crude Oil 선물 최근 거래일 종가 기준"
+      },
+      "bdi": {
+        "name": "Baltic Dry Index",
+        "current_value": null,
+        "change": null,
+        "direction": null,
+        "current_date": null,
+        "status": "확인 필요",
+        "source": "Investing.com",
+        "source_url": "https://www.investing.com/indices/baltic-dry-historical-data",
+        "note": "BDI 자동수집 실패"
       }
     }
   },
@@ -47,21 +58,21 @@
           "relevance_score": 12
         },
         {
-          "title": "원가절감 노력에 엇갈린 시멘트社 상반기 실적 - 네이트",
+          "title": "원가절감 노력에 엇갈린 시멘트社 상반기 실적 - news.nate.com",
           "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBYRzMzX0Q2QmQ2RWRhRi1mcVVPUVVIb09UZEJBal80QU1NekpGcVdNS0RjUEFGWmVJZDFvaEN6bXFsZExqcmJ5TjYzYk1CUVJDLUF3?oc=5",
           "published": "Mon, 31 Aug 2026 06:37:00 GMT",
-          "source": "네이트",
+          "source": "news.nate.com",
           "relevance_score": 10
         },
         {
-          "title": "시멘트와 철강 생산량이 사상 최고치를 기록했습니다. - vietnam.vn",
+          "title": "시멘트와 철강 생산량이 사상 최고치를 기록했습니다. - Vietnam.vn",
           "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1aVkU1YlhZS093blZJWUdWempuanRVVXozM2dKN3ppSjFyRXh2MFBGcWtBV2tIbmVNSWRVbGNJWmYwT3BralNLZ1RoeDV5dGQ0ajlrM2NuQU1KMnBUU3hCM2otdWliMXRlN0JxQQ?oc=5",
           "published": "Mon, 31 Aug 2026 02:36:42 GMT",
-          "source": "vietnam.vn",
+          "source": "Vietnam.vn",
           "relevance_score": 10
         }
       ],
-      "raw_count": 26,
+      "raw_count": 27,
       "selected_count": 3
     },
     "energy": {
@@ -69,10 +80,10 @@
       "freshness": "오늘·어제",
       "articles": [
         {
-          "title": "국제유가, 美·이란 교전 재개에 상승…브렌트유, 배럴당 90.49달러 - 뉴시스",
-          "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE0tYlAyUkg2c2hWM1YwbVdRY0ZORm1XRk5na2dUZzNCZjY4UlRnM01GdVpuczNpd0psUmhTQTVudWt4Y2NKMVduVUtfVUZSa0RscDI0bE1ySVMtaXoxbDV0Y2dJQlhLSlQ0LU5OVnRjOGhMb2lPcG04RdIBeEFVX3lxTE0tYlAyUkg2c2hWM1YwbVdRY0ZORm1XRk5na2dUZzNCZjY4UlRnM01GdVpuczNpd0psUmhTQTVudWt4Y2NKMVduVUtfVUZSa0RscDI0bE1ySVMtaXoxbDV0Y2dJQlhLSlQ0LU5OVnRjOGhMb2lPcG04RQ?oc=5",
-          "published": "Mon, 31 Aug 2026 20:55:15 GMT",
-          "source": "뉴시스",
+          "title": "[EBN 데이터센터] 중동 긴장 고조에 국제유가 강세...WTI 상승, 브렌트 보합 - ebn.co.kr",
+          "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9Ucm53aFd2a0c0V0N4c1RRMUhlSVA0MHRWR0ZhMFJIVzltWWdoa25LTm15cVJIYkRTa0NaZjZ2OTFVMXhyU0ZoNGQ2OC1WSkRTam5zc0M1b3NWRzd4Z1l3ajRscFZ1VE1w?oc=5",
+          "published": "Tue, 01 Sep 2026 01:09:03 GMT",
+          "source": "ebn.co.kr",
           "relevance_score": 15
         },
         {
@@ -97,14 +108,14 @@
           "relevance_score": 12
         },
         {
-          "title": "유나코퍼레이션·천연가스수소차량협회, BioLNG 사업화 본격 추진 - 투데이에너지",
-          "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1NdC05ZTdtaUU3SGJKUXA5cGpSUG5jYjJ6N053cS1SU3E1Q0FDcUdiNzNxWi1nckRleHU5N0pLSUdLYjl3SWs1cGdVNU0ycTFtODVYODVKOFJzblI3OHFLenctVmt0S1duOW9PSmxn?oc=5",
-          "published": "Mon, 31 Aug 2026 04:09:01 GMT",
-          "source": "투데이에너지",
+          "title": "유나코퍼레이션·천연가스수소차량협회, BioLNG 사업 본격 추진 - 기후에너지경제",
+          "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE8xbWJrU1RJQll6R3prUEI3dUM0X28wSjBnLVE5Ukg1T2tZRTBFM0dmSlJwVWI3VVhnRjhMWU1FLTVRUVBoUTZZUUpTeUZiRkF2eUwzR3RQOFVqN1dmb0VwOW1RZzU?oc=5",
+          "published": "Sun, 30 Aug 2026 12:30:23 GMT",
+          "source": "기후에너지경제",
           "relevance_score": 12
         }
       ],
-      "raw_count": 94,
+      "raw_count": 93,
       "selected_count": 5
     },
     "aggregate": {
@@ -119,7 +130,7 @@
           "relevance_score": 15
         }
       ],
-      "raw_count": 11,
+      "raw_count": 12,
       "selected_count": 1
     },
     "steel_phc": {
@@ -127,10 +138,10 @@
       "freshness": "오늘·어제",
       "articles": [
         {
-          "title": "철강 시장은 공급과 수요가 약세를 보이고 있으며 철근의 반등 가능성은 제한적입니다. - Sunsirs",
+          "title": "철강 시장은 공급과 수요가 약세를 보이고 있으며 철근의 반등 가능성은 제한적입니다. - sunsirs.com",
           "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE8ybERldm9LbHJCMUlMUTdrVEd2XzdFd0hHUnZseDlGOURERUFYbXVjNTljWmFGU1VPM2hKOWlJa2lmeUpzUG1rM0pfbmdwTDZic0VpdFVFTHpheG9oTkE?oc=5",
           "published": "Mon, 31 Aug 2026 01:03:32 GMT",
-          "source": "Sunsirs",
+          "source": "sunsirs.com",
           "relevance_score": 15
         },
         {
@@ -141,25 +152,25 @@
           "relevance_score": 14
         },
         {
-          "title": "9월 첫째 주, 국내 철스크랩價 하락 - 철강금속신문",
-          "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBxcm9RUWNwRTFMd2ZnQUZmbUlTbGRiNTNKZnd6dEJhUmdDMHNJZ3Vzank3NGhkZTU0Q2hEM0h6V0hSWmFlLXM1N0o2WlZld1pXWmx2MlRVQzJBdm1jeWZjb2ZXWW1XVlc4YUE?oc=5",
-          "published": "Mon, 31 Aug 2026 23:00:00 GMT",
-          "source": "철강금속신문",
-          "relevance_score": 14
+          "title": "[표] 일일 철강 원료 가격 동향(8월 28일) - snmnews.com",
+          "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1LUnM1UjRvTEpvcE5PRU9vMDF3ekV0SXNTQzM5aVJiTzZ5MC1XcDNFa1U4YUo5UVBaM2dZSU1EV3h2RlBEaXlBaTc3aHJjUzRZUDlkdG51elVlTzExOVVIMUNLTURYdFR5X1E?oc=5",
+          "published": "Mon, 31 Aug 2026 00:30:03 GMT",
+          "source": "snmnews.com",
+          "relevance_score": 12
         },
         {
-          "title": "국내 철스크랩 9월 하락 출발…日 '바닥 다지기' 반등 촉각 - 철강금속신문",
-          "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTFB1WVFxYlVXSHI2QWZwVlNoOHZWYUotMkJJWWJPUHFibV9fb256SmFqd182cUlyanU0emMwUTZUUnFvOWxHaGFXRHpScC1yMzBQN0plZmRTamVqTGlLb0JzSHg3M0JjVXVLWkE?oc=5",
-          "published": "Sun, 30 Aug 2026 21:30:00 GMT",
-          "source": "철강금속신문",
-          "relevance_score": 14
+          "title": "[주간 중국시황] 원가 부담에 철강價 상승...감산도 지속 - 스틸데일리",
+          "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBsODM2ckdITElqTHBMcThDN3ZlWDZQMDEwNkhDRlMwQWxGME5PMFFTUlE1TW5xYXRmclBUb3ZYVGRzWkp4bkdiMW9BRVRQS05reWVjU29jR1gxZDAyQThWZ0l2WE53ak15b2JOM3BuVUJLQXJa0gF0QVVfeXFMUGw4MzZyR0hMSWpMcExxOEM3dmVYNlAwMTA2SENGUzBBbEYwTk8wUVNSUTVNbnFhdGZyUFRvdlhUZHNaSnhuR2Ixb0FFVFBLTmt5ZWNTb2NHWDFkMDJBOFZnSXZYTndqTXlvYk4zcG5VQktBclo?oc=5",
+          "published": "Sun, 30 Aug 2026 20:16:00 GMT",
+          "source": "스틸데일리",
+          "relevance_score": 11
         },
         {
-          "title": "日 철스크랩 수출 석 달 연속↓…방글라향은 급증 - 철강금속신문",
-          "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTFAxc0FhbzFHUlB4NVBnakI5LXNya1p4TFRPQ3dZb0ZtZlhRc1REbmhxY2ZMeUxfOF9KYnBNb00yMl8zRHVYYTFxdmhWSzV6blFldzBMZFE3bVc2TGpWYTFDMmpYR1h2SXBtaFE?oc=5",
-          "published": "Mon, 31 Aug 2026 00:30:00 GMT",
-          "source": "철강금속신문",
-          "relevance_score": 14
+          "title": "수입 철근 재고, 8월 내내 3만 톤대...월말에도 3.5만 톤 육박 - 스틸데일리",
+          "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBnNjRBalc4M3hpY1A0OGFiQ0Y5b2xMY3ZzTE9hQUdHbTJNRXY3QnVNSjgxeWpodHR2Q2cyUVpidzdkTXc1RlhKVkNCZE5QaC13c2JJYXR4UjJ3akVRdjRkb0tCT1B1MDF0ZExXWHdqNlfSAXRBVV95cUxQX0U5eWdwWFhVaEFHVDRkOVhPMFNzd2pld01YeFJ2ZFlRWk5EdTZvQzJ4U1VHX1RWVFc2dVB1ZWhRbUJta0FfVnFsRUF1c3UtQ2pxUFFwb29vR2pRVGFsZXFaNTJJZ3dsd3R5amdXLWFudmI4LQ?oc=5",
+          "published": "Mon, 31 Aug 2026 20:00:00 GMT",
+          "source": "스틸데일리",
+          "relevance_score": 10
         }
       ],
       "raw_count": 66,
@@ -191,7 +202,7 @@
           "relevance_score": 6
         }
       ],
-      "raw_count": 49,
+      "raw_count": 47,
       "selected_count": 3
     },
     "construction": {
@@ -227,14 +238,14 @@
           "relevance_score": 10
         },
         {
-          "title": "서울 아파트 착공 36% 늘어 ‘숨통’… 홍지선 “청년주택, 서울시와 협의” - 서울신문",
-          "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9xeURBZ0dzd09abVhpRU1nbWs3Q0M1TDBMMW9PWkgxWVpwUkJSc08yY2NBanA2YlYwVG1pb1FJTmFISHBsSnVkUjBHZUl6TTM2Njg5X29EX3c3Vk1URTNiQUt0MFpacTI3cmdNVmJMX1Q3SHE3YlBUUg?oc=5",
-          "published": "Mon, 31 Aug 2026 15:47:00 GMT",
-          "source": "서울신문",
+          "title": "강동구, 길동역 역세권 활성화사업 착공…공동주택 189세대 조성 - shinailbo.co.kr",
+          "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE51a1RnMGhsVVZ4REM4ZnJ1LVhWNkZoanM1d1JyYm5kaGFudXdZWFc0U284LVBwaW1la1hsLUNLNkFmQWxoR3UzQTVTSVBpYVZiNGNPSkg1alJBS0h3T1lJbWNzd2w3eHFzeWFVOUJrWnE?oc=5",
+          "published": "Tue, 01 Sep 2026 00:23:13 GMT",
+          "source": "shinailbo.co.kr",
           "relevance_score": 10
         }
       ],
-      "raw_count": 135,
+      "raw_count": 137,
       "selected_count": 5
     },
     "suppliers": {
@@ -249,6 +260,13 @@
           "relevance_score": 12
         },
         {
+          "title": "유진투자 \"포스코홀딩스 계열사 저점 통과, 철강·리튬·에너지 이익 개선 전망\" - 비즈니스포스트",
+          "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5ualFFZVpQVGNUd2dfVEF6bnVCaUJUbGhVb1VYZXdzcTlWS2FuOUlGTzFjdjRrQmpPMC15Mzd1N0VYa09CSmhpVDVtcDRFU0E2Y0JlTTNzaEhHYkJtYXpIenMwRzVqUUNYalpDVmZCMFpHX00?oc=5",
+          "published": "Tue, 01 Sep 2026 01:08:22 GMT",
+          "source": "비즈니스포스트",
+          "relevance_score": 10
+        },
+        {
           "title": "출하량 회복 및 가격 정상화… 시멘트·레미콘주, 중장기 투자 매력 부각 - 핀포인트뉴스",
           "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE12XzdNN2hhMXJKVEk5d2cxRWt4UHhDS3NCd1M5cEtQd29FOERIcUlRUTRHb0NjUHBQSkF4YjFRQ3VIZmR2MjhKZjFESDBLcl9ONHhTUjZJMGRKbDh6TV9Ub0hmLWZ3M0hfdFpCYlFNTTVNbldMaTQ40gF3QVVfeXFMTXZfN003aGExckpUSTl3ZzFFa3hQeENLc0J3UzlwS1B3b0U4REhxSVFRNEdvQ2NQcFBKQXhiMVFDdUhmZHYyOEpmMURIMEtyX040eFNSNkkwZEpsOHpNX1RvSGYtZnczSF90WkJiUU1NNU1uV0xpNDg?oc=5",
           "published": "Mon, 31 Aug 2026 01:31:10 GMT",
@@ -256,28 +274,21 @@
           "relevance_score": 9
         },
         {
-          "title": "4분기 열연 공급 빠듯해진다…가격 회복 ‘주목’ - 철강금속신문",
-          "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9FQVEwcmJPempEU2syaEdlX3BFNzZlRUdqLXNpaWE0cUtpUlR5eGpoMHUzSkd3YUwyUzJTRDh1NUlzTkRSd3U5cVB2a2pxc3REXzZzQ3VsOHpsZlhOczdoY2RPYzNBR0RXX1E?oc=5",
-          "published": "Mon, 31 Aug 2026 21:00:00 GMT",
-          "source": "철강금속신문",
-          "relevance_score": 9
-        },
-        {
-          "title": "유진기업 투자분석 2026. 08. 30 - judal.co.kr",
+          "title": "유진기업 투자분석 2026. 08. 30 - 주달",
           "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5palFWcjFkTjJaLXNLczJxMjIxcFRmVW5GeUYxeVRLemk3REZneUJqc3N1T1l0Q1lONWRWLWF2SUZ1UVFxb0xBVDJTS2s2NHlWMThXa24ycEFzbnVMMVF3VUhCSXBpMV94OHhkbXExQzRRVFE?oc=5",
           "published": "Sun, 30 Aug 2026 09:44:08 GMT",
-          "source": "judal.co.kr",
+          "source": "주달",
           "relevance_score": 8
         },
         {
-          "title": "LNG값 3년來 최고…포스코, 장기계약으로 '조업 안정' 높인다 - 파이낸셜뉴스",
-          "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5zUGRtczJGU1gxQTdtUnRieGJRa09BLU9CZGhZblRLbHEydVktNHAwWnpQU1ZNM1c0cktiVEpib0g3SER3OTZSWnFOTGhsbUdXb0lXbUMxc2wyUQ?oc=5",
-          "published": "Mon, 31 Aug 2026 21:59:00 GMT",
-          "source": "파이낸셜뉴스",
-          "relevance_score": 8
+          "title": "[표] 일일 철강 원료 가격 동향(8월 31일) - snmnews.com",
+          "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE0zUm04UzRQR3ltd1FXMHREd1VhTHRucURUUlNFTlVsR2dKYUxwWEZHSXRHaE54T1J3a3h2RmJLRjVjX05sMVNHcW9MRFZaNl9IeHZIWWNWYWJOR1A3R296cTlDNmY2X1hHX0E?oc=5",
+          "published": "Mon, 31 Aug 2026 23:46:00 GMT",
+          "source": "snmnews.com",
+          "relevance_score": 7
         }
       ],
-      "raw_count": 38,
+      "raw_count": 39,
       "selected_count": 5
     }
   }
