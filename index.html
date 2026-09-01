@@ -1194,6 +1194,74 @@ if (bdiCard && bdi) {
   }
 }
  }); 
+  // =====================================================
+// BDI 체크포인트 자동 업데이트
+// =====================================================
+
+fetch("./data/latest.json?v=" + Date.now())
+  .then(response => response.json())
+  .then(data => {
+
+    const bdi =
+      data.market_data?.indicators?.bdi;
+
+    const bdiCheck =
+      document.querySelector(
+        '.check[data-key="bdi-check"]'
+      );
+
+    if (bdiCheck && bdi) {
+
+      const titleEl =
+        bdiCheck.querySelector("h3");
+
+      const bodyStrong =
+        bdiCheck.querySelector(
+          ".check-body strong"
+        );
+
+      if (titleEl && bdi.current_value) {
+
+        let directionText =
+          "벌크 운임 변동";
+
+        if (bdi.direction === "up") {
+          directionText =
+            "벌크 운임 상승";
+        }
+
+        if (bdi.direction === "down") {
+          directionText =
+            "벌크 운임 하락";
+        }
+
+        titleEl.textContent =
+          "BDI " +
+          bdi.current_value +
+          " — " +
+          directionText;
+      }
+
+      if (bodyStrong && bdi.change) {
+
+        let changeText = "변동";
+
+        if (bdi.direction === "up") {
+          changeText = "상승";
+        }
+
+        if (bdi.direction === "down") {
+          changeText = "하락";
+        }
+
+        bodyStrong.textContent =
+          "전 거래일 대비 " +
+          bdi.change +
+          " " +
+          changeText;
+      }
+    }
+  });
 loadLatestBriefing();
 </script>
 
