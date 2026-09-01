@@ -1078,7 +1078,117 @@ if (brentCheck && brent) {
     console.error("AJU 브리핑 데이터 연결 오류:", error);
   }
 }
+// =====================================================
+// 8. BDI 카드 자동 업데이트
+// =====================================================
 
+const bdi =
+  data.market_data?.indicators?.bdi;
+
+const bdiCard =
+  document.querySelector(
+    '.metric[data-key="bdi"]'
+  );
+
+if (bdiCard && bdi) {
+
+  const valueEl =
+    bdiCard.querySelector(".value");
+
+  const moveEl =
+    bdiCard.querySelector(".move");
+
+  const noteEl =
+    bdiCard.querySelector(".note");
+
+  if (valueEl && bdi.current_value) {
+    valueEl.textContent =
+      bdi.current_value;
+  }
+
+  if (moveEl && bdi.change) {
+
+    let arrow = "－";
+
+    if (bdi.direction === "up") {
+      arrow = "▲";
+      moveEl.className =
+        "move up";
+
+    } else if (bdi.direction === "down") {
+      arrow = "▼";
+      moveEl.className =
+        "move down";
+
+    } else {
+      moveEl.className =
+        "move flat";
+    }
+
+    moveEl.textContent =
+      arrow + " " + bdi.change;
+  }
+
+  if (noteEl) {
+    noteEl.textContent =
+      "기준: " +
+      (bdi.current_date || "-") +
+      " · 출처: " +
+      (bdi.source || "-");
+  }
+
+  if (bdi.source_url) {
+
+    let sourceLink =
+      bdiCard.querySelector(
+        ".source-link"
+      );
+
+    if (!sourceLink) {
+
+      sourceLink =
+        document.createElement("a");
+
+      sourceLink.className =
+        "source-link";
+
+      sourceLink.target =
+        "_blank";
+
+      sourceLink.rel =
+        "noopener noreferrer";
+
+      sourceLink.style.display =
+        "inline";
+
+      sourceLink.style.marginLeft =
+        "10px";
+
+      sourceLink.style.fontSize =
+        "11px";
+
+      sourceLink.textContent =
+        "출처 보기 ↗";
+
+      const toggle =
+        bdiCard.querySelector(
+          ".metric-toggle"
+        );
+
+      if (toggle) {
+        toggle.insertAdjacentElement(
+          "afterend",
+          sourceLink
+        );
+      } else {
+        bdiCard.appendChild(sourceLink);
+      }
+    }
+
+    sourceLink.href =
+      bdi.source_url;
+  }
+}
 loadLatestBriefing();
 </script>
 
