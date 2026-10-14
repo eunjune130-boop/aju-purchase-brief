@@ -1,15 +1,15 @@
 {
-  "generated_at_kst": "2026-10-13 14:19",
+  "generated_at_kst": "2026-10-14 12:24",
   "status": "AJU 구매 브리핑 데이터 수집 완료",
   "market_data": {
     "fx": {
-      "current_rate": "1,344.18원",
-      "previous_rate": "1,342.99원",
-      "change": "1.19원",
+      "current_rate": "1,337.38원",
+      "previous_rate": "1,334.13원",
+      "change": "3.25원",
       "direction": "up",
-      "current_date": "2026-10-13",
-      "current_time": "14:19",
-      "previous_date": "2026-10-09",
+      "current_date": "2026-10-14",
+      "current_time": "12:24",
+      "previous_date": "2026-10-13",
       "status": "확인 완료",
       "data_type": "장중 환율",
       "source": "Yahoo Finance",
@@ -19,13 +19,13 @@
     "indicators": {
       "brent": {
         "name": "Brent",
-        "current_value": "$105.50",
-        "previous_value": "$106.65",
-        "change": "1.08%",
-        "change_value": "1.15",
-        "direction": "down",
-        "current_date": "2026-10-13",
-        "previous_date": "2026-10-12",
+        "current_value": "$106.49",
+        "previous_value": "$105.69",
+        "change": "0.76%",
+        "change_value": "0.80",
+        "direction": "up",
+        "current_date": "2026-10-14",
+        "previous_date": "2026-10-13",
         "unit": "USD/bbl",
         "status": "확인 완료",
         "source": "Yahoo Finance",
@@ -35,12 +35,12 @@
       "coal": {
         "name": "Newcastle Coal Futures",
         "contract": "NCFV2026",
-        "current_value": "149.35",
-        "previous_value": "148.85",
-        "change": "0.34%",
-        "change_value": "0.50",
+        "current_value": "150.40",
+        "previous_value": "149.35",
+        "change": "0.70%",
+        "change_value": "1.05",
         "direction": "up",
-        "current_date": "2026-10-13",
+        "current_date": "2026-10-14",
         "expiry_date": "2026-10-30",
         "unit": "USD/t",
         "status": "확인 완료",
@@ -50,12 +50,12 @@
       },
       "bdi": {
         "name": "Baltic Dry Index",
-        "current_value": "2,917",
-        "previous_value": "2,973",
-        "change": "1.88%",
-        "change_points": "56",
+        "current_value": "2,852",
+        "previous_value": "2,917",
+        "change": "2.23%",
+        "change_points": "65",
         "direction": "down",
-        "current_date": "2026-10-09",
+        "current_date": "2026-10-12",
         "status": "확인 완료",
         "source": "HandyBulk / Baltic Exchange",
         "source_url": "https://www.handybulk.com/baltic-dry-index/",
@@ -68,6 +68,13 @@
       "name": "시멘트·슬래그",
       "freshness": "오늘·어제",
       "articles": [
+        {
+          "title": "오징가, 북미 최대 규모 ‘저탄소 슬래그 시멘트 공장’ 준공 - 투데이에너지",
+          "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBQZDh4dWJBcm5DNVJMVFFHTGU1Q1llSFpKYmp4WkhFcGFweFQ4MURNX1BvcTdqb1c3akdsZnVxRWItazRzQUxxc3BLekQxcTdMZnJiOVFDY2ZZbl9peGpYSWQxNHBMM3VzMjg5Ug?oc=5",
+          "published": "Tue, 13 Oct 2026 23:54:28 GMT",
+          "source": "투데이에너지",
+          "relevance_score": 13
+        },
         {
           "title": "\"가동 멈춰도 침하·균열\" 고려시멘트 인근 주민, 안전조사 촉구 - 뉴시스",
           "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9JLU8zem05aU5TNE1uWjJlajhXOGhmNXFMTjFOam04ZUVPZzlzQVAyUjZhVVRwUTF2LVdUWVAyajR6RHBSTVQ3RW9mOXhTRkpPdEV5emh1cXlZMXhlb1NQNXdvRGNQTmZSa0NoSWVuRnF1TmU4UElKUtIBeEFVX3lxTE9JLU8zem05aU5TNE1uWjJlajhXOGhmNXFMTjFOam04ZUVPZzlzQVAyUjZhVVRwUTF2LVdUWVAyajR6RHBSTVQ3RW9mOXhTRkpPdEV5emh1cXlZMXhlb1NQNXdvRGNQTmZSa0NoSWVuRnF1TmU4UElKUg?oc=5",
@@ -90,21 +97,14 @@
           "relevance_score": 10
         },
         {
-          "title": "[박수연 칼럼] K-시멘트 체질 개선 시동…관건은 수익성과 저탄소 설비투자 - 더밸류뉴스",
-          "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFAtSzdjcDVrUjdXLUFNX3ZtZ2RSaFVVQ1ZVX3BqbkNGdzMxUnNEdUNlX3AzaHlMUEFveHZIZmRZdjZlaEtJSXIwT2RYMWdIblpYazdF?oc=5",
-          "published": "Sun, 11 Oct 2026 23:00:02 GMT",
-          "source": "더밸류뉴스",
-          "relevance_score": 9
-        },
-        {
-          "title": "특징주, 서산-시멘트/레미콘 테마 상승세에 12.01% ↑ - 매일경제 마켓",
-          "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5Db2xMck1kN0ppcWdDS1UtZVNhMjlieGdGb2V3NDF3eDFOcTNvSHdib1dGOF9qUmpCNG40THVnVG04ZWIyc1J3WHZTQWpJY2h3aVE?oc=5",
-          "published": "Mon, 12 Oct 2026 00:13:27 GMT",
-          "source": "매일경제 마켓",
+          "title": "삼표시멘트 거래 1574만주…7.34% 상승 마감 앞두고 변동성 - 잡포스트",
+          "link": "https://news.google.com/rss/articles/CBMickFVX3lxTE5HY3dldnpQZW1vbFZzLVBCWTNxRTV5UjEzUTl2WEJiQXM2MjdmUWF4RmswVTZnT195ZV9HX1V5Tk9LVUxxM3hlZ3ZhclJ3VFJpOTBFVFFWYnIxV2RKOHFrNHpyQVpXX0o5eXktcDdsaDVOUdIBckFVX3lxTE5HY3dldnpQZW1vbFZzLVBCWTNxRTV5UjEzUTl2WEJiQXM2MjdmUWF4RmswVTZnT195ZV9HX1V5Tk9LVUxxM3hlZ3ZhclJ3VFJpOTBFVFFWYnIxV2RKOHFrNHpyQVpXX0o5eXktcDdsaDVOUQ?oc=5",
+          "published": "Mon, 12 Oct 2026 05:27:24 GMT",
+          "source": "잡포스트",
           "relevance_score": 8
         }
       ],
-      "raw_count": 46,
+      "raw_count": 49,
       "selected_count": 5
     },
     "energy": {
@@ -119,32 +119,32 @@
           "relevance_score": 15
         },
         {
-          "title": "공항·유조선 잇단 공격에 국제유가 상승…브렌트유 105달러 육박 - www.ebn.co.kr",
-          "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBaU0NkaXNIZFRKQkhBb0l1S2MzRElPMTdwaXl6VUhwNGd3bXBiQVRUN0psYlJlTFJ4Nl9BZUNXTm5TQlJwc1p2cUotM19XU0FWM1NoeWcwWDRvRGhCWHhrRUIyakJRQVht?oc=5",
-          "published": "Sun, 11 Oct 2026 23:03:06 GMT",
-          "source": "www.ebn.co.kr",
-          "relevance_score": 15
-        },
-        {
-          "title": "국제유가, 사우디 피격에 공급 우려 재부각⋯브렌트유 1.8%↑ - 브릿지경제",
-          "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5QWHI3bmlFUTRVVkNXTVF6dnZxZlV0XzFwOHpBeXFJT1kyQlRnYzdRVHVvVkhmUWVpWmFZcy1qZjRaZzBzOEFlc1ZMR1VrQldKdXZEZnN2R3otdw?oc=5",
-          "published": "Mon, 12 Oct 2026 23:27:00 GMT",
-          "source": "브릿지경제",
-          "relevance_score": 15
-        },
-        {
-          "title": "국제유가 3일째 상승…브렌트유 106달러 돌파 - 애드뉴스인천",
-          "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBEVUxvSG93VXZMZDIzUGNmVFpVY1FCZS1VcjJXLXJVWURoRExSSkFmQmNuVjhPWjM1bVZ3SE9SMmpCYndIS1NLcHQtWHNOSmZCbU9zRUs4MDlNWWU3WVpPMkNRZDdwQjBVUWhR?oc=5",
-          "published": "Tue, 13 Oct 2026 02:27:00 GMT",
-          "source": "애드뉴스인천",
-          "relevance_score": 15
-        },
-        {
-          "title": "LNG보다 80% 싼 석탄…아시아 연말 수출 반등 전망 - 한국경제",
-          "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBtQnlDYlY4Qmp1dmdTZkQ1OTlTQ2N4NEtnazhNTmliNGE1Wi1pNXkyb25Ia3pZSVpwVzBhZVo2WjZUS1pUYm5MX292ejhNbW1ZVG0zdlJNdWhKQQ?oc=5",
-          "published": "Sun, 11 Oct 2026 22:51:43 GMT",
-          "source": "한국경제",
+          "title": "‘러우戰 수준’ LNG·유가…유럽 비축↓·중동 확전에 겨울 가격불안↑ - 기후에너지데이터뱅크",
+          "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBmUW9EWW1QZlVwQnFSN2NzUlNxTjhaTXhyeHJTbzJ3MG9mZW5Cd05Del9kM2xMY2RwNmxvVWIyUmhET3plbGttNE9KWW5UOTU2THpFeUwzR3dlRm5yZlE?oc=5",
+          "published": "Mon, 12 Oct 2026 07:10:03 GMT",
+          "source": "기후에너지데이터뱅크",
           "relevance_score": 14
+        },
+        {
+          "title": "오늘의 브렌트 원유 가격 | UKOIL 가격 차트 - Mitrade",
+          "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE85ZTlkYVotaXVwRzNJa3MtSmU2VWE1Y2o5QWdBa2V5UVJVdWtOamQ1dm0xZWxDWFljbk5Wci04OEFKbTJzLVBJdmxOV1BDWTNfd0xDVGZDLXNCYmZZMVlJRURwdXZ4MExuSEFuOW5R?oc=5",
+          "published": "Tue, 13 Oct 2026 04:46:41 GMT",
+          "source": "Mitrade",
+          "relevance_score": 12
+        },
+        {
+          "title": "트럼프의 에너지 휴전 발표에 유가 하락…브렌트유 급락 - VT Markets",
+          "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOV2NFSkJxaUNMcVl4SmZua1g3QUdCcTFMdXo5dFZldS1hY0NUZ3pibmdnRnhlVktkc1ZFLUs4dnVaZHZwOTlZZm90SkVPOEdOQ0MxVWhUM05NX1pHUmVCSlZhMWVVSU9uMUFOajRIbHA2blFTSEYzcGMxQ1N6TjU0QmJ6Sk5udEZnOHM1b1cxM0NrQ2M2djZrX2FtTEFKelJmaVVsREFMSmhpamZQX09TUGVTbWJwMHc?oc=5",
+          "published": "Mon, 12 Oct 2026 13:14:01 GMT",
+          "source": "VT Markets",
+          "relevance_score": 12
+        },
+        {
+          "title": "중동발 지정학적 긴장 확산에 국제유가 사흘째 오름세..브렌트유 배럴당 106.65달러 넘어 - 파이낸스스코프",
+          "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1XSTdXUHhWUUNrZ1U2WFczYUkxdzZsRDF6SlFDYU1rM3BqQi1ieTJVS3YyY1UzWDVobldHNUV2OTJmZE05dzVmZllZNkxQbFBfeDA4amNFQm1VWEZrazRLbTlmN3ZHOFJ0dnc?oc=5",
+          "published": "Mon, 12 Oct 2026 23:17:00 GMT",
+          "source": "파이낸스스코프",
+          "relevance_score": 12
         }
       ],
       "raw_count": 105,
@@ -162,24 +162,38 @@
           "relevance_score": 12
         },
         {
-          "title": "세종시의회, 토석채취지·공동구 현장 살펴 - 투데이충남",
-          "link": "https://news.google.com/rss/articles/CBMickFVX3lxTE1yd0VRcXRLbVZkM1lOU2R6NEMyc2RGdnVrT3hFX1U4YzdvR29Hd0RKbFl3c0dYOUNWNXAwUDBLYm9Oak9lSy12M1NzTTFmM29fY3dIaTVleF9Mc2ZPdTZoM3FsQzdSZ2JPYXhreEpSbUp2QQ?oc=5",
-          "published": "Mon, 12 Oct 2026 01:42:10 GMT",
-          "source": "투데이충남",
+          "title": "산림청 산업재해 선제적 차단 토석채취 현장 맞춤형 안전진단 실시 - 코리아방송",
+          "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBWMkE5QV9zRmhVaGtxMWstSk1lVENtakc0RGVVdjlXV0VxV3ppOG5EWWZCUVllYWFscWcyaW5QLS1nVUdjVUFBSUpTbTFoWGY2MVVLM29rTUNlMTh4RGZMeER1VzBDQ2c?oc=5",
+          "published": "Wed, 14 Oct 2026 00:04:12 GMT",
+          "source": "코리아방송",
           "relevance_score": 10
+        },
+        {
+          "title": "HC보광산업 17.24% 상승…골재 출하와 흑자 지속 여부 주목 - 잡포스트",
+          "link": "https://news.google.com/rss/articles/CBMickFVX3lxTFAtLUgxTjF2NC0tQkNFeDJZUG81RnNMWGUtNTJsWU5GNnA5czloWFU4M3hTYlBia2JKVlQyNU5yYjBZLVlxeC1ELTVUVm0tTmRHNHliNWdMNTQteXRESWNnTkhfeGNoOUNmVkNPS25QdUhPQdIBckFVX3lxTFAtLUgxTjF2NC0tQkNFeDJZUG81RnNMWGUtNTJsWU5GNnA5czloWFU4M3hTYlBia2JKVlQyNU5yYjBZLVlxeC1ELTVUVm0tTmRHNHliNWdMNTQteXRESWNnTkhfeGNoOUNmVkNPS25QdUhPQQ?oc=5",
+          "published": "Tue, 13 Oct 2026 05:34:44 GMT",
+          "source": "잡포스트",
+          "relevance_score": 8
         }
       ],
-      "raw_count": 30,
-      "selected_count": 2
+      "raw_count": 37,
+      "selected_count": 3
     },
     "steel_phc": {
       "name": "철강·PHC",
       "freshness": "오늘·어제",
       "articles": [
         {
-          "title": "10.12 중국 철강재 일일 내수 가격 - 스틸데일리",
-          "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5vX1NHT09JVFgzTjJ3VHhCdGhBLWZVUGpaX1ZmZmpSd0tGNWtlejFRSmlBMG5mTEhGUm1XaktDc3pJYVhNdzNESzhkVkNKdk9BeHAwQUlyOHFlbk4yTm13SzQwRU1JZWpsR1NJSm5lVEZMM3ZB0gF0QVVfeXFMTm9fU0dPT0lUWDNOMndUeEJ0aEEtZlVQalpfVmZmalJ3S0Y1a2V6MVFKaUEwbmZMSEZSbVdqS0NzeklhWE13M0RLOGRWQ0p2T0F4cDBBSXI4cWVuTjJObXdLNDBFTUllamxHU0lKbmVURkwzdkE?oc=5",
-          "published": "Mon, 12 Oct 2026 06:54:59 GMT",
+          "title": "철광석·철스크랩 약세에도 철강사 수익 개선 더뎌…에너지비 등 비용 상승 영향 - 스트레이트뉴스",
+          "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5CbHlDSU5lYW81SU92NDJ2Z0N1cjVnSEJoaEIyUnMxZS1tMkhSWHJfUUotdG5hcUFYODY0WWpOaTNUSTdkUU1MWXpldmc1azZ1WWJ0NkdWTDJRYXU0WXoxb0JZbTgzNF8yOXR4TUdyamVTU0JtWWw00gF3QVVfeXFMTkJseUNJTmVhbzVJT3Y0MnZnQ3VyNWdIQmhoQjJSczFlLW0ySFJYcl9RSi10bmFxQVg4NjRZak5pM1RJN2RRTUxZemV2ZzVrNnVZYnQ2R1ZMMlFhdTRZejFvQlltODM0XzI5dHhNR3JqZVNTQm1ZbDQ?oc=5",
+          "published": "Tue, 13 Oct 2026 09:34:00 GMT",
+          "source": "스트레이트뉴스",
+          "relevance_score": 18
+        },
+        {
+          "title": "10.13 중국 철강재 일일 내수 가격 - 스틸데일리",
+          "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1IYkptcThPSXlwTW8yRjJ4M2EtaFg4bEhFZHJ0SUpBUll0QWdEaGhLbktzZDlBdEpLUWVFaFZ4cS16dVg3QjlTTHN2WkIxQ2RFbHZ5SmFFYlZjVVNGRUFGQ2xVNjJPNng0OC1CMVlmYm7SAXRBVV95cUxPSG1pOFVYNjlJWGpMSUJjQ0RTSUpLR3M1SGo3eWVvdGc3eDRPaG1ZaVdpdVZjSkNkZDI3aXp1TElmTjR1T051ZHVtMXE2TGpYdEl2eTNLLUFtWkZGd1dOWUlGdUhFMnpJYWtlN25ydUpNSmlzbQ?oc=5",
+          "published": "Tue, 13 Oct 2026 06:15:24 GMT",
           "source": "스틸데일리",
           "relevance_score": 14
         },
@@ -198,13 +212,6 @@
           "relevance_score": 13
         },
         {
-          "title": "한국철강, 철스크랩 야드 화재로 입고 중단…전기로 가동 차질 - 페로타임즈",
-          "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1YN3hKNGcycWlLaWZYVmxSUmZ5eW1ybTBtU3ZWSWZsSWhhZ3hDNGlSYTNzdVBYZmR3Z2hnc1B3SVFsRjVLUEMyYVZDZS1IYWxDWjgxRWdZSXVGOGptSFhEZkRLYzE3dnpwck8ySA?oc=5",
-          "published": "Sun, 11 Oct 2026 09:01:24 GMT",
-          "source": "페로타임즈",
-          "relevance_score": 13
-        },
-        {
           "title": "철강 가격 반등 신호 나올까… 하나증권 “공급 감소 주목” - 핀포인트뉴스",
           "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE85MUlKaE5HSU10UWFocWtjclBCazJtMUh2eVdJZDNnZHgzVDgzYnFiM2FhTEZWbk5DR0lYOUhwajZuRmlXeGdiRGh5bXAyTGRiTFpTeERSZHd3STFIUUtYZ0x4aGs5QnFRTTNqR2JNOThyb24xTmdn0gF3QVVfeXFMTzkxSUpoTkdJTXRRYWhxa2NyUEJrMm0xSHZ5V0lkM2dkeDNUODNicWIzYWFMRlZuTkNHSVg5SHBqNm5GaVd4Z2JEaHltcDJMZGJMWlN4RFJkd3dJMUhRS1hnTHhoazlCcVFNM2pHYk05OHJvbjFOZ2c?oc=5",
           "published": "Mon, 12 Oct 2026 06:43:32 GMT",
@@ -212,7 +219,7 @@
           "relevance_score": 12
         }
       ],
-      "raw_count": 64,
+      "raw_count": 67,
       "selected_count": 5
     },
     "logistics": {
@@ -220,24 +227,17 @@
       "freshness": "오늘·어제",
       "articles": [
         {
-          "title": "해상운임 1년 새 급등 … 해운사 최대 성수기, 수출 화주는 물류비 비상 - 뉴데일리",
-          "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1qQk1EbEc4WVJaS2FVcFpab3NwbERTaEtrbnZGR19nNENHZFJpSno2VVRZYk1OMENOa1oxTjVMaF93ZlViVU01eW5HS3NGT2NzZVZia1NvZXkwOFdoZ3FyQ01fejd2UERxMHZNVkR0bW5NS3hIMnRZVlhjONIBgAFBVV95cUxOUmtKVTFQaXdfUmNfbklpcU1zREpyWjJTZzVIb1k1OTkxRzQ4MFNQZFdiNWVfTEQ1X0NhazIwLUU3alFDQm9FdFhPcHJnZWdqN3Bhc3ZNV1h6NUF6VnhnQnR2bnJRSHltbGpMUldqQ0QtTkp5dTVIWFM5S1BlTEtqUA?oc=5",
-          "published": "Mon, 12 Oct 2026 02:00:14 GMT",
-          "source": "뉴데일리",
-          "relevance_score": 14
+          "title": "해상운임 상승 기대에 해운주 들썩…HMM·팬오션 폭풍 매수 - 핀포인트뉴스",
+          "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5ocnRheUJESXJ1Y1pRaWg4Z21fZ3VhR0p2Q1NhVDZ2aUFacl8xVnc4dFZpTzZtTHVvNkVzM180WTcwSVR3Q3F2eEw0dTM3OHBEdXpzVGNQMC1qMkh2bkxQdTduMzdRV2tYVkZXSnY1ZGQ2QncybzFB0gF3QVVfeXFMTmhydGF5QkRJcnVjWlFpaDhnbV9ndWFHSnZDU2FUNnZpQVpyXzFWdzh0VmlPNm1MdW82RXMzXzRZNzBJVHdDcXZ4TDR1Mzc4cER1enNUY1AwLWoySHZuTFB1N24zN1FXa1hWRldKdjVkZDZCdzJvMUE?oc=5",
+          "published": "Wed, 14 Oct 2026 00:23:56 GMT",
+          "source": "핀포인트뉴스",
+          "relevance_score": 12
         },
         {
           "title": "종합해상운임지수, 8만달러 상회...지난 주 23,000TEU급 컨테이너선 신조선가 2백만달러 하락 - 쉬핑뉴스넷",
           "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9XbmFHcDdXWHVXRE1kMEVUOXVzMFo0cEJVSDVOMUhrN0pBYVlVZW1CX0ZPV2xDa0hyRVZQeTRsVFVuOTNLcGJIR3lmUXl4a1hDUURYX3lPZW9XWGxWeXZ2VlJOX2tSdXZZNGxHMi1nc0R6cFk?oc=5",
           "published": "Mon, 12 Oct 2026 04:42:32 GMT",
           "source": "쉬핑뉴스넷",
-          "relevance_score": 11
-        },
-        {
-          "title": "[특징주] LX인터내셔널, 석탄값·해상운임 상승에 1.73% 강세 - 남도일보",
-          "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1sbHZ3ZmFjOUpuVnFYRzJRN3lJT1pNajEtRDJCR0tVVjI5UHVoQ0VOQUwwMHFXbDVWaUFZLXlQNVpPREI4bGFRbVZYeWZST2xERFpZWnV3MXBNWkFqaTZVSVgxdk84Y2t0dTN1RNIBcEFVX3lxTE1pbjlZMXYzcUVvaTB4bExtWU45XzItREFXUVdUY3czbHdORmlMcUVfbEd4NkFxOFYwNldncjRqdHM2Y0U5dTE0WVdhQk8zaWdZeFNTMnlibW1fYjVEdm5MbUNLM052ckozcVhlYVM1WWM?oc=5",
-          "published": "Mon, 12 Oct 2026 00:26:00 GMT",
-          "source": "남도일보",
           "relevance_score": 11
         },
         {
@@ -253,9 +253,16 @@
           "published": "Mon, 12 Oct 2026 07:34:08 GMT",
           "source": "한국경제",
           "relevance_score": 8
+        },
+        {
+          "title": "지정학적 리스크·운임 변동성에 해운株 혼조세… 팬오션·HMM은 뱃노래 '흥얼흥얼' - 핀포인트뉴스",
+          "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBKX2hDM3I2VW1wNkQ4MUZIb1FvLURmNnlRS0Q3MWZNMTU3ajdwbklHRXVzbVR2Q19RLTlsVC1SYXZOeGU3RUVoU3hiLUY1aHo4TzktRHBhYWVMUE1oNzltWS1mNm9xeEQ3TmZlRHBqZVlzZHYzcGRz0gF3QVVfeXFMUEpfaEMzcjZVbXA2RDgxRkhvUW8tRGY2eVFLRDcxZk0xNTdqN3BuSUdFdXNtVHZDX1EtOWxULVJhdk54ZTdFRWhTeGItRjVoejhPOS1EcGFhZUxQTWg3OW1ZLWY2b3F4RDdOZmVEcGplWXNkdjNwZHM?oc=5",
+          "published": "Tue, 13 Oct 2026 05:27:22 GMT",
+          "source": "핀포인트뉴스",
+          "relevance_score": 7
         }
       ],
-      "raw_count": 53,
+      "raw_count": 55,
       "selected_count": 5
     },
     "construction": {
@@ -263,10 +270,17 @@
       "freshness": "오늘·어제",
       "articles": [
         {
-          "title": "올해도 4분기 집중되나…공공주택 착공 ‘연말 쏠림’ 고질병 - 데일리안",
-          "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1BUEMtQTdjaC1kbzZJX3ZpZXl1NXZhVTJRWFppN3BqUFhlTDFkalVERmxUZF9hMUxkTFNtOXJBcFdnbHFQSTB0OUE0djZpODhhQWRN?oc=5",
-          "published": "Mon, 12 Oct 2026 22:01:00 GMT",
-          "source": "데일리안",
+          "title": "건설수주 3개월째 감소…공사비 부담에 건설경기 회복 더뎌 - 뉴시스",
+          "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1rakN1V29HWE9KTUswcjlTQk9wMXpBcjl4Mk9BYnRlbkRvZlREOUd5bnRrdXZ5QjFmN2NkRXk3S0tlOVo5ZVZtWmQ5UHNSSDc5bGZ1QS0yRkxId2NqLVh1MTZIdTFZQlo5QVRFLTF1V3Z1S1AzcDZsSdIBeEFVX3lxTE1rakN1V29HWE9KTUswcjlTQk9wMXpBcjl4Mk9BYnRlbkRvZlREOUd5bnRrdXZ5QjFmN2NkRXk3S0tlOVo5ZVZtWmQ5UHNSSDc5bGZ1QS0yRkxId2NqLVh1MTZIdTFZQlo5QVRFLTF1V3Z1S1AzcDZsSQ?oc=5",
+          "published": "Wed, 14 Oct 2026 01:43:39 GMT",
+          "source": "뉴시스",
+          "relevance_score": 10
+        },
+        {
+          "title": "LH 건설형 공공주택 착공률 25.7%…연말 목표 달성 가능할까 - 폴리뉴스 Polinews",
+          "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1fSUh6WTdfaFJTTHliVm1YNnBOalowbFFEYVFqSkpkbHdtMlVSeGZlbU5jbDJGYzFiM0lBYkluRkFsc2xKMnc2R0lYQXh4N1NhU2VSaTlJY0N6WFI3a2JMenRPam42R1BLaXNRTGtn?oc=5",
+          "published": "Tue, 13 Oct 2026 06:40:51 GMT",
+          "source": "폴리뉴스 Polinews",
           "relevance_score": 10
         },
         {
@@ -277,41 +291,27 @@
           "relevance_score": 10
         },
         {
-          "title": "이성훈 LH 사장 “올해 전국 9만 6천호 공공주택 착공” - 매일건설신문",
-          "link": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTFA5aDdjOXAzeVBfLVB5LTdBWmVxSGVucHlFSXhpbmlIZkYySHpuaTJNVUwxYVFMRWxfSGU0cHFlZEU3dFk?oc=5",
-          "published": "Mon, 12 Oct 2026 02:32:00 GMT",
-          "source": "매일건설신문",
+          "title": "올해도 4분기 집중되나…공공주택 착공 ‘연말 쏠림’ 고질병 - 데일리안",
+          "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFA0a2kzLVRfNTBfLTN2dGdhVWJNUkdFRDVQNWxOakZXM19kZ3pUUFhBRjZ2S3FyYnpZaVAyeDRPMDRqZTR5Y21QYmpNbEhzX1Y0bzJJOQ?oc=5",
+          "published": "Mon, 12 Oct 2026 22:01:00 GMT",
+          "source": "데일리안",
           "relevance_score": 10
         },
         {
-          "title": "LH, 올해 전국 9만6000가구 착공…공공주택 품질 개선 추진 - 일요경제",
-          "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBXQnZKTFoxNjdhZ19nOUZFNjdiLXJ2Wl9qaWlIVTBNZnJQbjU4TzJzWXFIaWZsOHBJRWhrSHI5MGp4cXhTMko0Tng2TFV2Tm1ENVhMSHdITmhkTHNXZ3FHMkdPeXZ2eUtRbl9FUTZ3?oc=5",
-          "published": "Mon, 12 Oct 2026 06:37:06 GMT",
-          "source": "일요경제",
-          "relevance_score": 10
-        },
-        {
-          "title": "[국감] 이성훈 LH 사장 \"공공주택 혁신\"…수도권 8.6만가구 착공 추진 - 서울파이낸스",
-          "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBzakYzMEJFNnVHeUJvNTgtOE8yM0RmS2NXdkUzczdMdnNyRnhhZ0ZiMlJYYXl0RzBfTS1VYklkTGdnbllQY20tNVpqTDl5V2RIdzUyUjhTTnQ0U1UyM3hXMFpaOHB0Zkdhamc?oc=5",
-          "published": "Mon, 12 Oct 2026 02:08:15 GMT",
-          "source": "서울파이낸스",
+          "title": "[기획] 주택공급 확대에도 지방은 잠잠…착공 연기 속출 - 매일일보",
+          "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1RQ09fUFo4QVRaNHRmY1dOZmZMclg0eUVSVHIxYXRiZkd5VXhnT29lZlAzUWxoeHRtNEJiNjlYaTNleWJ3V0JsREFOWFB2SHlIS0VNQTRSY3JUVkdfWE1GSldKejE?oc=5",
+          "published": "Tue, 13 Oct 2026 05:35:10 GMT",
+          "source": "매일일보",
           "relevance_score": 10
         }
       ],
-      "raw_count": 137,
+      "raw_count": 138,
       "selected_count": 5
     },
     "suppliers": {
       "name": "공급사",
       "freshness": "오늘·어제",
       "articles": [
-        {
-          "title": "특징주, 삼표시멘트-시멘트/레미콘 테마 상승세에 12.01% ↑ - 매일경제",
-          "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBQYkhQOFhCbXVnYTZMOV81ODlBWmVZMl9LSXhSNUpFQVdTeDhqWTBwNVd6TGZJUW03QkhlVEtQSDFSMDJRT29FYzhNWXR4azNNemc?oc=5",
-          "published": "Mon, 12 Oct 2026 02:03:34 GMT",
-          "source": "매일경제",
-          "relevance_score": 12
-        },
         {
           "title": "삼표시멘트 거래 1574만주…7.34% 상승 마감 앞두고 변동성 - 잡포스트",
           "link": "https://news.google.com/rss/articles/CBMickFVX3lxTE5HY3dldnpQZW1vbFZzLVBCWTNxRTV5UjEzUTl2WEJiQXM2MjdmUWF4RmswVTZnT195ZV9HX1V5Tk9LVUxxM3hlZ3ZhclJ3VFJpOTBFVFFWYnIxV2RKOHFrNHpyQVpXX0o5eXktcDdsaDVOUdIBckFVX3lxTE5HY3dldnpQZW1vbFZzLVBCWTNxRTV5UjEzUTl2WEJiQXM2MjdmUWF4RmswVTZnT195ZV9HX1V5Tk9LVUxxM3hlZ3ZhclJ3VFJpOTBFVFFWYnIxV2RKOHFrNHpyQVpXX0o5eXktcDdsaDVOUQ?oc=5",
@@ -320,11 +320,11 @@
           "relevance_score": 10
         },
         {
-          "title": "[단독] 中 철강 공급과잉에 韓 생산원가까지 부정?…美 도금강판 관세 산정 논란 - 철강금속신문",
-          "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9TZjQwN1RHODd3RGlPWllOVEM5dURvdV9LeFc5RENDalNMX1d2VTZkYUlaQnlZdlE2OG44RVZqb1JhM21DYTlMX2JmZmp0RnN2ejFNeHVHTk9LWFNjYXpaU0RfMmQxMzdFeXc?oc=5",
-          "published": "Sun, 11 Oct 2026 20:00:00 GMT",
-          "source": "철강금속신문",
-          "relevance_score": 9
+          "title": "포스코, 제강사 13일 일제 인하에도 침묵...배경은? - 스틸데일리",
+          "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE94OU14X1VZdVVUS2NocG9CUFY2N2F1WmNOZVY1TVJhTFBjQTRPd0tsNHFBbUJrUEtyR0VTMEhvX05zUXkyQWotUnRGUVBWYmZBR2EyVXNYbzNKZjg3T3c4bEpyREp0YThHeU5hX3pLR2PSAXRBVV95cUxQb2ZLNlNwTEd3YnVLbERlNzF5X1FzcjNyTE9KOHZDNmVNdWlOS21zRHN2UUtQelFEUDREaThDOFh6YkFKU2RPTllqYmpCNUpKWTdhZzRmV0pCNXo0OUc2dG5acGhxMk02M2xMTU1FVkZ0OHhFNw?oc=5",
+          "published": "Tue, 13 Oct 2026 20:25:00 GMT",
+          "source": "스틸데일리",
+          "relevance_score": 8
         },
         {
           "title": "\"수도권 주택공급·GBC·반도체 팹 줄호재\"…시멘트 업계, 기대감 솔솔 - 뉴스1",
@@ -339,9 +339,16 @@
           "published": "Mon, 12 Oct 2026 23:49:37 GMT",
           "source": "철강금속신문",
           "relevance_score": 7
+        },
+        {
+          "title": "[N2 포커스] EU 탄소가격 9% 상승…철강업계 수출 부담 커진다 - 뉴스투데이",
+          "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9RZEZfMG5KejBUMWZwMW5EY25TZHdJZjFLMzVWUTFsWjE0MmhVWE1IYzNLNTJmN3ltQnczc0I4VmIxQXRfM3k4Q29mdkQ5VS1yaXRvOUZkMzk?oc=5",
+          "published": "Mon, 12 Oct 2026 21:30:53 GMT",
+          "source": "뉴스투데이",
+          "relevance_score": 7
         }
       ],
-      "raw_count": 36,
+      "raw_count": 45,
       "selected_count": 5
     }
   }
